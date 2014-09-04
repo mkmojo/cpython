@@ -1,0 +1,2101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="94">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <df root="." name="0">
+      <df name="Mac">
+        <df name="Modules">
+          <df name="ae">
+            <in>_AEmodule.c</in>
+          </df>
+          <df name="ah">
+            <in>_AHmodule.c</in>
+          </df>
+          <df name="app">
+            <in>_Appmodule.c</in>
+          </df>
+          <df name="carbonevt">
+            <in>_CarbonEvtmodule.c</in>
+          </df>
+          <df name="cf">
+            <in>_CFmodule.c</in>
+            <in>pycfbridge.c</in>
+          </df>
+          <df name="cg">
+            <in>_CGmodule.c</in>
+          </df>
+          <df name="cm">
+            <in>_Cmmodule.c</in>
+          </df>
+          <df name="ctl">
+            <in>_Ctlmodule.c</in>
+          </df>
+          <df name="dlg">
+            <in>_Dlgmodule.c</in>
+          </df>
+          <df name="drag">
+            <in>_Dragmodule.c</in>
+          </df>
+          <df name="evt">
+            <in>_Evtmodule.c</in>
+          </df>
+          <df name="file">
+            <in>_Filemodule.c</in>
+          </df>
+          <df name="fm">
+            <in>_Fmmodule.c</in>
+          </df>
+          <df name="folder">
+            <in>_Foldermodule.c</in>
+          </df>
+          <df name="help">
+            <in>_Helpmodule.c</in>
+          </df>
+          <df name="ibcarbon">
+            <in>_IBCarbon.c</in>
+          </df>
+          <df name="icn">
+            <in>_Icnmodule.c</in>
+          </df>
+          <df name="launch">
+            <in>_Launchmodule.c</in>
+          </df>
+          <df name="list">
+            <in>_Listmodule.c</in>
+          </df>
+          <df name="menu">
+            <in>_Menumodule.c</in>
+          </df>
+          <df name="mlte">
+            <in>_Mltemodule.c</in>
+          </df>
+          <df name="osa">
+            <in>_OSAmodule.c</in>
+          </df>
+          <df name="qd">
+            <in>_Qdmodule.c</in>
+          </df>
+          <df name="qdoffs">
+            <in>_Qdoffsmodule.c</in>
+          </df>
+          <df name="qt">
+            <in>_Qtmodule.c</in>
+          </df>
+          <df name="res">
+            <in>_Resmodule.c</in>
+          </df>
+          <df name="scrap">
+            <in>_Scrapmodule.c</in>
+          </df>
+          <df name="snd">
+            <in>_Sndmodule.c</in>
+          </df>
+          <df name="te">
+            <in>_TEmodule.c</in>
+          </df>
+          <df name="win">
+            <in>_Winmodule.c</in>
+          </df>
+          <in>ColorPickermodule.c</in>
+          <in>MacOS.c</in>
+          <in>Nav.c</in>
+          <in>OSATerminology.c</in>
+          <in>_scproxy.c</in>
+          <in>autoGIL.c</in>
+          <in>gestaltmodule.c</in>
+          <in>icgluemodule.c</in>
+        </df>
+      </df>
+      <df name="Modules">
+        <df name="_ctypes">
+          <df name="darwin">
+            <in>dlfcn_simple.c</in>
+          </df>
+          <df name="libffi_osx">
+            <df name="powerpc">
+              <in>ppc-ffi_darwin.c</in>
+            </df>
+            <df name="x86">
+              <in>x86-ffi64.c</in>
+              <in>x86-ffi_darwin.c</in>
+            </df>
+            <in>ffi.c</in>
+          </df>
+          <in>_ctypes.c</in>
+          <in>_ctypes_test.c</in>
+          <in>callbacks.c</in>
+          <in>callproc.c</in>
+          <in>cfield.c</in>
+          <in>malloc_closure.c</in>
+          <in>stgdict.c</in>
+        </df>
+        <df name="_io">
+          <in>_iomodule.c</in>
+          <in>bufferedio.c</in>
+          <in>bytesio.c</in>
+          <in>fileio.c</in>
+          <in>iobase.c</in>
+          <in>stringio.c</in>
+          <in>textio.c</in>
+        </df>
+        <df name="_multiprocessing">
+          <in>multiprocessing.c</in>
+          <in>semaphore.c</in>
+          <in>socket_connection.c</in>
+        </df>
+        <df name="_sqlite">
+          <in>cache.c</in>
+          <in>connection.c</in>
+          <in>cursor.c</in>
+          <in>microprotocols.c</in>
+          <in>module.c</in>
+          <in>prepare_protocol.c</in>
+          <in>row.c</in>
+          <in>statement.c</in>
+          <in>util.c</in>
+        </df>
+        <df name="cjkcodecs">
+          <in>_codecs_cn.c</in>
+          <in>_codecs_hk.c</in>
+          <in>_codecs_iso2022.c</in>
+          <in>_codecs_jp.c</in>
+          <in>_codecs_kr.c</in>
+          <in>_codecs_tw.c</in>
+          <in>multibytecodec.c</in>
+        </df>
+        <df name="expat">
+          <in>xmlparse.c</in>
+          <in>xmlrole.c</in>
+          <in>xmltok.c</in>
+        </df>
+        <in>_bisectmodule.c</in>
+        <in>_codecsmodule.c</in>
+        <in>_collectionsmodule.c</in>
+        <in>_csv.c</in>
+        <in>_curses_panel.c</in>
+        <in>_cursesmodule.c</in>
+        <in>_elementtree.c</in>
+        <in>_functoolsmodule.c</in>
+        <in>_hashopenssl.c</in>
+        <in>_heapqmodule.c</in>
+        <in>_hotshot.c</in>
+        <in>_json.c</in>
+        <in>_localemodule.c</in>
+        <in>_lsprof.c</in>
+        <in>_math.c</in>
+        <in>_randommodule.c</in>
+        <in>_sre.c</in>
+        <in>_ssl.c</in>
+        <in>_struct.c</in>
+        <in>_testcapimodule.c</in>
+        <in>_tkinter.c</in>
+        <in>_weakref.c</in>
+        <in>arraymodule.c</in>
+        <in>audioop.c</in>
+        <in>binascii.c</in>
+        <in>bsddbmodule.c</in>
+        <in>bz2module.c</in>
+        <in>cPickle.c</in>
+        <in>cStringIO.c</in>
+        <in>cmathmodule.c</in>
+        <in>config.c</in>
+        <in>cryptmodule.c</in>
+        <in>datetimemodule.c</in>
+        <in>dbmmodule.c</in>
+        <in>errnomodule.c</in>
+        <in>fcntlmodule.c</in>
+        <in>future_builtins.c</in>
+        <in>gcmodule.c</in>
+        <in>gdbmmodule.c</in>
+        <in>getbuildinfo.c</in>
+        <in>getpath.c</in>
+        <in>grpmodule.c</in>
+        <in>itertoolsmodule.c</in>
+        <in>main.c</in>
+        <in>mathmodule.c</in>
+        <in>mmapmodule.c</in>
+        <in>nismodule.c</in>
+        <in>operator.c</in>
+        <in>parsermodule.c</in>
+        <in>posixmodule.c</in>
+        <in>pwdmodule.c</in>
+        <in>pyexpat.c</in>
+        <in>python.c</in>
+        <in>resource.c</in>
+        <in>rotatingtree.c</in>
+        <in>selectmodule.c</in>
+        <in>signalmodule.c</in>
+        <in>socketmodule.c</in>
+        <in>stropmodule.c</in>
+        <in>symtablemodule.c</in>
+        <in>syslogmodule.c</in>
+        <in>termios.c</in>
+        <in>threadmodule.c</in>
+        <in>timemodule.c</in>
+        <in>tkappinit.c</in>
+        <in>unicodedata.c</in>
+        <in>xxsubtype.c</in>
+        <in>zipimport.c</in>
+        <in>zlibmodule.c</in>
+      </df>
+      <df name="Objects">
+        <in>abstract.c</in>
+        <in>boolobject.c</in>
+        <in>bufferobject.c</in>
+        <in>bytearrayobject.c</in>
+        <in>bytes_methods.c</in>
+        <in>capsule.c</in>
+        <in>cellobject.c</in>
+        <in>classobject.c</in>
+        <in>cobject.c</in>
+        <in>codeobject.c</in>
+        <in>complexobject.c</in>
+        <in>descrobject.c</in>
+        <in>dictobject.c</in>
+        <in>enumobject.c</in>
+        <in>exceptions.c</in>
+        <in>fileobject.c</in>
+        <in>floatobject.c</in>
+        <in>frameobject.c</in>
+        <in>funcobject.c</in>
+        <in>genobject.c</in>
+        <in>intobject.c</in>
+        <in>iterobject.c</in>
+        <in>listobject.c</in>
+        <in>longobject.c</in>
+        <in>memoryobject.c</in>
+        <in>methodobject.c</in>
+        <in>moduleobject.c</in>
+        <in>object.c</in>
+        <in>obmalloc.c</in>
+        <in>rangeobject.c</in>
+        <in>setobject.c</in>
+        <in>sliceobject.c</in>
+        <in>stringobject.c</in>
+        <in>structseq.c</in>
+        <in>tupleobject.c</in>
+        <in>typeobject.c</in>
+        <in>unicodectype.c</in>
+        <in>unicodeobject.c</in>
+        <in>weakrefobject.c</in>
+      </df>
+      <df name="Parser">
+        <in>acceler.c</in>
+        <in>bitset.c</in>
+        <in>firstsets.c</in>
+        <in>grammar.c</in>
+        <in>grammar1.c</in>
+        <in>listnode.c</in>
+        <in>metagrammar.c</in>
+        <in>myreadline.c</in>
+        <in>node.c</in>
+        <in>parser.c</in>
+        <in>parsetok.c</in>
+        <in>pgen.c</in>
+        <in>pgenmain.c</in>
+        <in>printgrammar.c</in>
+        <in>tokenizer.c</in>
+        <in>tokenizer_pgen.c</in>
+      </df>
+      <df name="Python">
+        <in>Python-ast.c</in>
+        <in>_warnings.c</in>
+        <in>asdl.c</in>
+        <in>ast.c</in>
+        <in>bltinmodule.c</in>
+        <in>ceval.c</in>
+        <in>codecs.c</in>
+        <in>compile.c</in>
+        <in>dtoa.c</in>
+        <in>dynload_shlib.c</in>
+        <in>errors.c</in>
+        <in>formatter_string.c</in>
+        <in>formatter_unicode.c</in>
+        <in>frozen.c</in>
+        <in>frozenmain.c</in>
+        <in>future.c</in>
+        <in>getargs.c</in>
+        <in>getcompiler.c</in>
+        <in>getcopyright.c</in>
+        <in>getopt.c</in>
+        <in>getplatform.c</in>
+        <in>getversion.c</in>
+        <in>graminit.c</in>
+        <in>import.c</in>
+        <in>importdl.c</in>
+        <in>mactoolboxglue.c</in>
+        <in>marshal.c</in>
+        <in>modsupport.c</in>
+        <in>mysnprintf.c</in>
+        <in>mystrtoul.c</in>
+        <in>peephole.c</in>
+        <in>pyarena.c</in>
+        <in>pyctype.c</in>
+        <in>pyfpe.c</in>
+        <in>pymath.c</in>
+        <in>pystate.c</in>
+        <in>pystrcmp.c</in>
+        <in>pystrtod.c</in>
+        <in>pythonrun.c</in>
+        <in>random.c</in>
+        <in>structmember.c</in>
+        <in>symtable.c</in>
+        <in>sysmodule.c</in>
+        <in>thread.c</in>
+        <in>traceback.c</in>
+      </df>
+    </df>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+      <itemPath>configure</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceFolderFilter>^(nbproject)$</sourceFolderFilter>
+  <sourceRootList>
+    <Elem>.</Elem>
+  </sourceRootList>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Default" type="0">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>false</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <flagsDictionary>
+        <element flagsID="0" commonFlags="-g -O3"/>
+      </flagsDictionary>
+      <codeAssistance>
+      </codeAssistance>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>.</buildCommandWorkingDir>
+          <buildCommand>${MAKE} -f Makefile</buildCommand>
+          <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
+          <executablePath></executablePath>
+          <cTool>
+            <preprocessorList>
+              <Elem>NDEBUG</Elem>
+            </preprocessorList>
+          </cTool>
+        </makeTool>
+      </makefileType>
+      <item path="Mac/Modules/ColorPickermodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Mac/Modules/MacOS.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Mac/Modules/Nav.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Mac/Modules/OSATerminology.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Mac/Modules/_scproxy.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Mac/Modules/ae/_AEmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Mac/Modules/ah/_AHmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Mac/Modules/app/_Appmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Mac/Modules/autoGIL.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Mac/Modules/carbonevt/_CarbonEvtmodule.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Mac/Modules/cf/_CFmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Mac/Modules/cf/pycfbridge.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Mac/Modules/cg/_CGmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Mac/Modules/cm/_Cmmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Mac/Modules/ctl/_Ctlmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Mac/Modules/dlg/_Dlgmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Mac/Modules/drag/_Dragmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Mac/Modules/evt/_Evtmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Mac/Modules/file/_Filemodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Mac/Modules/fm/_Fmmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Mac/Modules/folder/_Foldermodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Mac/Modules/gestaltmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Mac/Modules/help/_Helpmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Mac/Modules/ibcarbon/_IBCarbon.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Mac/Modules/icgluemodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Mac/Modules/icn/_Icnmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Mac/Modules/launch/_Launchmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Mac/Modules/list/_Listmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Mac/Modules/menu/_Menumodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Mac/Modules/mlte/_Mltemodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Mac/Modules/osa/_OSAmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Mac/Modules/qd/_Qdmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Mac/Modules/qdoffs/_Qdoffsmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Mac/Modules/qt/_Qtmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Mac/Modules/res/_Resmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Mac/Modules/scrap/_Scrapmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Mac/Modules/snd/_Sndmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Mac/Modules/te/_TEmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Mac/Modules/win/_Winmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Modules/_bisectmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/_codecsmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>Py_BUILD_CORE</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="Modules/_collectionsmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/_csv.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/_ctypes/_ctypes.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>_ctypes/darwin</pElem>
+            <pElem>Mac/Include</pElem>
+            <pElem>Modules/_ctypes/libffi_osx/include</pElem>
+            <pElem>Modules/_ctypes/libffi_osx/powerpc</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>MACOSX</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="Modules/_ctypes/_ctypes_test.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/_ctypes/callbacks.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>_ctypes/darwin</pElem>
+            <pElem>Mac/Include</pElem>
+            <pElem>Modules/_ctypes/libffi_osx/include</pElem>
+            <pElem>Modules/_ctypes/libffi_osx/powerpc</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>MACOSX</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="Modules/_ctypes/callproc.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>_ctypes/darwin</pElem>
+            <pElem>Mac/Include</pElem>
+            <pElem>Modules/_ctypes/libffi_osx/include</pElem>
+            <pElem>Modules/_ctypes/libffi_osx/powerpc</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>MACOSX</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="Modules/_ctypes/cfield.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>_ctypes/darwin</pElem>
+            <pElem>Mac/Include</pElem>
+            <pElem>Modules/_ctypes/libffi_osx/include</pElem>
+            <pElem>Modules/_ctypes/libffi_osx/powerpc</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>MACOSX</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="Modules/_ctypes/darwin/dlfcn_simple.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Modules/_ctypes/libffi_osx/ffi.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Modules/_ctypes/libffi_osx/powerpc/ppc-ffi_darwin.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Modules/_ctypes/libffi_osx/x86/x86-ffi64.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Modules/_ctypes/libffi_osx/x86/x86-ffi_darwin.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Modules/_ctypes/malloc_closure.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>_ctypes/darwin</pElem>
+            <pElem>Mac/Include</pElem>
+            <pElem>Modules/_ctypes/libffi_osx/include</pElem>
+            <pElem>Modules/_ctypes/libffi_osx/powerpc</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>MACOSX</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="Modules/_ctypes/stgdict.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>_ctypes/darwin</pElem>
+            <pElem>Mac/Include</pElem>
+            <pElem>Modules/_ctypes/libffi_osx/include</pElem>
+            <pElem>Modules/_ctypes/libffi_osx/powerpc</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>MACOSX</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="Modules/_curses_panel.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/_cursesmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/_elementtree.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Modules/expat</pElem>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>HAVE_EXPAT_CONFIG_H=1</Elem>
+            <Elem>USE_PYEXPAT_CAPI</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="Modules/_functoolsmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/_hashopenssl.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/_heapqmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/_hotshot.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/_io/_iomodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Modules/_io/bufferedio.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Modules/_io/bytesio.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Modules/_io/fileio.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Modules/_io/iobase.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Modules/_io/stringio.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Modules/_io/textio.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Modules/_json.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/_localemodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/_lsprof.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/_math.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/_multiprocessing/multiprocessing.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Modules/_multiprocessing/semaphore.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Modules/_multiprocessing/socket_connection.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Modules/_randommodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/_sqlite/cache.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Modules/_sqlite/connection.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Modules/_sqlite/cursor.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Modules/_sqlite/microprotocols.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Modules/_sqlite/module.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Modules/_sqlite/prepare_protocol.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Modules/_sqlite/row.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Modules/_sqlite/statement.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Modules/_sqlite/util.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Modules/_sre.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>Py_BUILD_CORE</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="Modules/_ssl.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/_struct.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/_testcapimodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/_tkinter.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>/System/Library/Frameworks/Tcl.framework/Headers</pElem>
+            <pElem>/System/Library/Frameworks/Tcl.framework/Versions/Current/PrivateHeaders</pElem>
+            <pElem>/System/Library/Frameworks/Tk.framework/Headers</pElem>
+            <pElem>/System/Library/Frameworks/Tk.framework/Versions/Current/PrivateHeaders</pElem>
+            <pElem>/usr/X11R6/include</pElem>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>WITH_APPINIT=1</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="Modules/_weakref.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>Py_BUILD_CORE</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="Modules/arraymodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/audioop.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/binascii.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>USE_ZLIB_CRC32</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="Modules/bsddbmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/bz2module.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/cPickle.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/cStringIO.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/cjkcodecs/_codecs_cn.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Modules/cjkcodecs/_codecs_hk.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Modules/cjkcodecs/_codecs_iso2022.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Modules/cjkcodecs/_codecs_jp.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Modules/cjkcodecs/_codecs_kr.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Modules/cjkcodecs/_codecs_tw.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Modules/cjkcodecs/multibytecodec.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Modules/cmathmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/config.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>Py_BUILD_CORE</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="Modules/cryptmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/datetimemodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/dbmmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>HAVE_NDBM_H</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="Modules/errnomodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>Py_BUILD_CORE</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="Modules/expat/xmlparse.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Modules/expat/xmlrole.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Modules/expat/xmltok.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Modules/fcntlmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/future_builtins.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/gcmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>Py_BUILD_CORE</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="Modules/gdbmmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/getbuildinfo.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>HGBRANCH=""</Elem>
+            <Elem>HGTAG=""</Elem>
+            <Elem>HGVERSION=""</Elem>
+            <Elem>Py_BUILD_CORE</Elem>
+            <Elem>SVNVERSION="Unversioned directory"</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="Modules/getpath.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>EXEC_PREFIX="/usr/local"</Elem>
+            <Elem>PREFIX="/usr/local"</Elem>
+            <Elem>PYTHONPATH=":plat-darwin:plat-mac:plat-mac/lib-scriptpackages:lib-tk:lib-old"</Elem>
+            <Elem>Py_BUILD_CORE</Elem>
+            <Elem>VERSION="2.7"</Elem>
+            <Elem>VPATH=""</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="Modules/grpmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/itertoolsmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/main.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>Py_BUILD_CORE</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="Modules/mathmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/mmapmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/nismodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/operator.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/parsermodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/posixmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>Py_BUILD_CORE</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="Modules/pwdmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>Py_BUILD_CORE</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="Modules/pyexpat.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Modules/expat</pElem>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>HAVE_EXPAT_CONFIG_H=1</Elem>
+            <Elem>USE_PYEXPAT_CAPI</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="Modules/python.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>Py_BUILD_CORE</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="Modules/resource.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/rotatingtree.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/selectmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/signalmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>Py_BUILD_CORE</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="Modules/socketmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/stropmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/symtablemodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>Py_BUILD_CORE</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="Modules/syslogmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/termios.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/threadmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>Py_BUILD_CORE</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="Modules/timemodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/tkappinit.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>/System/Library/Frameworks/Tcl.framework/Headers</pElem>
+            <pElem>/System/Library/Frameworks/Tcl.framework/Versions/Current/PrivateHeaders</pElem>
+            <pElem>/System/Library/Frameworks/Tk.framework/Headers</pElem>
+            <pElem>/System/Library/Frameworks/Tk.framework/Versions/Current/PrivateHeaders</pElem>
+            <pElem>/usr/X11R6/include</pElem>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>WITH_APPINIT=1</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="Modules/unicodedata.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Modules/xxsubtype.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>Py_BUILD_CORE</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="Modules/zipimport.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>Py_BUILD_CORE</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="Modules/zlibmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="Objects/abstract.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Objects/boolobject.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Objects/bufferobject.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Objects/bytearrayobject.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Objects/bytes_methods.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Objects/capsule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Objects/cellobject.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Objects/classobject.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Objects/cobject.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Objects/codeobject.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Objects/complexobject.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Objects/descrobject.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Objects/dictobject.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Objects/enumobject.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Objects/exceptions.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Objects/fileobject.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Objects/floatobject.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Objects/frameobject.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Objects/funcobject.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Objects/genobject.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Objects/intobject.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Objects/iterobject.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Objects/listobject.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Objects/longobject.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Objects/memoryobject.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Objects/methodobject.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Objects/moduleobject.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Objects/object.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Objects/obmalloc.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Objects/rangeobject.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Objects/setobject.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Objects/sliceobject.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Objects/stringobject.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Objects/structseq.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Objects/tupleobject.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Objects/typeobject.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Objects/unicodectype.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Objects/unicodeobject.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Objects/weakrefobject.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Parser/acceler.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Parser/bitset.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Parser/firstsets.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Parser/grammar.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Parser/grammar1.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Parser/listnode.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Parser/metagrammar.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Parser/myreadline.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Parser/node.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Parser/parser.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Parser/parsetok.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Parser/pgen.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Parser/pgenmain.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Parser/printgrammar.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Parser/tokenizer.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Parser/tokenizer_pgen.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Python/Python-ast.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Python/_warnings.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Python/asdl.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Python/ast.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Python/bltinmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Python/ceval.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Python/codecs.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Python/compile.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Python/dtoa.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Python/dynload_shlib.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Python/errors.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Python/formatter_string.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Python/formatter_unicode.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Python/frozen.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Python/frozenmain.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Python/future.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Python/getargs.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Python/getcompiler.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Python/getcopyright.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Python/getopt.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Python/getplatform.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+          <preprocessorList>
+            <Elem>PLATFORM="darwin"</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="Python/getversion.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Python/graminit.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Python/import.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Python/importdl.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Python/mactoolboxglue.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Python/marshal.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Python/modsupport.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Python/mysnprintf.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Python/mystrtoul.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Python/peephole.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Python/pyarena.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Python/pyctype.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Python/pyfpe.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Python/pymath.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Python/pystate.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Python/pystrcmp.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Python/pystrtod.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Python/pythonrun.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Python/random.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Python/structmember.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Python/symtable.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Python/sysmodule.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Python/thread.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="Python/traceback.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <folder path="0/Mac">
+        <cTool>
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </folder>
+      <folder path="0/Modules/_ctypes/darwin">
+        <cTool>
+          <incDir>
+            <pElem>_ctypes/darwin</pElem>
+            <pElem>Mac/Include</pElem>
+            <pElem>Modules/_ctypes/libffi_osx/include</pElem>
+            <pElem>Modules/_ctypes/libffi_osx/powerpc</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>MACOSX</Elem>
+          </preprocessorList>
+        </cTool>
+      </folder>
+      <folder path="0/Modules/_ctypes/libffi_osx">
+        <cTool>
+          <incDir>
+            <pElem>_ctypes/darwin</pElem>
+            <pElem>Mac/Include</pElem>
+            <pElem>Modules/_ctypes/libffi_osx/include</pElem>
+            <pElem>Modules/_ctypes/libffi_osx/powerpc</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>MACOSX</Elem>
+          </preprocessorList>
+        </cTool>
+      </folder>
+      <folder path="0/Modules/_io">
+        <cTool>
+          <incDir>
+            <pElem>Modules/_io</pElem>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </folder>
+      <folder path="0/Modules/_multiprocessing">
+        <cTool>
+          <incDir>
+            <pElem>Modules/_multiprocessing</pElem>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </folder>
+      <folder path="0/Modules/_sqlite">
+        <cTool>
+          <incDir>
+            <pElem>Modules/_sqlite</pElem>
+            <pElem>/usr/include</pElem>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>MODULE_NAME="sqlite3"</Elem>
+            <Elem>SQLITE_OMIT_LOAD_EXTENSION=1</Elem>
+          </preprocessorList>
+        </cTool>
+      </folder>
+      <folder path="0/Modules/cjkcodecs">
+        <cTool>
+          <incDir>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+        </cTool>
+      </folder>
+      <folder path="0/Modules/expat">
+        <cTool>
+          <incDir>
+            <pElem>Modules/expat</pElem>
+            <pElem>Mac/Include</pElem>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+            <pElem>/usr/local/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>HAVE_EXPAT_CONFIG_H=1</Elem>
+            <Elem>USE_PYEXPAT_CAPI</Elem>
+          </preprocessorList>
+        </cTool>
+      </folder>
+      <folder path="0/Objects">
+        <cTool>
+          <incDir>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>Py_BUILD_CORE</Elem>
+          </preprocessorList>
+        </cTool>
+      </folder>
+      <folder path="0/Parser">
+        <cTool>
+          <incDir>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>Py_BUILD_CORE</Elem>
+          </preprocessorList>
+        </cTool>
+      </folder>
+      <folder path="0/Python">
+        <cTool>
+          <incDir>
+            <pElem>.</pElem>
+            <pElem>Include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>Py_BUILD_CORE</Elem>
+          </preprocessorList>
+        </cTool>
+      </folder>
+    </conf>
+  </confs>
+</configurationDescriptor>

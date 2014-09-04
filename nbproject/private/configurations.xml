@@ -1,0 +1,1627 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="94">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <df root="." name="0">
+      <df name="build">
+        <df name="lib.macosx-10.4-x86_64-2.7">
+        </df>
+        <df name="scripts-2.7">
+        </df>
+        <df name="temp.macosx-10.4-x86_64-2.7">
+          <df name="Mac">
+            <df name="Modules">
+            </df>
+          </df>
+          <df name="Users">
+            <df name="qqy">
+              <df name="workspace">
+                <df name="Python-2.7.8">
+                  <df name="Mac">
+                    <df name="Modules">
+                      <df name="ae">
+                      </df>
+                      <df name="ah">
+                      </df>
+                      <df name="app">
+                      </df>
+                      <df name="carbonevt">
+                      </df>
+                      <df name="cf">
+                      </df>
+                      <df name="cg">
+                      </df>
+                      <df name="cm">
+                      </df>
+                      <df name="ctl">
+                      </df>
+                      <df name="dlg">
+                      </df>
+                      <df name="drag">
+                      </df>
+                      <df name="evt">
+                      </df>
+                      <df name="file">
+                      </df>
+                      <df name="fm">
+                      </df>
+                      <df name="folder">
+                      </df>
+                      <df name="help">
+                      </df>
+                      <df name="ibcarbon">
+                      </df>
+                      <df name="icn">
+                      </df>
+                      <df name="launch">
+                      </df>
+                      <df name="list">
+                      </df>
+                      <df name="menu">
+                      </df>
+                      <df name="mlte">
+                      </df>
+                      <df name="osa">
+                      </df>
+                      <df name="qd">
+                      </df>
+                      <df name="qdoffs">
+                      </df>
+                      <df name="qt">
+                      </df>
+                      <df name="res">
+                      </df>
+                      <df name="scrap">
+                      </df>
+                      <df name="snd">
+                      </df>
+                      <df name="te">
+                      </df>
+                      <df name="win">
+                      </df>
+                    </df>
+                  </df>
+                  <df name="Modules">
+                    <df name="_ctypes">
+                      <df name="darwin">
+                      </df>
+                      <df name="libffi_osx">
+                        <df name="powerpc">
+                        </df>
+                        <df name="x86">
+                        </df>
+                      </df>
+                    </df>
+                    <df name="_io">
+                    </df>
+                    <df name="_multiprocessing">
+                    </df>
+                    <df name="_sqlite">
+                    </df>
+                    <df name="cjkcodecs">
+                    </df>
+                    <df name="expat">
+                    </df>
+                  </df>
+                </df>
+              </df>
+            </df>
+          </df>
+        </df>
+      </df>
+      <df name="Demo">
+        <df name="cgi">
+        </df>
+        <df name="classes">
+        </df>
+        <df name="comparisons">
+        </df>
+        <df name="curses">
+        </df>
+        <df name="embed">
+          <in>demo.c</in>
+          <in>importexc.c</in>
+          <in>loop.c</in>
+        </df>
+        <df name="md5test">
+        </df>
+        <df name="metaclasses">
+        </df>
+        <df name="newmetaclasses">
+        </df>
+        <df name="parser">
+        </df>
+        <df name="pdist">
+        </df>
+        <df name="pysvr">
+          <in>pysvr.c</in>
+        </df>
+        <df name="rpc">
+        </df>
+        <df name="scripts">
+        </df>
+        <df name="sockets">
+        </df>
+        <df name="threads">
+        </df>
+        <df name="tix">
+          <df name="bitmaps">
+          </df>
+          <df name="samples">
+          </df>
+        </df>
+        <df name="tkinter">
+          <df name="guido">
+          </df>
+          <df name="matt">
+          </df>
+          <df name="ttk">
+            <df name="img">
+            </df>
+          </df>
+        </df>
+        <df name="turtle">
+        </df>
+        <df name="xml">
+        </df>
+        <df name="zlib">
+        </df>
+      </df>
+      <df name="Doc">
+        <df name="c-api">
+        </df>
+        <df name="data">
+        </df>
+        <df name="distutils">
+        </df>
+        <df name="extending">
+        </df>
+        <df name="faq">
+        </df>
+        <df name="howto">
+        </df>
+        <df name="includes">
+          <df name="sqlite3">
+          </df>
+          <in>capsulethunk.h</in>
+          <in>noddy.c</in>
+          <in>noddy2.c</in>
+          <in>noddy3.c</in>
+          <in>noddy4.c</in>
+          <in>run-func.c</in>
+          <in>shoddy.c</in>
+          <in>typestruct.h</in>
+        </df>
+        <df name="install">
+        </df>
+        <df name="library">
+        </df>
+        <df name="reference">
+        </df>
+        <df name="tools">
+          <df name="sphinxext">
+            <df name="static">
+            </df>
+          </df>
+        </df>
+        <df name="tutorial">
+        </df>
+        <df name="using">
+        </df>
+        <df name="whatsnew">
+        </df>
+      </df>
+      <df name="Grammar">
+      </df>
+      <df name="Include">
+        <in>Python-ast.h</in>
+        <in>Python.h</in>
+        <in>abstract.h</in>
+        <in>asdl.h</in>
+        <in>ast.h</in>
+        <in>bitset.h</in>
+        <in>boolobject.h</in>
+        <in>bufferobject.h</in>
+        <in>bytearrayobject.h</in>
+        <in>bytes_methods.h</in>
+        <in>bytesobject.h</in>
+        <in>cStringIO.h</in>
+        <in>cellobject.h</in>
+        <in>ceval.h</in>
+        <in>classobject.h</in>
+        <in>cobject.h</in>
+        <in>code.h</in>
+        <in>codecs.h</in>
+        <in>compile.h</in>
+        <in>complexobject.h</in>
+        <in>datetime.h</in>
+        <in>descrobject.h</in>
+        <in>dictobject.h</in>
+        <in>dtoa.h</in>
+        <in>enumobject.h</in>
+        <in>errcode.h</in>
+        <in>eval.h</in>
+        <in>fileobject.h</in>
+        <in>floatobject.h</in>
+        <in>frameobject.h</in>
+        <in>funcobject.h</in>
+        <in>genobject.h</in>
+        <in>graminit.h</in>
+        <in>grammar.h</in>
+        <in>import.h</in>
+        <in>intobject.h</in>
+        <in>intrcheck.h</in>
+        <in>iterobject.h</in>
+        <in>listobject.h</in>
+        <in>longintrepr.h</in>
+        <in>longobject.h</in>
+        <in>marshal.h</in>
+        <in>memoryobject.h</in>
+        <in>metagrammar.h</in>
+        <in>methodobject.h</in>
+        <in>modsupport.h</in>
+        <in>moduleobject.h</in>
+        <in>node.h</in>
+        <in>object.h</in>
+        <in>objimpl.h</in>
+        <in>opcode.h</in>
+        <in>osdefs.h</in>
+        <in>parsetok.h</in>
+        <in>patchlevel.h</in>
+        <in>pgen.h</in>
+        <in>pgenheaders.h</in>
+        <in>py_curses.h</in>
+        <in>pyarena.h</in>
+        <in>pycapsule.h</in>
+        <in>pyctype.h</in>
+        <in>pydebug.h</in>
+        <in>pyerrors.h</in>
+        <in>pyexpat.h</in>
+        <in>pyfpe.h</in>
+        <in>pygetopt.h</in>
+        <in>pymacconfig.h</in>
+        <in>pymactoolbox.h</in>
+        <in>pymath.h</in>
+        <in>pymem.h</in>
+        <in>pyport.h</in>
+        <in>pystate.h</in>
+        <in>pystrcmp.h</in>
+        <in>pystrtod.h</in>
+        <in>pythonrun.h</in>
+        <in>pythread.h</in>
+        <in>rangeobject.h</in>
+        <in>setobject.h</in>
+        <in>sliceobject.h</in>
+        <in>stringobject.h</in>
+        <in>structmember.h</in>
+        <in>structseq.h</in>
+        <in>symtable.h</in>
+        <in>sysmodule.h</in>
+        <in>timefuncs.h</in>
+        <in>token.h</in>
+        <in>traceback.h</in>
+        <in>tupleobject.h</in>
+        <in>ucnhash.h</in>
+        <in>unicodeobject.h</in>
+        <in>warnings.h</in>
+        <in>weakrefobject.h</in>
+      </df>
+      <df name="Lib">
+        <df name="bsddb">
+          <df name="test">
+          </df>
+        </df>
+        <df name="compiler">
+        </df>
+        <df name="ctypes">
+          <df name="macholib">
+          </df>
+          <df name="test">
+          </df>
+        </df>
+        <df name="curses">
+        </df>
+        <df name="distutils">
+          <df name="command">
+          </df>
+          <df name="tests">
+          </df>
+        </df>
+        <df name="email">
+          <df name="mime">
+          </df>
+          <df name="test">
+            <df name="data">
+            </df>
+          </df>
+        </df>
+        <df name="encodings">
+        </df>
+        <df name="hotshot">
+        </df>
+        <df name="idlelib">
+          <df name="Icons">
+          </df>
+          <df name="idle_test">
+          </df>
+        </df>
+        <df name="importlib">
+        </df>
+        <df name="json">
+          <df name="tests">
+          </df>
+        </df>
+        <df name="lib-tk">
+          <df name="test">
+            <df name="test_tkinter">
+            </df>
+            <df name="test_ttk">
+            </df>
+          </df>
+        </df>
+        <df name="lib2to3">
+          <df name="fixes">
+          </df>
+          <df name="pgen2">
+          </df>
+          <df name="tests">
+            <df name="data">
+              <df name="fixers">
+                <df name="myfixes">
+                </df>
+              </df>
+            </df>
+          </df>
+        </df>
+        <df name="logging">
+        </df>
+        <df name="msilib">
+        </df>
+        <df name="multiprocessing">
+          <df name="dummy">
+          </df>
+        </df>
+        <df name="plat-aix3">
+        </df>
+        <df name="plat-aix4">
+        </df>
+        <df name="plat-atheos">
+        </df>
+        <df name="plat-beos5">
+        </df>
+        <df name="plat-darwin">
+        </df>
+        <df name="plat-freebsd4">
+        </df>
+        <df name="plat-freebsd5">
+        </df>
+        <df name="plat-freebsd6">
+        </df>
+        <df name="plat-freebsd7">
+        </df>
+        <df name="plat-freebsd8">
+        </df>
+        <df name="plat-generic">
+        </df>
+        <df name="plat-irix5">
+        </df>
+        <df name="plat-irix6">
+        </df>
+        <df name="plat-linux2">
+        </df>
+        <df name="plat-mac">
+          <df name="Carbon">
+          </df>
+          <df name="lib-scriptpackages">
+            <df name="_builtinSuites">
+            </df>
+            <df name="CodeWarrior">
+            </df>
+            <df name="Explorer">
+            </df>
+            <df name="Finder">
+            </df>
+            <df name="Netscape">
+            </df>
+            <df name="StdSuites">
+            </df>
+            <df name="SystemEvents">
+            </df>
+            <df name="Terminal">
+            </df>
+          </df>
+        </df>
+        <df name="plat-netbsd1">
+        </df>
+        <df name="plat-next3">
+        </df>
+        <df name="plat-os2emx">
+        </df>
+        <df name="plat-riscos">
+        </df>
+        <df name="plat-sunos5">
+        </df>
+        <df name="plat-unixware7">
+        </df>
+        <df name="pydoc_data">
+        </df>
+        <df name="site-packages">
+        </df>
+        <df name="sqlite3">
+          <df name="test">
+          </df>
+        </df>
+        <df name="test">
+          <df name="audiodata">
+          </df>
+          <df name="cjkencodings">
+          </df>
+          <df name="crashers">
+          </df>
+          <df name="data">
+          </df>
+          <df name="decimaltestdata">
+          </df>
+          <df name="imghdrdata">
+          </df>
+          <df name="leakers">
+          </df>
+          <df name="subprocessdata">
+          </df>
+          <df name="tracedmodules">
+          </df>
+          <df name="xmltestdata">
+          </df>
+        </df>
+        <df name="unittest">
+          <df name="test">
+          </df>
+        </df>
+        <df name="wsgiref">
+        </df>
+        <df name="xml">
+          <df name="dom">
+          </df>
+          <df name="etree">
+          </df>
+          <df name="parsers">
+          </df>
+          <df name="sax">
+          </df>
+        </df>
+      </df>
+      <df name="Mac">
+        <df name="BuildScript">
+          <df name="resources">
+          </df>
+          <df name="scripts">
+          </df>
+          <in>seticon.m</in>
+        </df>
+        <df name="Demo">
+          <df name="applescript">
+            <df name="Disk_Copy">
+            </df>
+          </df>
+          <df name="example0">
+          </df>
+          <df name="example1">
+          </df>
+          <df name="example2">
+          </df>
+          <df name="html.icons">
+          </df>
+          <df name="imgbrowse">
+          </df>
+          <df name="mlte">
+          </df>
+          <df name="PICTbrowse">
+          </df>
+          <df name="quicktime">
+          </df>
+          <df name="resources">
+          </df>
+          <df name="sound">
+          </df>
+          <df name="textedit">
+          </df>
+        </df>
+        <df name="Icons">
+        </df>
+        <df name="IDLE">
+        </df>
+        <df name="Modules">
+          <df name="ae">
+            <in>_AEmodule.c</in>
+          </df>
+          <df name="ah">
+            <in>_AHmodule.c</in>
+          </df>
+          <df name="app">
+            <in>_Appmodule.c</in>
+          </df>
+          <df name="carbonevt">
+            <in>_CarbonEvtmodule.c</in>
+          </df>
+          <df name="cf">
+            <in>_CFmodule.c</in>
+            <in>pycfbridge.c</in>
+            <in>pycfbridge.h</in>
+          </df>
+          <df name="cg">
+            <in>CFMLateImport.c</in>
+            <in>CFMLateImport.h</in>
+            <in>_CGmodule.c</in>
+          </df>
+          <df name="cm">
+            <in>_Cmmodule.c</in>
+          </df>
+          <df name="ctl">
+            <in>_Ctlmodule.c</in>
+          </df>
+          <df name="dlg">
+            <in>_Dlgmodule.c</in>
+          </df>
+          <df name="drag">
+            <in>_Dragmodule.c</in>
+          </df>
+          <df name="evt">
+            <in>_Evtmodule.c</in>
+          </df>
+          <df name="file">
+            <in>_Filemodule.c</in>
+          </df>
+          <df name="fm">
+            <in>_Fmmodule.c</in>
+          </df>
+          <df name="folder">
+            <in>_Foldermodule.c</in>
+          </df>
+          <df name="help">
+            <in>_Helpmodule.c</in>
+          </df>
+          <df name="ibcarbon">
+            <in>_IBCarbon.c</in>
+          </df>
+          <df name="icn">
+            <in>_Icnmodule.c</in>
+          </df>
+          <df name="launch">
+            <in>_Launchmodule.c</in>
+          </df>
+          <df name="list">
+            <in>_Listmodule.c</in>
+          </df>
+          <df name="menu">
+            <in>_Menumodule.c</in>
+          </df>
+          <df name="mlte">
+            <in>_Mltemodule.c</in>
+          </df>
+          <df name="osa">
+            <in>_OSAmodule.c</in>
+          </df>
+          <df name="qd">
+            <in>_Qdmodule.c</in>
+          </df>
+          <df name="qdoffs">
+            <in>_Qdoffsmodule.c</in>
+          </df>
+          <df name="qt">
+            <in>_Qtmodule.c</in>
+          </df>
+          <df name="res">
+            <in>_Resmodule.c</in>
+          </df>
+          <df name="scrap">
+            <in>_Scrapmodule.c</in>
+          </df>
+          <df name="snd">
+            <in>_Sndihooks.c</in>
+            <in>_Sndmodule.c</in>
+          </df>
+          <df name="te">
+            <in>_TEmodule.c</in>
+          </df>
+          <df name="win">
+            <in>_Winmodule.c</in>
+          </df>
+          <in>ColorPickermodule.c</in>
+          <in>MacOS.c</in>
+          <in>Nav.c</in>
+          <in>OSATerminology.c</in>
+          <in>_scproxy.c</in>
+          <in>autoGIL.c</in>
+          <in>gestaltmodule.c</in>
+          <in>icgluemodule.c</in>
+        </df>
+        <df name="PythonLauncher">
+          <df name="English.lproj">
+            <df name="MainMenu.nib">
+            </df>
+            <df name="MyDocument.nib">
+            </df>
+            <df name="PreferenceWindow.nib">
+            </df>
+          </df>
+          <in>FileSettings.h</in>
+          <in>FileSettings.m</in>
+          <in>MyAppDelegate.h</in>
+          <in>MyAppDelegate.m</in>
+          <in>MyDocument.h</in>
+          <in>MyDocument.m</in>
+          <in>PreferencesWindowController.h</in>
+          <in>PreferencesWindowController.m</in>
+          <in>doscript.h</in>
+          <in>doscript.m</in>
+          <in>main.m</in>
+        </df>
+        <df name="Resources">
+          <df name="app">
+            <df name="Resources">
+            </df>
+          </df>
+          <df name="framework">
+          </df>
+        </df>
+        <df name="scripts">
+          <in>mkestrres-errno.h</in>
+          <in>mkestrres-macerrors.h</in>
+        </df>
+        <df name="Tools">
+          <in>pythonw.c</in>
+        </df>
+      </df>
+      <df name="Misc">
+        <df name="RPM">
+        </df>
+        <df name="TextMate">
+          <df name="Python-Dev.tmbundle">
+            <df name="Commands">
+            </df>
+            <df name="Snippets">
+            </df>
+          </df>
+        </df>
+        <df name="Vim">
+        </df>
+        <in>pymemcompat.h</in>
+        <in>setuid-prog.c</in>
+      </df>
+      <df name="Modules">
+        <df name="_ctypes">
+          <df name="darwin">
+            <in>dlfcn.h</in>
+            <in>dlfcn_simple.c</in>
+          </df>
+          <df name="libffi">
+            <df name="doc">
+            </df>
+            <df name="include">
+              <in>ffi_common.h</in>
+            </df>
+            <df name="libffi.xcodeproj">
+            </df>
+            <df name="m4">
+            </df>
+            <df name="man">
+            </df>
+            <df name="src">
+              <df name="aarch64">
+                <in>ffi.c</in>
+                <in>ffitarget.h</in>
+                <in>sysv.S</in>
+              </df>
+              <df name="alpha">
+                <in>ffi.c</in>
+                <in>ffitarget.h</in>
+                <in>osf.S</in>
+              </df>
+              <df name="arm">
+                <in>ffi.c</in>
+                <in>ffitarget.h</in>
+                <in>sysv.S</in>
+                <in>trampoline.S</in>
+              </df>
+              <df name="avr32">
+                <in>ffi.c</in>
+                <in>ffitarget.h</in>
+                <in>sysv.S</in>
+              </df>
+              <df name="bfin">
+                <in>ffi.c</in>
+                <in>ffitarget.h</in>
+                <in>sysv.S</in>
+              </df>
+              <df name="cris">
+                <in>ffi.c</in>
+                <in>ffitarget.h</in>
+                <in>sysv.S</in>
+              </df>
+              <df name="frv">
+                <in>eabi.S</in>
+                <in>ffi.c</in>
+                <in>ffitarget.h</in>
+              </df>
+              <df name="ia64">
+                <in>ffi.c</in>
+                <in>ffitarget.h</in>
+                <in>ia64_flags.h</in>
+                <in>unix.S</in>
+              </df>
+              <df name="m32r">
+                <in>ffi.c</in>
+                <in>ffitarget.h</in>
+                <in>sysv.S</in>
+              </df>
+              <df name="m68k">
+                <in>ffi.c</in>
+                <in>ffitarget.h</in>
+                <in>sysv.S</in>
+              </df>
+              <df name="metag">
+                <in>ffi.c</in>
+                <in>ffitarget.h</in>
+                <in>sysv.S</in>
+              </df>
+              <df name="microblaze">
+                <in>ffi.c</in>
+                <in>ffitarget.h</in>
+                <in>sysv.S</in>
+              </df>
+              <df name="mips">
+                <in>ffi.c</in>
+                <in>ffitarget.h</in>
+                <in>n32.S</in>
+                <in>o32.S</in>
+              </df>
+              <df name="moxie">
+                <in>eabi.S</in>
+                <in>ffi.c</in>
+                <in>ffitarget.h</in>
+              </df>
+              <df name="pa">
+                <in>ffi.c</in>
+                <in>ffitarget.h</in>
+                <in>hpux32.S</in>
+                <in>linux.S</in>
+              </df>
+              <df name="powerpc">
+                <in>aix.S</in>
+                <in>aix_closure.S</in>
+                <in>asm.h</in>
+                <in>darwin.S</in>
+                <in>darwin_closure.S</in>
+                <in>ffi.c</in>
+                <in>ffi_darwin.c</in>
+                <in>ffitarget.h</in>
+                <in>linux64.S</in>
+                <in>linux64_closure.S</in>
+                <in>ppc_closure.S</in>
+                <in>sysv.S</in>
+              </df>
+              <df name="s390">
+                <in>ffi.c</in>
+                <in>ffitarget.h</in>
+                <in>sysv.S</in>
+              </df>
+              <df name="sh">
+                <in>ffi.c</in>
+                <in>ffitarget.h</in>
+                <in>sysv.S</in>
+              </df>
+              <df name="sh64">
+                <in>ffi.c</in>
+                <in>ffitarget.h</in>
+                <in>sysv.S</in>
+              </df>
+              <df name="sparc">
+                <in>ffi.c</in>
+                <in>ffitarget.h</in>
+                <in>v8.S</in>
+                <in>v9.S</in>
+              </df>
+              <df name="tile">
+                <in>ffi.c</in>
+                <in>ffitarget.h</in>
+                <in>tile.S</in>
+              </df>
+              <df name="x86">
+                <in>darwin.S</in>
+                <in>darwin64.S</in>
+                <in>ffi.c</in>
+                <in>ffi64.c</in>
+                <in>ffitarget.h</in>
+                <in>freebsd.S</in>
+                <in>sysv.S</in>
+                <in>unix64.S</in>
+                <in>win32.S</in>
+                <in>win64.S</in>
+              </df>
+              <df name="xtensa">
+                <in>ffi.c</in>
+                <in>ffitarget.h</in>
+                <in>sysv.S</in>
+              </df>
+              <in>closures.c</in>
+              <in>debug.c</in>
+              <in>dlmalloc.c</in>
+              <in>java_raw_api.c</in>
+              <in>prep_cif.c</in>
+              <in>raw_api.c</in>
+              <in>types.c</in>
+            </df>
+            <df name="testsuite">
+              <df name="config">
+              </df>
+              <df name="lib">
+              </df>
+              <df name="libffi.call">
+                <in>closure_fn0.c</in>
+                <in>closure_fn1.c</in>
+                <in>closure_fn2.c</in>
+                <in>closure_fn3.c</in>
+                <in>closure_fn4.c</in>
+                <in>closure_fn5.c</in>
+                <in>closure_fn6.c</in>
+                <in>closure_loc_fn0.c</in>
+                <in>closure_stdcall.c</in>
+                <in>closure_thiscall.c</in>
+                <in>cls_12byte.c</in>
+                <in>cls_16byte.c</in>
+                <in>cls_18byte.c</in>
+                <in>cls_19byte.c</in>
+                <in>cls_1_1byte.c</in>
+                <in>cls_20byte.c</in>
+                <in>cls_20byte1.c</in>
+                <in>cls_24byte.c</in>
+                <in>cls_2byte.c</in>
+                <in>cls_3_1byte.c</in>
+                <in>cls_3byte1.c</in>
+                <in>cls_3byte2.c</in>
+                <in>cls_4_1byte.c</in>
+                <in>cls_4byte.c</in>
+                <in>cls_5_1_byte.c</in>
+                <in>cls_5byte.c</in>
+                <in>cls_64byte.c</in>
+                <in>cls_6_1_byte.c</in>
+                <in>cls_6byte.c</in>
+                <in>cls_7_1_byte.c</in>
+                <in>cls_7byte.c</in>
+                <in>cls_8byte.c</in>
+                <in>cls_9byte1.c</in>
+                <in>cls_9byte2.c</in>
+                <in>cls_align_double.c</in>
+                <in>cls_align_float.c</in>
+                <in>cls_align_longdouble.c</in>
+                <in>cls_align_longdouble_split.c</in>
+                <in>cls_align_longdouble_split2.c</in>
+                <in>cls_align_pointer.c</in>
+                <in>cls_align_sint16.c</in>
+                <in>cls_align_sint32.c</in>
+                <in>cls_align_sint64.c</in>
+                <in>cls_align_uint16.c</in>
+                <in>cls_align_uint32.c</in>
+                <in>cls_align_uint64.c</in>
+                <in>cls_dbls_struct.c</in>
+                <in>cls_double.c</in>
+                <in>cls_double_va.c</in>
+                <in>cls_float.c</in>
+                <in>cls_longdouble.c</in>
+                <in>cls_longdouble_va.c</in>
+                <in>cls_multi_schar.c</in>
+                <in>cls_multi_sshort.c</in>
+                <in>cls_multi_sshortchar.c</in>
+                <in>cls_multi_uchar.c</in>
+                <in>cls_multi_ushort.c</in>
+                <in>cls_multi_ushortchar.c</in>
+                <in>cls_pointer.c</in>
+                <in>cls_pointer_stack.c</in>
+                <in>cls_schar.c</in>
+                <in>cls_sint.c</in>
+                <in>cls_sshort.c</in>
+                <in>cls_struct_va1.c</in>
+                <in>cls_uchar.c</in>
+                <in>cls_uchar_va.c</in>
+                <in>cls_uint.c</in>
+                <in>cls_uint_va.c</in>
+                <in>cls_ulong_va.c</in>
+                <in>cls_ulonglong.c</in>
+                <in>cls_ushort.c</in>
+                <in>cls_ushort_va.c</in>
+                <in>err_bad_abi.c</in>
+                <in>err_bad_typedef.c</in>
+                <in>fastthis1_win32.c</in>
+                <in>fastthis2_win32.c</in>
+                <in>fastthis3_win32.c</in>
+                <in>ffitest.h</in>
+                <in>float.c</in>
+                <in>float1.c</in>
+                <in>float2.c</in>
+                <in>float3.c</in>
+                <in>float4.c</in>
+                <in>float_va.c</in>
+                <in>huge_struct.c</in>
+                <in>many.c</in>
+                <in>many2.c</in>
+                <in>many2_win32.c</in>
+                <in>many_win32.c</in>
+                <in>negint.c</in>
+                <in>nested_struct.c</in>
+                <in>nested_struct1.c</in>
+                <in>nested_struct10.c</in>
+                <in>nested_struct11.c</in>
+                <in>nested_struct2.c</in>
+                <in>nested_struct3.c</in>
+                <in>nested_struct4.c</in>
+                <in>nested_struct5.c</in>
+                <in>nested_struct6.c</in>
+                <in>nested_struct7.c</in>
+                <in>nested_struct8.c</in>
+                <in>nested_struct9.c</in>
+                <in>problem1.c</in>
+                <in>promotion.c</in>
+                <in>pyobjc-tc.c</in>
+                <in>return_dbl.c</in>
+                <in>return_dbl1.c</in>
+                <in>return_dbl2.c</in>
+                <in>return_fl.c</in>
+                <in>return_fl1.c</in>
+                <in>return_fl2.c</in>
+                <in>return_fl3.c</in>
+                <in>return_ldl.c</in>
+                <in>return_ll.c</in>
+                <in>return_ll1.c</in>
+                <in>return_sc.c</in>
+                <in>return_sl.c</in>
+                <in>return_uc.c</in>
+                <in>return_ul.c</in>
+                <in>stret_large.c</in>
+                <in>stret_large2.c</in>
+                <in>stret_medium.c</in>
+                <in>stret_medium2.c</in>
+                <in>strlen.c</in>
+                <in>strlen2_win32.c</in>
+                <in>strlen_win32.c</in>
+                <in>struct1.c</in>
+                <in>struct1_win32.c</in>
+                <in>struct2.c</in>
+                <in>struct2_win32.c</in>
+                <in>struct3.c</in>
+                <in>struct4.c</in>
+                <in>struct5.c</in>
+                <in>struct6.c</in>
+                <in>struct7.c</in>
+                <in>struct8.c</in>
+                <in>struct9.c</in>
+                <in>testclosure.c</in>
+                <in>uninitialized.c</in>
+                <in>va_1.c</in>
+                <in>va_struct1.c</in>
+                <in>va_struct2.c</in>
+                <in>va_struct3.c</in>
+              </df>
+              <df name="libffi.special">
+                <in>ffitestcxx.h</in>
+                <in>unwindtest.cc</in>
+                <in>unwindtest_ffi_call.cc</in>
+              </df>
+            </df>
+          </df>
+          <df name="libffi_arm_wince">
+            <in>debug.c</in>
+            <in>ffi.c</in>
+            <in>ffi.h</in>
+            <in>ffi_common.h</in>
+            <in>fficonfig.h</in>
+            <in>ffitarget.h</in>
+            <in>prep_cif.c</in>
+            <in>sysv.asm</in>
+          </df>
+          <df name="libffi_msvc">
+            <in>ffi.c</in>
+            <in>ffi.h</in>
+            <in>ffi_common.h</in>
+            <in>fficonfig.h</in>
+            <in>ffitarget.h</in>
+            <in>prep_cif.c</in>
+            <in>types.c</in>
+            <in>win32.c</in>
+            <in>win64.asm</in>
+          </df>
+          <df name="libffi_osx">
+            <df name="include">
+              <in>ffi.h</in>
+              <in>ffi_common.h</in>
+              <in>fficonfig.h</in>
+              <in>ffitarget.h</in>
+              <in>ppc-ffitarget.h</in>
+              <in>x86-ffitarget.h</in>
+            </df>
+            <df name="powerpc">
+              <in>ppc-darwin.S</in>
+              <in>ppc-darwin.h</in>
+              <in>ppc-darwin_closure.S</in>
+              <in>ppc-ffi_darwin.c</in>
+              <in>ppc64-darwin_closure.S</in>
+            </df>
+            <df name="x86">
+              <in>darwin64.S</in>
+              <in>x86-darwin.S</in>
+              <in>x86-ffi64.c</in>
+              <in>x86-ffi_darwin.c</in>
+            </df>
+            <in>ffi.c</in>
+            <in>types.c</in>
+          </df>
+          <in>_ctypes.c</in>
+          <in>_ctypes_test.c</in>
+          <in>_ctypes_test.h</in>
+          <in>callbacks.c</in>
+          <in>callproc.c</in>
+          <in>cfield.c</in>
+          <in>ctypes.h</in>
+          <in>ctypes_dlfcn.h</in>
+          <in>malloc_closure.c</in>
+          <in>stgdict.c</in>
+        </df>
+        <df name="_io">
+          <in>_iomodule.c</in>
+          <in>_iomodule.h</in>
+          <in>bufferedio.c</in>
+          <in>bytesio.c</in>
+          <in>fileio.c</in>
+          <in>iobase.c</in>
+          <in>stringio.c</in>
+          <in>textio.c</in>
+        </df>
+        <df name="_multiprocessing">
+          <in>connection.h</in>
+          <in>multiprocessing.c</in>
+          <in>multiprocessing.h</in>
+          <in>pipe_connection.c</in>
+          <in>semaphore.c</in>
+          <in>socket_connection.c</in>
+          <in>win32_functions.c</in>
+        </df>
+        <df name="_sqlite">
+          <in>cache.c</in>
+          <in>cache.h</in>
+          <in>connection.c</in>
+          <in>connection.h</in>
+          <in>cursor.c</in>
+          <in>cursor.h</in>
+          <in>microprotocols.c</in>
+          <in>microprotocols.h</in>
+          <in>module.c</in>
+          <in>module.h</in>
+          <in>prepare_protocol.c</in>
+          <in>prepare_protocol.h</in>
+          <in>row.c</in>
+          <in>row.h</in>
+          <in>sqlitecompat.h</in>
+          <in>statement.c</in>
+          <in>statement.h</in>
+          <in>util.c</in>
+          <in>util.h</in>
+        </df>
+        <df name="cjkcodecs">
+          <in>_codecs_cn.c</in>
+          <in>_codecs_hk.c</in>
+          <in>_codecs_iso2022.c</in>
+          <in>_codecs_jp.c</in>
+          <in>_codecs_kr.c</in>
+          <in>_codecs_tw.c</in>
+          <in>alg_jisx0201.h</in>
+          <in>cjkcodecs.h</in>
+          <in>emu_jisx0213_2000.h</in>
+          <in>mappings_cn.h</in>
+          <in>mappings_hk.h</in>
+          <in>mappings_jisx0213_pair.h</in>
+          <in>mappings_jp.h</in>
+          <in>mappings_kr.h</in>
+          <in>mappings_tw.h</in>
+          <in>multibytecodec.c</in>
+          <in>multibytecodec.h</in>
+        </df>
+        <df name="expat">
+          <in>amigaconfig.h</in>
+          <in>ascii.h</in>
+          <in>asciitab.h</in>
+          <in>expat.h</in>
+          <in>expat_config.h</in>
+          <in>expat_external.h</in>
+          <in>iasciitab.h</in>
+          <in>internal.h</in>
+          <in>latin1tab.h</in>
+          <in>macconfig.h</in>
+          <in>nametab.h</in>
+          <in>pyexpatns.h</in>
+          <in>utf8tab.h</in>
+          <in>watcomconfig.h</in>
+          <in>winconfig.h</in>
+          <in>xmlparse.c</in>
+          <in>xmlrole.c</in>
+          <in>xmlrole.h</in>
+          <in>xmltok.c</in>
+          <in>xmltok.h</in>
+          <in>xmltok_impl.c</in>
+          <in>xmltok_impl.h</in>
+          <in>xmltok_ns.c</in>
+        </df>
+        <df name="zlib">
+          <in>adler32.c</in>
+          <in>compress.c</in>
+          <in>crc32.c</in>
+          <in>crc32.h</in>
+          <in>deflate.c</in>
+          <in>deflate.h</in>
+          <in>example.c</in>
+          <in>gzio.c</in>
+          <in>infback.c</in>
+          <in>inffast.c</in>
+          <in>inffast.h</in>
+          <in>inffixed.h</in>
+          <in>inflate.c</in>
+          <in>inflate.h</in>
+          <in>inftrees.c</in>
+          <in>inftrees.h</in>
+          <in>minigzip.c</in>
+          <in>trees.c</in>
+          <in>trees.h</in>
+          <in>uncompr.c</in>
+          <in>zconf.h</in>
+          <in>zconf.in.h</in>
+          <in>zlib.h</in>
+          <in>zutil.c</in>
+          <in>zutil.h</in>
+        </df>
+        <in>_bisectmodule.c</in>
+        <in>_bsddb.c</in>
+        <in>_codecsmodule.c</in>
+        <in>_collectionsmodule.c</in>
+        <in>_csv.c</in>
+        <in>_curses_panel.c</in>
+        <in>_cursesmodule.c</in>
+        <in>_elementtree.c</in>
+        <in>_functoolsmodule.c</in>
+        <in>_hashopenssl.c</in>
+        <in>_heapqmodule.c</in>
+        <in>_hotshot.c</in>
+        <in>_json.c</in>
+        <in>_localemodule.c</in>
+        <in>_lsprof.c</in>
+        <in>_math.c</in>
+        <in>_math.h</in>
+        <in>_randommodule.c</in>
+        <in>_sre.c</in>
+        <in>_ssl.c</in>
+        <in>_struct.c</in>
+        <in>_testcapimodule.c</in>
+        <in>_tkinter.c</in>
+        <in>_weakref.c</in>
+        <in>addrinfo.h</in>
+        <in>almodule.c</in>
+        <in>arraymodule.c</in>
+        <in>audioop.c</in>
+        <in>binascii.c</in>
+        <in>bsddb.h</in>
+        <in>bsddbmodule.c</in>
+        <in>bz2module.c</in>
+        <in>cPickle.c</in>
+        <in>cStringIO.c</in>
+        <in>cdmodule.c</in>
+        <in>cgensupport.c</in>
+        <in>cgensupport.h</in>
+        <in>clmodule.c</in>
+        <in>cmathmodule.c</in>
+        <in>config.c</in>
+        <in>cryptmodule.c</in>
+        <in>datetimemodule.c</in>
+        <in>dbmmodule.c</in>
+        <in>dlmodule.c</in>
+        <in>errnomodule.c</in>
+        <in>fcntlmodule.c</in>
+        <in>flmodule.c</in>
+        <in>fmmodule.c</in>
+        <in>fpectlmodule.c</in>
+        <in>fpetestmodule.c</in>
+        <in>future_builtins.c</in>
+        <in>gcmodule.c</in>
+        <in>gdbmmodule.c</in>
+        <in>getaddrinfo.c</in>
+        <in>getbuildinfo.c</in>
+        <in>getnameinfo.c</in>
+        <in>getpath.c</in>
+        <in>glmodule.c</in>
+        <in>grpmodule.c</in>
+        <in>imageop.c</in>
+        <in>imgfile.c</in>
+        <in>itertoolsmodule.c</in>
+        <in>linuxaudiodev.c</in>
+        <in>main.c</in>
+        <in>mathmodule.c</in>
+        <in>md5.c</in>
+        <in>md5.h</in>
+        <in>md5module.c</in>
+        <in>mmapmodule.c</in>
+        <in>nismodule.c</in>
+        <in>operator.c</in>
+        <in>ossaudiodev.c</in>
+        <in>parsermodule.c</in>
+        <in>posixmodule.c</in>
+        <in>posixmodule.h</in>
+        <in>puremodule.c</in>
+        <in>pwdmodule.c</in>
+        <in>pyexpat.c</in>
+        <in>python.c</in>
+        <in>readline.c</in>
+        <in>resource.c</in>
+        <in>rotatingtree.c</in>
+        <in>rotatingtree.h</in>
+        <in>selectmodule.c</in>
+        <in>sgimodule.c</in>
+        <in>sha256module.c</in>
+        <in>sha512module.c</in>
+        <in>shamodule.c</in>
+        <in>signalmodule.c</in>
+        <in>socketmodule.c</in>
+        <in>socketmodule.h</in>
+        <in>spwdmodule.c</in>
+        <in>sre.h</in>
+        <in>sre_constants.h</in>
+        <in>stropmodule.c</in>
+        <in>sunaudiodev.c</in>
+        <in>svmodule.c</in>
+        <in>symtablemodule.c</in>
+        <in>syslogmodule.c</in>
+        <in>termios.c</in>
+        <in>testcapi_long.h</in>
+        <in>threadmodule.c</in>
+        <in>timemodule.c</in>
+        <in>timing.h</in>
+        <in>timingmodule.c</in>
+        <in>tkappinit.c</in>
+        <in>tkinter.h</in>
+        <in>unicodedata.c</in>
+        <in>unicodedata_db.h</in>
+        <in>unicodename_db.h</in>
+        <in>xxmodule.c</in>
+        <in>xxsubtype.c</in>
+        <in>yuv.h</in>
+        <in>yuvconvert.c</in>
+        <in>zipimport.c</in>
+        <in>zlibmodule.c</in>
+      </df>
+      <df name="Objects">
+        <df name="stringlib">
+          <in>count.h</in>
+          <in>ctype.h</in>
+          <in>fastsearch.h</in>
+          <in>find.h</in>
+          <in>formatter.h</in>
+          <in>localeutil.h</in>
+          <in>partition.h</in>
+          <in>split.h</in>
+          <in>string_format.h</in>
+          <in>stringdefs.h</in>
+          <in>transmogrify.h</in>
+          <in>unicodedefs.h</in>
+        </df>
+        <in>abstract.c</in>
+        <in>boolobject.c</in>
+        <in>bufferobject.c</in>
+        <in>bytearrayobject.c</in>
+        <in>bytes_methods.c</in>
+        <in>capsule.c</in>
+        <in>cellobject.c</in>
+        <in>classobject.c</in>
+        <in>cobject.c</in>
+        <in>codeobject.c</in>
+        <in>complexobject.c</in>
+        <in>descrobject.c</in>
+        <in>dictobject.c</in>
+        <in>enumobject.c</in>
+        <in>exceptions.c</in>
+        <in>fileobject.c</in>
+        <in>floatobject.c</in>
+        <in>frameobject.c</in>
+        <in>funcobject.c</in>
+        <in>genobject.c</in>
+        <in>intobject.c</in>
+        <in>iterobject.c</in>
+        <in>listobject.c</in>
+        <in>longobject.c</in>
+        <in>memoryobject.c</in>
+        <in>methodobject.c</in>
+        <in>moduleobject.c</in>
+        <in>object.c</in>
+        <in>obmalloc.c</in>
+        <in>rangeobject.c</in>
+        <in>setobject.c</in>
+        <in>sliceobject.c</in>
+        <in>stringobject.c</in>
+        <in>structseq.c</in>
+        <in>tupleobject.c</in>
+        <in>typeobject.c</in>
+        <in>unicodectype.c</in>
+        <in>unicodeobject.c</in>
+        <in>unicodetype_db.h</in>
+        <in>weakrefobject.c</in>
+      </df>
+      <df name="Parser">
+        <in>acceler.c</in>
+        <in>bitset.c</in>
+        <in>firstsets.c</in>
+        <in>grammar.c</in>
+        <in>grammar1.c</in>
+        <in>intrcheck.c</in>
+        <in>listnode.c</in>
+        <in>metagrammar.c</in>
+        <in>myreadline.c</in>
+        <in>node.c</in>
+        <in>parser.c</in>
+        <in>parser.h</in>
+        <in>parsetok.c</in>
+        <in>pgen.c</in>
+        <in>pgenmain.c</in>
+        <in>printgrammar.c</in>
+        <in>tokenizer.c</in>
+        <in>tokenizer.h</in>
+        <in>tokenizer_pgen.c</in>
+      </df>
+      <df name="PC">
+        <df name="bdist_wininst">
+          <in>archive.h</in>
+          <in>extract.c</in>
+          <in>install.c</in>
+          <in>resource.h</in>
+        </df>
+        <df name="example_nt">
+          <in>example.c</in>
+        </df>
+        <df name="icons">
+        </df>
+        <df name="os2emx">
+          <in>config.c</in>
+          <in>dlfcn.c</in>
+          <in>dlfcn.h</in>
+          <in>dllentry.c</in>
+          <in>getpathp.c</in>
+          <in>pyconfig.h</in>
+          <in>pythonpm.c</in>
+        </df>
+        <df name="os2vacpp">
+          <in>config.c</in>
+          <in>getpathp.c</in>
+          <in>pyconfig.h</in>
+        </df>
+        <df name="VC6">
+        </df>
+        <df name="VS7.1">
+          <in>make_buildinfo.c</in>
+        </df>
+        <df name="VS8.0">
+          <in>kill_python.c</in>
+          <in>make_buildinfo.c</in>
+        </df>
+        <in>WinMain.c</in>
+        <in>_msi.c</in>
+        <in>_subprocess.c</in>
+        <in>_winreg.c</in>
+        <in>config.c</in>
+        <in>dl_nt.c</in>
+        <in>empty.c</in>
+        <in>errmap.h</in>
+        <in>frozen_dllmain.c</in>
+        <in>generrmap.c</in>
+        <in>getpathp.c</in>
+        <in>import_nt.c</in>
+        <in>make_versioninfo.c</in>
+        <in>msvcrtmodule.c</in>
+        <in>pyconfig.h</in>
+        <in>w9xpopen.c</in>
+        <in>winsound.c</in>
+      </df>
+      <df name="PCbuild">
+        <in>kill_python.c</in>
+        <in>make_buildinfo.c</in>
+      </df>
+      <df name="Python">
+        <in>Python-ast.c</in>
+        <in>_warnings.c</in>
+        <in>asdl.c</in>
+        <in>ast.c</in>
+        <in>atof.c</in>
+        <in>bltinmodule.c</in>
+        <in>ceval.c</in>
+        <in>codecs.c</in>
+        <in>compile.c</in>
+        <in>dtoa.c</in>
+        <in>dup2.c</in>
+        <in>dynload_aix.c</in>
+        <in>dynload_atheos.c</in>
+        <in>dynload_beos.c</in>
+        <in>dynload_dl.c</in>
+        <in>dynload_hpux.c</in>
+        <in>dynload_next.c</in>
+        <in>dynload_os2.c</in>
+        <in>dynload_shlib.c</in>
+        <in>dynload_stub.c</in>
+        <in>dynload_win.c</in>
+        <in>errors.c</in>
+        <in>formatter_string.c</in>
+        <in>formatter_unicode.c</in>
+        <in>frozen.c</in>
+        <in>frozenmain.c</in>
+        <in>future.c</in>
+        <in>getargs.c</in>
+        <in>getcompiler.c</in>
+        <in>getcopyright.c</in>
+        <in>getcwd.c</in>
+        <in>getopt.c</in>
+        <in>getplatform.c</in>
+        <in>getversion.c</in>
+        <in>graminit.c</in>
+        <in>import.c</in>
+        <in>importdl.c</in>
+        <in>importdl.h</in>
+        <in>mactoolboxglue.c</in>
+        <in>marshal.c</in>
+        <in>modsupport.c</in>
+        <in>mysnprintf.c</in>
+        <in>mystrtoul.c</in>
+        <in>peephole.c</in>
+        <in>pyarena.c</in>
+        <in>pyctype.c</in>
+        <in>pyfpe.c</in>
+        <in>pymath.c</in>
+        <in>pystate.c</in>
+        <in>pystrcmp.c</in>
+        <in>pystrtod.c</in>
+        <in>pythonrun.c</in>
+        <in>random.c</in>
+        <in>sigcheck.c</in>
+        <in>strdup.c</in>
+        <in>strtod.c</in>
+        <in>structmember.c</in>
+        <in>symtable.c</in>
+        <in>sysmodule.c</in>
+        <in>thread.c</in>
+        <in>thread_atheos.h</in>
+        <in>thread_beos.h</in>
+        <in>thread_cthread.h</in>
+        <in>thread_foobar.h</in>
+        <in>thread_lwp.h</in>
+        <in>thread_nt.h</in>
+        <in>thread_os2.h</in>
+        <in>thread_pth.h</in>
+        <in>thread_pthread.h</in>
+        <in>thread_sgi.h</in>
+        <in>thread_solaris.h</in>
+        <in>thread_wince.h</in>
+        <in>traceback.c</in>
+      </df>
+      <df name="RISCOS">
+        <df name="Modules">
+          <in>config.c</in>
+          <in>drawfmodule.c</in>
+          <in>getpath_riscos.c</in>
+          <in>riscosmodule.c</in>
+          <in>swimodule.c</in>
+        </df>
+        <df name="Python">
+          <in>dynload_riscos.c</in>
+          <in>getcwd_riscos.c</in>
+        </df>
+        <df name="support">
+        </df>
+        <in>pyconfig.h</in>
+        <in>sleep.c</in>
+        <in>unixstuff.c</in>
+        <in>unixstuff.h</in>
+      </df>
+      <df name="Tools">
+        <df name="audiopy">
+        </df>
+        <df name="bgen">
+          <df name="bgen">
+          </df>
+        </df>
+        <df name="buildbot">
+        </df>
+        <df name="ccbench">
+        </df>
+        <df name="compiler">
+        </df>
+        <df name="faqwiz">
+        </df>
+        <df name="framer">
+          <df name="framer">
+          </df>
+        </df>
+        <df name="freeze">
+        </df>
+        <df name="gdb">
+        </df>
+        <df name="i18n">
+        </df>
+        <df name="iobench">
+        </df>
+        <df name="msi">
+          <in>msisupport.c</in>
+        </df>
+        <df name="pybench">
+          <df name="package">
+          </df>
+        </df>
+        <df name="pynche">
+          <df name="X">
+          </df>
+        </df>
+        <df name="scripts">
+        </df>
+        <df name="ssl">
+        </df>
+        <df name="unicode">
+          <df name="python-mappings">
+          </df>
+        </df>
+        <df name="versioncheck">
+        </df>
+        <df name="webchecker">
+        </df>
+        <df name="world">
+        </df>
+      </df>
+      <in>pyconfig.h</in>
+    </df>
+  </logicalFolder>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Default" type="0">
+      <toolsSet>
+        <developmentServer>localhost</developmentServer>
+        <platform>4</platform>
+      </toolsSet>
+      <compile>
+        <compiledirpicklist>
+          <compiledirpicklistitem>.</compiledirpicklistitem>
+          <compiledirpicklistitem>${AUTO_FOLDER}</compiledirpicklistitem>
+        </compiledirpicklist>
+        <compiledir>${AUTO_FOLDER}</compiledir>
+        <compilecommandpicklist>
+          <compilecommandpicklistitem>${MAKE} ${ITEM_NAME}.o</compilecommandpicklistitem>
+          <compilecommandpicklistitem>${AUTO_COMPILE}</compilecommandpicklistitem>
+        </compilecommandpicklist>
+        <compilecommand>${AUTO_COMPILE}</compilecommand>
+      </compile>
+      <dbx_gdbdebugger version="1">
+        <gdb_pathmaps>
+        </gdb_pathmaps>
+        <gdb_interceptlist>
+          <gdbinterceptoptions gdb_all="false" gdb_unhandled="true" gdb_unexpected="true"/>
+        </gdb_interceptlist>
+        <gdb_options>
+          <DebugOptions>
+          </DebugOptions>
+        </gdb_options>
+        <gdb_buildfirst gdb_buildfirst_overriden="false" gdb_buildfirst_old="false"/>
+      </dbx_gdbdebugger>
+      <nativedebugger version="1">
+        <engine>gdb</engine>
+      </nativedebugger>
+      <runprofile version="9">
+        <runcommandpicklist>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"</runcommandpicklistitem>
+        </runcommandpicklist>
+        <runcommand>"${OUTPUT_PATH}"</runcommand>
+        <rundir>.</rundir>
+        <buildfirst>false</buildfirst>
+        <terminal-type>0</terminal-type>
+        <remove-instrumentation>0</remove-instrumentation>
+        <environment>
+        </environment>
+      </runprofile>
+    </conf>
+  </confs>
+</configurationDescriptor>
