@@ -688,14 +688,14 @@ PyEval_EvalFrame(PyFrameObject *f) {
        PyEval_EvalFrameEx() */
     return PyEval_EvalFrameEx(f, 0);
 }
-
+// where everything happens
 PyObject *
 PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 {
 #ifdef DXPAIRS
     int lastopcode = 0;
 #endif
-    register PyObject **stack_pointer;  /* Next free slot in value stack */
+    register PyObject **stack_pointer;  /* Next free slot in value stack */ // This is the value stack
     register unsigned char *next_instr;
     register int opcode;        /* Current opcode */
     register int oparg;         /* Current opcode argument, if any */
@@ -737,7 +737,7 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 #define GETITEM(v, i) PyTuple_GetItem((v), (i))
 #endif
 
-#ifdef WITH_TSC
+#ifdef WITH_TSC //stamp counter
 /* Use Pentium timestamp counter to mark certain events:
    inst0 -- beginning of switch statement for opcode dispatch
    inst1 -- end of switch statement (may be skipped)
@@ -915,7 +915,7 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
             }
         }
     }
-
+//grab things out
     co = f->f_code;
     names = co->co_names;
     consts = co->co_consts;
@@ -961,7 +961,7 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
         goto on_error;
     }
 
-    for (;;) {
+    for (;;) { //always run until sth kills it
 #ifdef WITH_TSC
         if (inst1 == 0) {
             /* Almost surely, the opcode executed a break
@@ -1077,7 +1077,7 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 
         /* Extract opcode and argument */
 
-        opcode = NEXTOP();
+        opcode = NEXTOP(); // take next opcode 
         oparg = 0;   /* allows oparg to be stored in a register because
             it doesn't have to be remembered across a full loop */
         if (HAS_ARG(opcode))
@@ -1108,7 +1108,7 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 
         /* Main switch on opcode */
         READ_TIMESTAMP(inst0);
-
+        //parse the opcode 
         switch (opcode) {
 
         /* BEWARE!
@@ -2956,7 +2956,7 @@ fast_block_end:
 
         /* End the loop if we still have an error (or return) */
 
-        if (why != WHY_NOT)
+        if (why != WHY_NOT) // kick you out
             break;
         READ_TIMESTAMP(loop1);
 
