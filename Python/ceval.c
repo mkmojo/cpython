@@ -692,6 +692,9 @@ PyEval_EvalFrame(PyFrameObject *f) {
 PyObject *
 PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 {
+    /** CSC253 ASGN1_1
+     This is the entry point to evaluate the complied bytecode for .py script
+     */ 
 #ifdef DXPAIRS
     int lastopcode = 0;
 #endif
@@ -915,13 +918,16 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
             }
         }
     }
-//grab things out
+    /** CSC453 ASGN1 
+     * grab things out
+     */
     co = f->f_code;
     names = co->co_names;
     consts = co->co_consts;
     fastlocals = f->f_localsplus;
     freevars = f->f_localsplus + co->co_nlocals;
     first_instr = (unsigned char*) PyString_AS_STRING(co->co_code);
+
     /* An explanation is in order for the next line.
 
        f->f_lasti now refers to the index of the last instruction
@@ -961,7 +967,7 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
         goto on_error;
     }
 
-    for (;;) { //always run until sth kills it
+    for (;;) { //csc453: always run until sth kills it
 #ifdef WITH_TSC
         if (inst1 == 0) {
             /* Almost surely, the opcode executed a break
@@ -989,7 +995,8 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
            event needs attention (e.g. a signal handler or
            async I/O handler); see Py_AddPendingCall() and
            Py_MakePendingCalls() above. */
-
+        //TODO:
+        //what is this do we care about it?
         if (--_Py_Ticker < 0) {
             if (*next_instr == SETUP_FINALLY) {
                 /* Make the last opcode before
@@ -1050,6 +1057,7 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 
     fast_next_opcode:
         f->f_lasti = INSTR_OFFSET();
+        //manipulating the incoming frame structure
 
         /* line-by-line tracing support */
 
@@ -2044,7 +2052,10 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
             break;
 
         case LOAD_NAME:
+            //CSC458: ASGN1 w points to the memory location of names
+            // w is the symbol 
             w = GETITEM(names, oparg);
+            // CSC458: 
             if ((v = f->f_locals) == NULL) {
                 PyErr_Format(PyExc_SystemError,
                              "no locals when loading %s",
@@ -2053,6 +2064,8 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
                 break;
             }
             if (PyDict_CheckExact(v)) {
+                // returning value from the symbol table that has the key w
+                // assign that to x which is the value
                 x = PyDict_GetItem(v, w);
                 Py_XINCREF(x);
             }
