@@ -2436,6 +2436,17 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
             if (x != NULL) continue;
             break;
 
+		/** CSC453 LT_2 CSC453 GTE_2 - As promised we'll now be looking at opcodes makes use of the evaluation
+			loops 'prediction' speed up.
+			
+			Here we're comparing the objects x and y to see if (x < y), so we POP() the value stack
+			and compare that with the TOP() of the value stack. The implementation here is to take
+			the two objects, get their value (PyInt_AS_LONG - returns the value of an object), and
+			switch on the oparg we obtained at the beginning of the loop when we extracted the
+			next instruction. At this point we take the very first case PyCmp_LT (an enum from opcode.h)
+			
+			CSC453: annotations here give some more detail.
+		*/
         case COMPARE_OP:
             w = POP();
             v = TOP();
@@ -2446,7 +2457,7 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
                 a = PyInt_AS_LONG(v);
                 b = PyInt_AS_LONG(w);
                 switch (oparg) {
-                case PyCmp_LT: res = a <  b; break;
+                case PyCmp_LT: res = a <  b; break; //CSC453: this is our operator, so we set the result of the comparison (1 or 0 in c)
                 case PyCmp_LE: res = a <= b; break;
                 case PyCmp_EQ: res = a == b; break;
                 case PyCmp_NE: res = a != b; break;
@@ -2463,10 +2474,23 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
               slow_compare:
                 x = cmp_outcome(oparg, v, w);
             }
+			
+			//CSC453: Make sure we decrement the reference counter to these locals, so they can get cleaned up by garbage collection
             Py_DECREF(v);
             Py_DECREF(w);
             SET_TOP(x);
             if (x == NULL) break;
+			
+			/** CSC453 LT_3 CSC453 GTE_3
+				Here is where the prediction magic occurs and we save us a whole bunch of time in execution.
+				- PREDICT() peeks at the next instruction, and in both of our execution branches the next
+				            instructions is in fact POP_JUMP_IF_FALSE, so we goto PRED_POP_JUMP_IF_FALSE which
+							we will find directly above the POP_JUMP_IF_FALSE opcode in this very switch statement.
+				
+				What this gains us is for the cost of one comparison between the next_instr and value skipping
+				the entire top portion of the loop and any other switch comparison, pretty much splicing
+				these two opcodes together into one implementation.
+			*/
             PREDICT(POP_JUMP_IF_FALSE);
             PREDICT(POP_JUMP_IF_TRUE);
             continue;
