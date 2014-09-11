@@ -1072,6 +1072,17 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
         goto on_error;
     }
 
+/*CSC 253 ASGN_9 - So at this point we've processed the frame, set up a bunch of quality of life macros
+				   and done some initial error handling all along the way. Now ceval.c needs to start
+				   executing the opcodes and arguments in order to make the program actually do its thing.
+						 
+		For the code segment given there are two possible 'branches' in execution, if (x < y) we do one branch, 
+		otherwise (since elif True: is always true) we default to the second branch. The third branch is actually 
+		unreachable code in the given example.
+		
+		From this point forward we use the notation CSC453 LT_# for analysing the (x < y) branch (where # is the sequence)
+		and CSC453 GTE_# for the elif:True branch.
+	*/
     for (;;) { //csc453: always run until sth kills it
 #ifdef WITH_TSC
         if (inst1 == 0) {
