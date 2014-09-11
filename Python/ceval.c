@@ -1008,8 +1008,16 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
             }
         }
     }
-    /** CSC453 ASGN1 
-     * Grab things out from a frame.
+    /** CSC453 ASGN_7 
+     * Now that the function has defined a bunch of tools variables, the frame is now read in order to
+	   start processing the opcodes.
+	   
+	   f->f_code - the code object containing the compiled code everything we need to run that code.
+	   co->co_names - all the symbol names used in the code (in this case [x,y,z,True])
+	   co->co_consts - any constants defined in the code, in this case just 100 and 'nothing'
+	   co->co_code - the actual bytecode taken in as a character string, and here we set the first_instr
+					 pointer to the head of this string giving us a constant reference to the head of
+					 our bytecode.
      * 
      */
     co = f->f_code;
@@ -1036,6 +1044,12 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
        FOR_ITER is effectively a single opcode and f->f_lasti will point
        at to the beginning of the combined pair.)
     */
+	
+	/* CSC253 ASGN_8 - our next instruction is the first instruction, so we're set up to start executing. 
+					 - We set our value stack pointer to point at the frames own value stack, in this
+					   case the stack is empty, nothing is sitting on it. But this would give you the option
+					   of pre-setting the stack prior to sending the frame in for execution.
+	*/
     next_instr = first_instr + f->f_lasti + 1;
     stack_pointer = f->f_stacktop;
     assert(stack_pointer != NULL);
