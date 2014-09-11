@@ -692,6 +692,8 @@ PyEval_EvalFrame(PyFrameObject *f) {
 PyObject *
 PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 {
+	// CSC253 ASGN_1 - We start here evaluating the bytecode, taking in a FrameObject
+
 #ifdef DXPAIRS
     int lastopcode = 0;
 #endif
