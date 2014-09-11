@@ -834,6 +834,14 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 #endif
 
 /* Code access macros */
+/* CSC253 ASGN1_4 Here we're setting up some macros for easy access to the program instructions
+				  All of these are manipulations of the next_instr which if you remember from earlier
+				  points to the next instruction to be executed, but we can also from this
+				  access the next argument and take a peek at future arguments.
+				  JUMPTO and JUMPBY allow us to perform jump operations to skip opcodes we don't need
+				  to actually execute, all done by moving this pointer along the bytecode string
+				  supplied by the frame!
+*/
 
 #define INSTR_OFFSET()  ((int)(next_instr - first_instr))
 #define NEXTOP()        (*next_instr++)
