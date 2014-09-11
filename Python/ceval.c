@@ -688,7 +688,12 @@ PyEval_EvalFrame(PyFrameObject *f) {
        PyEval_EvalFrameEx() */
     return PyEval_EvalFrameEx(f, 0);
 }
-// where everything happens
+/* CSC486:
+ * This is the main routine to execute a frame.
+ * A frame can be treated as some particular instance of a function
+ * with environment and code instantiated. ( i.e. no variables from 
+ * the point of frames view)
+ */
 PyObject *
 PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 {
@@ -736,6 +741,13 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 /* Tuple access macros */
 
 #ifndef Py_DEBUG
+/* CSC453
+ * PyTuple_GET_ITEM  
+ * returns a PyObject pointer to the macro caller
+ * 
+ * PyTupleObject has a PyObject_VAR_HEAD and basically is an array of 
+ * PyObject pointers. 
+ */
 #define GETITEM(v, i) PyTuple_GET_ITEM((PyTupleObject *)(v), (i))
 #else
 #define GETITEM(v, i) PyTuple_GetItem((v), (i))
@@ -920,7 +932,8 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
         }
     }
     /** CSC453 ASGN1 
-     * grab things out
+     * Grab things out from a frame.
+     * 
      */
     co = f->f_code;
     names = co->co_names;
@@ -2053,10 +2066,25 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
             break;
 
         case LOAD_NAME:
-            //CSC458: ASGN1 w points to the memory location of names
-            // w is the symbol 
+            /* CSC458:
+             * This opcode basically creates PyObject with some name and
+             * push that to the value stack. 
+             */
+            
+            /* CSC453: 
+             * names is a pointer for PyObject
+             * which is extracted from the PythonCodeObject's field co_names 
+             * in this context it refers to the symbols in source, 
+             * like x, y, z, True. 
+             */
             w = GETITEM(names, oparg);
-            // CSC458: 
+            /* CSC453:
+             * v is the list for local variables.
+             * local here means local to this frame under examination
+             * 
+             * The purpose is to get the value for symbol that is currently
+             * point by w and assign it to x. 
+             */
             if ((v = f->f_locals) == NULL) {
                 PyErr_Format(PyExc_SystemError,
                              "no locals when loading %s",
@@ -2065,8 +2093,6 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
                 break;
             }
             if (PyDict_CheckExact(v)) {
-                // returning value from the symbol table that has the key w
-                // assign that to x which is the value
                 x = PyDict_GetItem(v, w);
                 Py_XINCREF(x);
             }
@@ -2144,6 +2170,10 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
                     break;
                 }
             }
+            /* CSC453:
+             * Manually handle the reference counter for newly created
+             * PyObject.
+             */
             Py_INCREF(x);
             PUSH(x);
             continue;
