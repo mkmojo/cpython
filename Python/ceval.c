@@ -2168,20 +2168,33 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
                     PyExc_NameError, GLOBAL_NAME_ERROR_MSG, w);
             break;
 
+		/** CSC453 LT_1 CSC453 GTE_1
+			This is the starting point for both branches of possible execution. At a high level
+			what the code is doing is loading from memory a PyObject (containing our value) via
+			a symbol table lookup. We execute this twice at the beginning of both cases leaving
+			the PyObjects for x and y on the value stack.
+			
+			The end of this loop is a 'continue' which tells the compiler to jump right back to
+			the beginning of the for loop, which by passes the code after this switch, since we're
+			definitely not done, and any error handling actually occurs within the implementation
+			of the opcode.
+			
+			Additional annotations labled CSC453: give more detail into the implementation.
+		*/
         case LOAD_NAME:
-            /* CSC453:
+            /** CSC453:
              * This opcode basically creates PyObject with some name and
              * push that to the value stack. 
              */
             
-            /* CSC453: 
+            /** CSC453: 
              * names is a pointer for PyObject
              * which is extracted from the PythonCodeObject's field co_names 
              * in this context it refers to the symbols in source, 
              * like x, y, z, True. 
              */
             w = GETITEM(names, oparg);
-            /* CSC453:
+            /** CSC453:
              * v is the list for local variables.
              * local here means local to this frame under examination
              * 
@@ -2195,7 +2208,7 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
                 why = WHY_EXCEPTION;
                 break;
             }
-            /* CSC453:
+            /** CSC453:
              * x is the value for symbol w. 
              * which is extracted by looking in to local symbol table v.
              */
