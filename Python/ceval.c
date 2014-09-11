@@ -910,6 +910,11 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 
 /* The stack can grow at most MAXINT deep, as co_nlocals and
    co_stacksize are ints. */
+   
+/* CSC253 ASGN_6 - These macros allow us more readable access to the value stack. You can see how each is
+ 				   manipulating the 'stack_pointer' as necessary for the operation, these
+				   allow for a more 'human readable' implementation of the opcodes.
+*/
 #define STACK_LEVEL()     ((int)(stack_pointer - f->f_valuestack))
 #define EMPTY()           (STACK_LEVEL() == 0)
 #define TOP()             (stack_pointer[-1])
