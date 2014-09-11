@@ -688,24 +688,22 @@ PyEval_EvalFrame(PyFrameObject *f) {
        PyEval_EvalFrameEx() */
     return PyEval_EvalFrameEx(f, 0);
 }
-/* CSC486:
- * This is the main routine to execute a frame.
- * A frame can be treated as some particular instance of a function
- * with environment and code instantiated. ( i.e. no variables from 
- * the point of frames view)
- */
+
 PyObject *
 PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 {
 
-	/** CSC253 ASGN_1
+	/** CSC453 ASGN_1
 		Assignment 1 Code Annotation - Quiyuan Qui and Jeffery White
 		
 		Traversing the annotation: Describing the setup you follow the flags CSC253 ASGN_# where
 		# gives the sequence. Once we hit actually processing the opcodes we'll give two branches
 		to follow that'll take you through the possible executions.
 	
-		This is the entry point to executing the compiled bytecode of our .py script.
+		This is the main routine to execute a frame.
+        - A frame can be treated as some particular instance of a function
+		  with environment and code instantiated. ( i.e. no variables from the point of frames view)
+		  
 		We're coming in with a pointer (*f) to the Frame containing our program, this PyFrameObject
 		is the only frame that needs to be considered with the code provided, so we only enter this once
 		and then return once we're done processing. The 'throwflag' here is an automatic handle to terminate
@@ -716,10 +714,9 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
     int lastopcode = 0;
 #endif
 
-	/** CSC 253 ASGN_2
+	/** CSC453 ASGN_2
 		This block of declarations below sets up variables to control the evaluation.
-		**stack_pointer - this gives us a pointer to a pointer for the value stack where we'll be
-		                  storing values as we execute our code
+		**stack_pointer - This is the value stack, for some particular frame
 		*next_instr - this is a pointer to the next instruction to execute.
 		opcode - the current opcode (these are enumerated from opcode.h)
 		oparg - argument the opcode is carrying (some have them some don't)
@@ -736,9 +733,6 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 	*/
 
     register PyObject **stack_pointer;  /* Next free slot in value stack */ 
-    /* CSC453:
-     * This is the value stack, for some particular frame
-     */
 
     register unsigned char *next_instr;
     register int opcode;        /* Current opcode */
@@ -765,9 +759,8 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
        time it is tested. */
     int instr_ub = -1, instr_lb = 0, instr_prev = -1;
 
-	/* CSC253 ASGN_3 Here we're setting up something to point to the very first instruction, and pointers to
-					  objects containing variable names and constants defined in our program.
-					  in our case constants will be empty, but we have (x,y,z,True) as names.
+	/** CSC453 ASGN_3 Here we're setting up something to point to the very first instruction, and pointers to
+					 objects containing symbol names and constants defined in our program.
 	*/
     unsigned char *first_instr;
     PyObject *names;
@@ -780,7 +773,7 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 /* Tuple access macros */
 
 #ifndef Py_DEBUG
-/* CSC453
+/** CSC453 ASGN_4
  * PyTuple_GET_ITEM  
  * returns a PyObject pointer to the macro caller
  * 
@@ -834,7 +827,7 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 #endif
 
 /* Code access macros */
-/* CSC253 ASGN1_4 Here we're setting up some macros for easy access to the program instructions
+/** CSC453 ASGN_5 Here we're setting up some macros for easy access to the program instructions
 				  All of these are manipulations of the next_instr which if you remember from earlier
 				  points to the next instruction to be executed, but we can also from this
 				  access the next argument and take a peek at future arguments.
@@ -846,9 +839,6 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 #define INSTR_OFFSET()  ((int)(next_instr - first_instr))
 #define NEXTOP()        (*next_instr++)
 #define NEXTARG()       (next_instr += 2, (next_instr[-1]<<8) + next_instr[-2])
-    /* CSC453:
-     * Why shifting a byte?
-     */
 #define PEEKARG()       ((next_instr[2]<<8) + next_instr[1])
 #define JUMPTO(x)       (next_instr = first_instr + (x))
 #define JUMPBY(x)       (next_instr += (x))
@@ -875,7 +865,7 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
     counter updates for both opcodes.
 */
 
-/* CSC 253 ASGN_5 The following macros are an optimization for the opcode processing allowing
+/** CSC453 ASGN_6 The following macros are an optimization for the opcode processing allowing
 				  for quicker execution of opcodes that are often seen paired together. Essentially
 				  the tail end execution of the first opcode is spliced to the head execution
 				  of the second. We'll see an actual usage of this later on when we trace out
@@ -911,9 +901,9 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 /* The stack can grow at most MAXINT deep, as co_nlocals and
    co_stacksize are ints. */
    
-/* CSC253 ASGN_6 - These macros allow us more readable access to the value stack. You can see how each is
- 				   manipulating the 'stack_pointer' as necessary for the operation, these
-				   allow for a more 'human readable' implementation of the opcodes.
+/** CSC453 ASGN_7 - These macros allow us more readable access to the value stack. You can see how each is
+ 				    manipulating the 'stack_pointer' as necessary for the operation, these
+				    allow for a more 'human readable' implementation of the opcodes.
 */
 #define STACK_LEVEL()     ((int)(stack_pointer - f->f_valuestack))
 #define EMPTY()           (STACK_LEVEL() == 0)
@@ -1008,7 +998,7 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
             }
         }
     }
-    /** CSC453 ASGN_7 
+    /** CSC453 ASGN_8
      * Now that the function has defined a bunch of tools variables, the frame is now read in order to
 	   start processing the opcodes.
 	   
@@ -1045,10 +1035,10 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
        at to the beginning of the combined pair.)
     */
 	
-	/* CSC253 ASGN_8 - our next instruction is the first instruction, so we're set up to start executing. 
-					 - We set our value stack pointer to point at the frames own value stack, in this
-					   case the stack is empty, nothing is sitting on it. But this would give you the option
-					   of pre-setting the stack prior to sending the frame in for execution.
+	/** CSC453 ASGN_9 - our next instruction is the first instruction, so we're set up to start executing. 
+					  - We set our value stack pointer to point at the frames own value stack, in this
+					    case the stack is empty, nothing is sitting on it. But this would give you the option
+					    of pre-setting the stack prior to sending the frame in for execution.
 	*/
     next_instr = first_instr + f->f_lasti + 1;
     stack_pointer = f->f_stacktop;
@@ -1072,9 +1062,9 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
         goto on_error;
     }
 
-/*CSC 253 ASGN_9 - So at this point we've processed the frame, set up a bunch of quality of life macros
-				   and done some initial error handling all along the way. Now ceval.c needs to start
-				   executing the opcodes and arguments in order to make the program actually do its thing.
+/** CSC453 ASGN_10 - So at this point we've processed the frame, set up a bunch of quality of life macros
+				     and done some initial error handling all along the way. Now ceval.c needs to start
+				     executing the opcodes and arguments in order to make the program actually do its thing.
 						 
 		For the code segment given there are two possible 'branches' in execution, if (x < y) we do one branch, 
 		otherwise (since elif True: is always true) we default to the second branch. The third branch is actually 
