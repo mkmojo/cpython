@@ -704,7 +704,10 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 #ifdef DXPAIRS
     int lastopcode = 0;
 #endif
-    register PyObject **stack_pointer;  /* Next free slot in value stack */ // This is the value stack
+    register PyObject **stack_pointer;  /* Next free slot in value stack */ 
+    /* CSC453:
+     * This is the value stack, for some particular frame
+     */
     register unsigned char *next_instr;
     register int opcode;        /* Current opcode */
     register int oparg;         /* Current opcode argument, if any */
@@ -1009,8 +1012,6 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
            event needs attention (e.g. a signal handler or
            async I/O handler); see Py_AddPendingCall() and
            Py_MakePendingCalls() above. */
-        //TODO:
-        //what is this do we care about it?
         if (--_Py_Ticker < 0) {
             if (*next_instr == SETUP_FINALLY) {
                 /* Make the last opcode before
@@ -1068,11 +1069,13 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
             }
 #endif
         }
-
+/* CSC453:
+ * Save some work with thread stuff, do not try to switch to another thread
+ * this happens when there is POP_JUMP_IF_FALSE
+ */
     fast_next_opcode:
         f->f_lasti = INSTR_OFFSET();
-        //manipulating the incoming frame structure
-
+       
         /* line-by-line tracing support */
 
         if (_Py_TracingPossible &&
@@ -2427,6 +2430,10 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 
         PREDICTED_WITH_ARG(POP_JUMP_IF_FALSE);
         case POP_JUMP_IF_FALSE:
+            /* CSC453:
+             * Pop the top item on the value stack
+             * w points to that object just get popped
+             */
             w = POP();
             if (w == Py_True) {
                 Py_DECREF(w);
@@ -2437,6 +2444,10 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
                 JUMPTO(oparg);
                 goto fast_next_opcode;
             }
+            /* CSC453:
+             * Test value as condition if the if clause does not receive either
+             * True or False.
+             */
             err = PyObject_IsTrue(w);
             Py_DECREF(w);
             if (err > 0)
@@ -2445,7 +2456,7 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
                 JUMPTO(oparg);
             else
                 break;
-            continue;
+            continue; //Go parse next opcode
 
         PREDICTED_WITH_ARG(POP_JUMP_IF_TRUE);
         case POP_JUMP_IF_TRUE:
@@ -2863,7 +2874,6 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 #ifdef CASE_TOO_BIG
         }
 #endif
-
         } /* switch */
 
         on_error:
