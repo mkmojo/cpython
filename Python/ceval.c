@@ -1158,7 +1158,7 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
             }
 #endif
         }
-/* CSC453:
+/** CSC453 LT_6 CSC453 GTE_6
  * Save some work with thread stuff, do not try to switch to another thread
  * this happens when there is POP_JUMP_IF_FALSE
  */
@@ -2568,7 +2568,16 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
         case JUMP_FORWARD:
             JUMPBY(oparg);
             goto fast_next_opcode;
-
+		
+		/** CSC453 LT_4 CSC453 GTE_4
+			We've just arrived here directly from ending the COMPARE_OP opcode, POP_JUMP_IF_FALSE
+			is currently the opcode.
+			
+			Now we execute the PREDICTED_WITH_ARG macro, which pushes the next_instr out 3 bytes
+			and grabs the argument.
+			
+			We're now free to take the case POP_JUMP_IF_FALSE implementation.
+		*/
         PREDICTED_WITH_ARG(POP_JUMP_IF_FALSE);
         case POP_JUMP_IF_FALSE:
             /* CSC453:
@@ -2576,10 +2585,14 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
              * w points to that object just get popped
              */
             w = POP();
+			
+			// CSC453 LT_5 Here the top of the value stack is true, so we make sure to cleanup and take the goto
             if (w == Py_True) {
                 Py_DECREF(w);
                 goto fast_next_opcode;
             }
+			
+			// CSC453 GTE_5 Here the top of the value stack is false, so we cleanup and call JUMPTO, which in this case moves next_instr to byte 21
             if (w == Py_False) {
                 Py_DECREF(w);
                 JUMPTO(oparg);
