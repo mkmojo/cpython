@@ -2066,7 +2066,7 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
             break;
 
         case LOAD_NAME:
-            /* CSC458:
+            /* CSC453:
              * This opcode basically creates PyObject with some name and
              * push that to the value stack. 
              */
