@@ -709,6 +709,24 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 #ifdef DXPAIRS
     int lastopcode = 0;
 #endif
+	/** CSC 253 ASGN_2
+		This block of declarations below sets up variables to control the evaluation.
+		**stack_pointer - this gives us a pointer to a pointer for the value stack where we'll be
+		                  storing values as we execute our code
+		*next_instr - this is a pointer to the next instruction to execute.
+		opcode - the current opcode (these are enumerated from opcode.h)
+		oparg - argument the opcode is carrying (some have them some don't)
+		why, err - values to help us understand any errors or why we're exiting the main loop
+		
+		PyCodeObject *co - this is what is actually going to store our code object
+		
+		The rest of the code are variables that allow us to do simple operations based on which opcode
+		is actually being executed.
+		
+		A note here, the 'register' tells c to attempt to store this value in a CPU register rather than
+		using system memory to store the variable. The python developers did this to attempt to speed
+		up processing the actual opcodes.
+	*/
     register PyObject **stack_pointer;  /* Next free slot in value stack */
     register unsigned char *next_instr;
     register int opcode;        /* Current opcode */
