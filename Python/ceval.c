@@ -765,6 +765,10 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
        time it is tested. */
     int instr_ub = -1, instr_lb = 0, instr_prev = -1;
 
+	/* CSC253 ASGN_3 Here we're setting up something to point to the very first instruction, and pointers to
+					  objects containing variable names and constants defined in our program.
+					  in our case constants will be empty, but we have (x,y,z,True) as names.
+	*/
     unsigned char *first_instr;
     PyObject *names;
     PyObject *consts;
