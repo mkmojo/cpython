@@ -741,7 +741,7 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 /* Tuple access macros */
 
 #ifndef Py_DEBUG
-/* CSC453
+/* CSC453:
  * PyTuple_GET_ITEM  
  * returns a PyObject pointer to the macro caller
  * 
@@ -933,7 +933,7 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
     }
     /** CSC453 ASGN1 
      * Grab things out from a frame.
-     * 
+     * names is the symbols that are used in the source
      */
     co = f->f_code;
     names = co->co_names;
@@ -1968,8 +1968,25 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
             break;
 
         case STORE_NAME:
+            /* CSC453:
+             * This instruction modifies the frame local symbol-value list/dict.
+             *  
+             * /
+            
+            /* CSC453:
+             * Retrieve the symbol from frame symbol list
+             * use w point to that symbol.
+             * names is the symbol array for symbols that exists in the code. 
+             */
             w = GETITEM(names, oparg);
+            /* CSC453:
+             * The value that is going to be assigned
+             */
             v = POP();
+            /* CSC453: ???
+             * f_locals is the frame local symbol table ( not necessary the same
+             * as the names symbol table)
+             */
             if ((x = f->f_locals) != NULL) {
                 if (PyDict_CheckExact(x))
                     err = PyDict_SetItem(x, w, v);
