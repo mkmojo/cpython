@@ -1,10 +1,11 @@
+//this is very much the instruction set
 #ifndef Py_OPCODE_H
 #define Py_OPCODE_H
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-
+    
 /* Instruction opcodes for compiled code */
 
 #define STOP_CODE	0
@@ -83,7 +84,7 @@ extern "C" {
 #define BUILD_CLASS	89
 
 #define HAVE_ARGUMENT	90	/* Opcodes from here have an argument: */
-
+//just a place holder
 #define STORE_NAME	90	/* Index in name list */
 #define DELETE_NAME	91	/* "" */
 #define UNPACK_SEQUENCE	92	/* Number of sequence items */
