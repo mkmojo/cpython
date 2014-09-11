@@ -875,6 +875,28 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
     counter updates for both opcodes.
 */
 
+/* CSC 253 ASGN_5 The following macros are an optimization for the opcode processing allowing
+				  for quicker execution of opcodes that are often seen paired together. Essentially
+				  the tail end execution of the first opcode is spliced to the head execution
+				  of the second. We'll see an actual usage of this later on when we trace out
+				  the code, so what follows here is a basic description of what these macros do
+				  and when they are typically used.
+				  
+				  PREDICT(op) - this macro takes a peek at the next instruction to be executed
+				  to see if our next instruction is the one being predicted. These macros are called
+				  at the end of opcode implementations that have typical opcodes that follow them. If
+				  true then we 'goto' a PRED_##op flag (where ## is a concatenation operator in C)
+				  
+				  PREDICTED(op) - this macro is placed at the top of an implementation of an opcode
+				  that we're trying to predict the usage of. This one is placed where we have an 
+				  opcode that carries no argument, so we advance to the next instruction (1 byte away)
+				  and continue execution of the opcode evaluation loop from this goto. 
+				  
+				  PREDICTED_WITH_ARG(op) - this macro is placed the same as PREDICTED at the top of
+				  an opcode implementation, but we have something that takes arguments. So the macro
+				  grabs the argument as needed, and advances to the next instructions (which is 3 bytes
+				  away in this case.)
+*/
 #ifdef DYNAMIC_EXECUTION_PROFILE
 #define PREDICT(op)             if (0) goto PRED_##op
 #else
