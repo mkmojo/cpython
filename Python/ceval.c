@@ -802,6 +802,9 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 #define INSTR_OFFSET()  ((int)(next_instr - first_instr))
 #define NEXTOP()        (*next_instr++)
 #define NEXTARG()       (next_instr += 2, (next_instr[-1]<<8) + next_instr[-2])
+    /* CSC453:
+     * Why shifting a byte?
+     */
 #define PEEKARG()       ((next_instr[2]<<8) + next_instr[1])
 #define JUMPTO(x)       (next_instr = first_instr + (x))
 #define JUMPBY(x)       (next_instr += (x))
@@ -1971,8 +1974,19 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
             break;
 
         case STORE_NAME:
+            /* CSC453:
+             * w now points to the PyObject used as symbol in the source.
+             * For instance the symbol x which represents a variable
+             */
             w = GETITEM(names, oparg);
+            /* CSC453:
+             * v points to the PyObject popped out from the value stack
+             * The value 
+             */
             v = POP();
+            /* CSC453:
+             * x is the local variable dictionary
+             */
             if ((x = f->f_locals) != NULL) {
                 if (PyDict_CheckExact(x))
                     err = PyDict_SetItem(x, w, v);
@@ -2095,6 +2109,10 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
                 why = WHY_EXCEPTION;
                 break;
             }
+            /* CSC453:
+             * x is the value for symbol w. 
+             * which is extracted by looking in to local symbol table v.
+             */
             if (PyDict_CheckExact(v)) {
                 x = PyDict_GetItem(v, w);
                 Py_XINCREF(x);
