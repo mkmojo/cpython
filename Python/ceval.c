@@ -692,14 +692,10 @@ PyEval_EvalFrame(PyFrameObject *f) {
 PyObject *
 PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 {
-<<<<<<< HEAD
     /** CSC253 ASGN1_1
      This is the entry point to evaluate the complied bytecode for .py script
      */ 
-=======
-	// CSC253 ASGN_1 - We start here evaluating the bytecode, taking in a FrameObject
 
->>>>>>> f4012506c83b43a19087e299dbf151cd4e11b5ae
 #ifdef DXPAIRS
     int lastopcode = 0;
 #endif
