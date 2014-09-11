@@ -688,23 +688,52 @@ PyEval_EvalFrame(PyFrameObject *f) {
        PyEval_EvalFrameEx() */
     return PyEval_EvalFrameEx(f, 0);
 }
-/* CSC486:
- * This is the main routine to execute a frame.
- * A frame can be treated as some particular instance of a function
- * with environment and code instantiated. ( i.e. no variables from 
- * the point of frames view)
- */
+
 PyObject *
 PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 {
-    /** CSC253 ASGN1_1
-     This is the entry point to evaluate the complied bytecode for .py script
-     */ 
+
+	/** CSC453 ASGN_1
+		Assignment 1 Code Annotation - Quiyuan Qui and Jeffery White
+		
+		Traversing the annotation: Describing the setup you follow the flags CSC253 ASGN_# where
+		# gives the sequence. Once we hit actually processing the opcodes we'll give two branches
+		to follow that'll take you through the possible executions.
+	
+		This is the main routine to execute a frame.
+        - A frame can be treated as some particular instance of a function
+		  with environment and code instantiated. ( i.e. no variables from the point of frames view)
+		  
+		We're coming in with a pointer (*f) to the Frame containing our program, this PyFrameObject
+		is the only frame that needs to be considered with the code provided, so we only enter this once
+		and then return once we're done processing. The 'throwflag' here is an automatic handle to terminate
+		this execution if there was an error passed into the function.
+	*/
 
 #ifdef DXPAIRS
     int lastopcode = 0;
 #endif
-    register PyObject **stack_pointer;  /* Next free slot in value stack */ // This is the value stack
+
+	/** CSC453 ASGN_2
+		This block of declarations below sets up variables to control the evaluation.
+		**stack_pointer - This is the value stack, for some particular frame
+		*next_instr - this is a pointer to the next instruction to execute.
+		opcode - the current opcode (these are enumerated from opcode.h)
+		oparg - argument the opcode is carrying (some have them some don't)
+		why, err - values to help us understand any errors or why we're exiting the main loop
+		
+		PyCodeObject *co - this is what is actually going to store our code object
+		
+		The rest of the code are variables that allow us to do simple operations based on which opcode
+		is actually being executed.
+		
+		A note here, the 'register' tells c to attempt to store this value in a CPU register rather than
+		using system memory to store the variable. The python developers did this to attempt to speed
+		up processing the actual opcodes.
+	*/
+
+    register PyObject **stack_pointer;  /* Next free slot in value stack */ 
+
     register unsigned char *next_instr;
     register int opcode;        /* Current opcode */
     register int oparg;         /* Current opcode argument, if any */
@@ -730,6 +759,9 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
        time it is tested. */
     int instr_ub = -1, instr_lb = 0, instr_prev = -1;
 
+	/** CSC453 ASGN_3 Here we're setting up something to point to the very first instruction, and pointers to
+					 objects containing symbol names and constants defined in our program.
+	*/
     unsigned char *first_instr;
     PyObject *names;
     PyObject *consts;
@@ -741,7 +773,7 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 /* Tuple access macros */
 
 #ifndef Py_DEBUG
-/* CSC453:
+/** CSC453 ASGN_4
  * PyTuple_GET_ITEM  
  * returns a PyObject pointer to the macro caller
  * 
@@ -795,6 +827,14 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 #endif
 
 /* Code access macros */
+/** CSC453 ASGN_5 Here we're setting up some macros for easy access to the program instructions
+				  All of these are manipulations of the next_instr which if you remember from earlier
+				  points to the next instruction to be executed, but we can also from this
+				  access the next argument and take a peek at future arguments.
+				  JUMPTO and JUMPBY allow us to perform jump operations to skip opcodes we don't need
+				  to actually execute, all done by moving this pointer along the bytecode string
+				  supplied by the frame!
+*/
 
 #define INSTR_OFFSET()  ((int)(next_instr - first_instr))
 #define NEXTOP()        (*next_instr++)
@@ -825,6 +865,28 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
     counter updates for both opcodes.
 */
 
+/** CSC453 ASGN_6 The following macros are an optimization for the opcode processing allowing
+				  for quicker execution of opcodes that are often seen paired together. Essentially
+				  the tail end execution of the first opcode is spliced to the head execution
+				  of the second. We'll see an actual usage of this later on when we trace out
+				  the code, so what follows here is a basic description of what these macros do
+				  and when they are typically used.
+				  
+				  PREDICT(op) - this macro takes a peek at the next instruction to be executed
+				  to see if our next instruction is the one being predicted. These macros are called
+				  at the end of opcode implementations that have typical opcodes that follow them. If
+				  true then we 'goto' a PRED_##op flag (where ## is a concatenation operator in C)
+				  
+				  PREDICTED(op) - this macro is placed at the top of an implementation of an opcode
+				  that we're trying to predict the usage of. This one is placed where we have an 
+				  opcode that carries no argument, so we advance to the next instruction (1 byte away)
+				  and continue execution of the opcode evaluation loop from this goto. 
+				  
+				  PREDICTED_WITH_ARG(op) - this macro is placed the same as PREDICTED at the top of
+				  an opcode implementation, but we have something that takes arguments. So the macro
+				  grabs the argument as needed, and advances to the next instructions (which is 3 bytes
+				  away in this case.)
+*/
 #ifdef DYNAMIC_EXECUTION_PROFILE
 #define PREDICT(op)             if (0) goto PRED_##op
 #else
@@ -838,6 +900,11 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 
 /* The stack can grow at most MAXINT deep, as co_nlocals and
    co_stacksize are ints. */
+   
+/** CSC453 ASGN_7 - These macros allow us more readable access to the value stack. You can see how each is
+ 				    manipulating the 'stack_pointer' as necessary for the operation, these
+				    allow for a more 'human readable' implementation of the opcodes.
+*/
 #define STACK_LEVEL()     ((int)(stack_pointer - f->f_valuestack))
 #define EMPTY()           (STACK_LEVEL() == 0)
 #define TOP()             (stack_pointer[-1])
@@ -934,6 +1001,17 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
     /** CSC453 ASGN1 
      * Grab things out from a frame.
      * names is the symbols that are used in the source
+     
+     * Now that the function has defined a bunch of tools variables, the frame is now read in order to
+	   start processing the opcodes.
+	   
+	   f->f_code - the code object containing the compiled code everything we need to run that code.
+	   co->co_names - all the symbol names used in the code (in this case [x,y,z,True])
+	   co->co_consts - any constants defined in the code, in this case just 100 and 'nothing'
+	   co->co_code - the actual bytecode taken in as a character string, and here we set the first_instr
+					 pointer to the head of this string giving us a constant reference to the head of
+					 our bytecode.
+     * 
      */
     co = f->f_code;
     names = co->co_names;
@@ -959,6 +1037,12 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
        FOR_ITER is effectively a single opcode and f->f_lasti will point
        at to the beginning of the combined pair.)
     */
+	
+	/** CSC453 ASGN_9 - our next instruction is the first instruction, so we're set up to start executing. 
+					  - We set our value stack pointer to point at the frames own value stack, in this
+					    case the stack is empty, nothing is sitting on it. But this would give you the option
+					    of pre-setting the stack prior to sending the frame in for execution.
+	*/
     next_instr = first_instr + f->f_lasti + 1;
     stack_pointer = f->f_stacktop;
     assert(stack_pointer != NULL);
@@ -981,6 +1065,17 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
         goto on_error;
     }
 
+/** CSC453 ASGN_10 - So at this point we've processed the frame, set up a bunch of quality of life macros
+				     and done some initial error handling all along the way. Now ceval.c needs to start
+				     executing the opcodes and arguments in order to make the program actually do its thing.
+						 
+		For the code segment given there are two possible 'branches' in execution, if (x < y) we do one branch, 
+		otherwise (since elif True: is always true) we default to the second branch. The third branch is actually 
+		unreachable code in the given example.
+		
+		From this point forward we use the notation CSC453 LT_# for analysing the (x < y) branch (where # is the sequence)
+		and CSC453 GTE_# for the elif:True branch.
+	*/
     for (;;) { //csc453: always run until sth kills it
 #ifdef WITH_TSC
         if (inst1 == 0) {
@@ -1009,8 +1104,6 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
            event needs attention (e.g. a signal handler or
            async I/O handler); see Py_AddPendingCall() and
            Py_MakePendingCalls() above. */
-        //TODO:
-        //what is this do we care about it?
         if (--_Py_Ticker < 0) {
             if (*next_instr == SETUP_FINALLY) {
                 /* Make the last opcode before
@@ -1068,11 +1161,13 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
             }
 #endif
         }
-
+/* CSC453:
+ * Save some work with thread stuff, do not try to switch to another thread
+ * this happens when there is POP_JUMP_IF_FALSE
+ */
     fast_next_opcode:
         f->f_lasti = INSTR_OFFSET();
-        //manipulating the incoming frame structure
-
+       
         /* line-by-line tracing support */
 
         if (_Py_TracingPossible &&
@@ -1986,6 +2081,18 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
             /* CSC453: ???
              * f_locals is the frame local symbol table ( not necessary the same
              * as the names symbol table)
+=======
+             * w now points to the PyObject used as symbol in the source.
+             * For instance the symbol x which represents a variable
+             */
+            w = GETITEM(names, oparg);
+            /* CSC453:
+             * v points to the PyObject popped out from the value stack
+             * The value 
+             */
+            v = POP();
+            /* CSC453:
+             * x is the local variable dictionary
              */
             if ((x = f->f_locals) != NULL) {
                 if (PyDict_CheckExact(x))
@@ -2082,20 +2189,33 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
                     PyExc_NameError, GLOBAL_NAME_ERROR_MSG, w);
             break;
 
+		/** CSC453 LT_1 CSC453 GTE_1
+			This is the starting point for both branches of possible execution. At a high level
+			what the code is doing is loading from memory a PyObject (containing our value) via
+			a symbol table lookup. We execute this twice at the beginning of both cases leaving
+			the PyObjects for x and y on the value stack.
+			
+			The end of this loop is a 'continue' which tells the compiler to jump right back to
+			the beginning of the for loop, which by passes the code after this switch, since we're
+			definitely not done, and any error handling actually occurs within the implementation
+			of the opcode.
+			
+			Additional annotations labled CSC453: give more detail into the implementation.
+		*/
         case LOAD_NAME:
-            /* CSC453:
+            /** CSC453:
              * This opcode basically creates PyObject with some name and
              * push that to the value stack. 
              */
             
-            /* CSC453: 
+            /** CSC453: 
              * names is a pointer for PyObject
              * which is extracted from the PythonCodeObject's field co_names 
              * in this context it refers to the symbols in source, 
              * like x, y, z, True. 
              */
             w = GETITEM(names, oparg);
-            /* CSC453:
+            /** CSC453:
              * v is the list for local variables.
              * local here means local to this frame under examination
              * 
@@ -2109,6 +2229,10 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
                 why = WHY_EXCEPTION;
                 break;
             }
+            /** CSC453:
+             * x is the value for symbol w. 
+             * which is extracted by looking in to local symbol table v.
+             */
             if (PyDict_CheckExact(v)) {
                 x = PyDict_GetItem(v, w);
                 Py_XINCREF(x);
@@ -2333,6 +2457,17 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
             if (x != NULL) continue;
             break;
 
+		/** CSC453 LT_2 CSC453 GTE_2 - As promised we'll now be looking at opcodes makes use of the evaluation
+			loops 'prediction' speed up.
+			
+			Here we're comparing the objects x and y to see if (x < y), so we POP() the value stack
+			and compare that with the TOP() of the value stack. The implementation here is to take
+			the two objects, get their value (PyInt_AS_LONG - returns the value of an object), and
+			switch on the oparg we obtained at the beginning of the loop when we extracted the
+			next instruction. At this point we take the very first case PyCmp_LT (an enum from opcode.h)
+			
+			CSC453: annotations here give some more detail.
+		*/
         case COMPARE_OP:
             w = POP();
             v = TOP();
@@ -2343,7 +2478,7 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
                 a = PyInt_AS_LONG(v);
                 b = PyInt_AS_LONG(w);
                 switch (oparg) {
-                case PyCmp_LT: res = a <  b; break;
+                case PyCmp_LT: res = a <  b; break; //CSC453: this is our operator, so we set the result of the comparison (1 or 0 in c)
                 case PyCmp_LE: res = a <= b; break;
                 case PyCmp_EQ: res = a == b; break;
                 case PyCmp_NE: res = a != b; break;
@@ -2360,10 +2495,23 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
               slow_compare:
                 x = cmp_outcome(oparg, v, w);
             }
+			
+			//CSC453: Make sure we decrement the reference counter to these locals, so they can get cleaned up by garbage collection
             Py_DECREF(v);
             Py_DECREF(w);
             SET_TOP(x);
             if (x == NULL) break;
+			
+			/** CSC453 LT_3 CSC453 GTE_3
+				Here is where the prediction magic occurs and we save us a whole bunch of time in execution.
+				- PREDICT() peeks at the next instruction, and in both of our execution branches the next
+				            instructions is in fact POP_JUMP_IF_FALSE, so we goto PRED_POP_JUMP_IF_FALSE which
+							we will find directly above the POP_JUMP_IF_FALSE opcode in this very switch statement.
+				
+				What this gains us is for the cost of one comparison between the next_instr and value skipping
+				the entire top portion of the loop and any other switch comparison, pretty much splicing
+				these two opcodes together into one implementation.
+			*/
             PREDICT(POP_JUMP_IF_FALSE);
             PREDICT(POP_JUMP_IF_TRUE);
             continue;
@@ -2444,6 +2592,10 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 
         PREDICTED_WITH_ARG(POP_JUMP_IF_FALSE);
         case POP_JUMP_IF_FALSE:
+            /* CSC453:
+             * Pop the top item on the value stack
+             * w points to that object just get popped
+             */
             w = POP();
             if (w == Py_True) {
                 Py_DECREF(w);
@@ -2454,6 +2606,10 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
                 JUMPTO(oparg);
                 goto fast_next_opcode;
             }
+            /* CSC453:
+             * Test value as condition if the if clause does not receive either
+             * True or False.
+             */
             err = PyObject_IsTrue(w);
             Py_DECREF(w);
             if (err > 0)
@@ -2462,7 +2618,7 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
                 JUMPTO(oparg);
             else
                 break;
-            continue;
+            continue; //Go parse next opcode
 
         PREDICTED_WITH_ARG(POP_JUMP_IF_TRUE);
         case POP_JUMP_IF_TRUE:
@@ -2880,7 +3036,6 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 #ifdef CASE_TOO_BIG
         }
 #endif
-
         } /* switch */
 
         on_error:
