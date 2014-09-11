@@ -692,7 +692,19 @@ PyEval_EvalFrame(PyFrameObject *f) {
 PyObject *
 PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 {
-	// CSC253 ASGN_1 - We start here evaluating the bytecode, taking in a FrameObject
+	/** CSC253 ASGN_1
+		Assignment 1 Code Annotation - Quiyuan Qui and Jeffery White
+		
+		Traversing the annotation: Describing the setup you follow the flags CSC253 ASGN_# where
+		# gives the sequence. Once we hit actually processing the opcodes we'll give two branches
+		to follow that'll take you through the possible executions.
+	
+		This is the entry point to executing the compiled bytecode of our .py script.
+		We're coming in with a pointer (*f) to the Frame containing our program, this PyFrameObject
+		is the only frame that needs to be considered with the code provided, so we only enter this once
+		and then return once we're done processing. The 'throwflag' here is an automatic handle to terminate
+		this execution if there was an error passed into the function.
+	*/
 
 #ifdef DXPAIRS
     int lastopcode = 0;
