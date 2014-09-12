@@ -1247,6 +1247,7 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
                 PyTuple_GetItem(co->co_varnames, oparg));
             break;
 
+		// CSC453 LT_10 CSC453 GTE_ For both branches we now want to load nothing onto the value stack.
         case LOAD_CONST:
             x = GETITEM(consts, oparg);
             Py_INCREF(x);
@@ -1987,10 +1988,11 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
             PyErr_SetString(PyExc_SystemError, "no locals");
             break;
 
+		// CSC453 LT_11 CSC453 GTE_ We grab the top of the stack for returning to the caller of the evaluation function.	
         case RETURN_VALUE:
-            retval = POP();
-            why = WHY_RETURN;
-            goto fast_block_end;
+            retval = POP(); //CSC453: Grab the top of the stack
+            why = WHY_RETURN; //CSC453: Set the why value to we know that we're exiting because we wish to return!
+            goto fast_block_end; //CSC453: Take the fast_block_end goto
 
         case YIELD_VALUE:
             retval = POP();
@@ -2180,6 +2182,10 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 			of the opcode.
 			
 			Additional annotations labled CSC453: give more detail into the implementation.
+		*/
+		
+		/** CSC453 LT_7 For this branch we're back at the familiar LOAD_NAME, so we grab the value
+			out of memory and push it onto the value stack.
 		*/
         case LOAD_NAME:
             /** CSC453:
@@ -2564,7 +2570,8 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
             PUSH(x);
             if (x != NULL) continue;
             break;
-
+		
+		// CSC453 LT_9 - Here we're jumping forward over the other branches, so we can exit and return!
         case JUMP_FORWARD:
             JUMPBY(oparg);
             goto fast_next_opcode;
@@ -3094,7 +3101,12 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 
         /* Unwind stacks if a (pseudo) exception occurred */
 
+/** CSC453 LT_12 CSC453 GTE_
+	When exiting the function we end up in both cases as this goto to start the process of
+	cleaning up, looking for errors, and kicking our return value back to the caller.
+*/
 fast_block_end:
+		//CSC453: 
         while (why != WHY_NOT && f->f_iblock > 0) {
             /* Peek at the current block. */
             PyTryBlock *b = &f->f_blockstack[f->f_iblock - 1];
@@ -5037,6 +5049,9 @@ string_concatenate(PyObject *v, PyObject *w,
                 PyCell_Set(c, NULL);
             break;
         }
+		/** CSC453 LT_8 Now we store the value on top of the value_stack into the memory location for 'z'
+					    via a symbol table lookup.
+		*/
         case STORE_NAME:
         {
             PyObject *names = f->f_code->co_names;
