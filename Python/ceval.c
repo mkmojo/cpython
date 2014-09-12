@@ -1076,7 +1076,7 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 		From this point forward we use the notation CSC453 LT_# for analysing the (x < y) branch (where # is the sequence)
 		and CSC453 GTE_# for the elif:True branch.
 	*/
-    for (;;) { //csc453: always run until sth kills it
+    for (;;) { 
 #ifdef WITH_TSC
         if (inst1 == 0) {
             /* Almost surely, the opcode executed a break
@@ -2587,6 +2587,10 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
             break;
 
         case JUMP_FORWARD:
+            /* CSC453:
+             * Manipulate the next_instr pointer to jump with offset
+             * The offset is read in as opcode argument.
+             */
             JUMPBY(oparg);
             goto fast_next_opcode;
 
