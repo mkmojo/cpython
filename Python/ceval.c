@@ -1250,7 +1250,7 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
                 PyTuple_GetItem(co->co_varnames, oparg));
             break;
 
-		// CSC453 LT_10 CSC453 GTE_ For both branches we now want to load nothing onto the value stack.
+		// CSC453 LT_10 CSC453 GTE_12 For both branches we now want to load nothing onto the value stack.
         case LOAD_CONST:
             /* CSC 453:
              * This instruction load PyObject to the value stack for current 
@@ -2005,9 +2005,9 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
             PyErr_SetString(PyExc_SystemError, "no locals");
             break;
 
-		// CSC453 LT_11 CSC453 GTE_ We grab the top of the stack for returning to the caller of the evaluation function.	
+		// CSC453 LT_11 CSC453 GTE_13 We grab the top of the stack for returning to the caller of the evaluation function.	
         case RETURN_VALUE:
-            retval = POP(); //CSC453: Grab the top of the stack
+            retval = POP(); //CSC453: Grab the top of the value stack
             why = WHY_RETURN; //CSC453: Set the why value to we know that we're exiting because we wish to return!
             goto fast_block_end; //CSC453: Take the fast_block_end goto
 
@@ -2222,6 +2222,12 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 		/** CSC453 LT_7 For this branch we're back at the familiar LOAD_NAME, so we grab the value
 			out of memory and push it onto the value stack.
 		*/
+		
+		/** CSC453 GTE_7 For this branch we load in True from the symbol table and push it
+			onto the value stack.
+		*/
+		
+		// CSC453 GTE_9 Here we're loading in the value stored at symbol y onto the value stack
         case LOAD_NAME:
             /** CSC453:
              * This opcode basically creates PyObject with some name and
@@ -2607,7 +2613,8 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
             break;
 		
 		// CSC453 LT_9 - Here we're jumping forward over the other branches, so we can exit and return!
-        case JUMP_FORWARD:
+        // CSC453 GTE_11 - Here we're jumping forward to byte 42
+		case JUMP_FORWARD:
             /* CSC453:
              * Manipulate the next_instr pointer to jump with offset
              * The offset is read in as opcode argument.
@@ -2623,7 +2630,8 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 			and grabs the argument.
 			
 			We're now free to take the case POP_JUMP_IF_FALSE implementation.
-		*/
+		*/		
+		
         PREDICTED_WITH_ARG(POP_JUMP_IF_FALSE);
         case POP_JUMP_IF_FALSE:
             /* CSC453:
@@ -2632,7 +2640,7 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
              */
             w = POP();
 			
-			// CSC453 LT_5 Here the top of the value stack is true, so we make sure to cleanup and take the goto
+			// CSC453 LT_5 CSC453 GTE_8 Here the top of the value stack is true, so we make sure to cleanup and take the goto
             if (w == Py_True) {
                 Py_DECREF(w);
                 goto fast_next_opcode;
@@ -3140,12 +3148,11 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 
         /* Unwind stacks if a (pseudo) exception occurred */
 
-/** CSC453 LT_12 CSC453 GTE_
+/** CSC453 LT_12 CSC453 GTE_14
 	When exiting the function we end up in both cases as this goto to start the process of
 	cleaning up, looking for errors, and kicking our return value back to the caller.
 */
 fast_block_end:
-		//CSC453: 
         while (why != WHY_NOT && f->f_iblock > 0) {
             /* Peek at the current block. */
             PyTryBlock *b = &f->f_blockstack[f->f_iblock - 1];
@@ -5091,6 +5098,8 @@ string_concatenate(PyObject *v, PyObject *w,
 		/** CSC453 LT_8 Now we store the value on top of the value_stack into the memory location for 'z'
 					    via a symbol table lookup.
 		*/
+		
+		// CSC453 GTE_10 Here we POP() the value stack and store it into 'z' via symbol table lookup
         case STORE_NAME:
         {
             PyObject *names = f->f_code->co_names;
