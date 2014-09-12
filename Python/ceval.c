@@ -3222,6 +3222,7 @@ fast_block_end:
 
         /* End the loop if we still have an error (or return) */
 
+		//CSC453: why == WHY_RETURN so get out of the main evaluation loop (for(;;))
         if (why != WHY_NOT) // kick you out
             break;
         READ_TIMESTAMP(loop1);
@@ -3230,6 +3231,8 @@ fast_block_end:
 
     assert(why != WHY_YIELD);
     /* Pop remaining stack entries. */
+	
+	//CSC453: Cleanup the valuestack
     while (!EMPTY()) {
         v = POP();
         Py_XDECREF(v);
@@ -3283,6 +3286,7 @@ exit_eval_frame:
     Py_LeaveRecursiveCall();
     tstate->frame = f->f_back;
 
+	//CSC453: Return the PyObject value (in this case we return nothing!)
     return retval;
 }
 
