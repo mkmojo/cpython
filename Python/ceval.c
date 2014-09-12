@@ -1251,8 +1251,22 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
             break;
 
         case LOAD_CONST:
+            /* CSC 453:
+             * This instruction load PyObject to the value stack for current 
+             * frame.
+             * 
+             * consts is the list of constant used in the python source for this
+             * frame under examination.
+             * 
+             * oparg is how far we need to index into consts to find the value
+             * to assign to have PyObject pointer x to point to. 
+             */
             x = GETITEM(consts, oparg);
             Py_INCREF(x);
+            /* CSC 453:
+             * Link PyObject to the value stack, a.k.a, push a new PyObjct to 
+             * the value stack. 
+             */
             PUSH(x);
             goto fast_next_opcode;
 
