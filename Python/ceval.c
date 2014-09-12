@@ -695,7 +695,7 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 
     /** CSC453 ASGN_1
         Assignment 1 Code Annotation - Quiyuan Qui and Jeffery White
-        
+     * 
         Traversing the annotation: Describing the setup you follow the flags CSC253 ASGN_# where
         # gives the sequence. Once we hit actually processing the opcodes we'll give two branches
         to follow that'll take you through the possible executions.
