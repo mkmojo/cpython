@@ -2097,7 +2097,6 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
             /* CSC453: ???
              * f_locals is the frame local symbol table ( not necessary the same
              * as the names symbol table)
-=======
              * w now points to the PyObject used as symbol in the source.
              * For instance the symbol x which represents a variable
              */
