@@ -998,7 +998,10 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
             }
         }
     }
-    /** CSC453 ASGN_8
+    /** CSC453 ASGN1 
+     * Grab things out from a frame.
+     * names is the symbols that are used in the source
+     
      * Now that the function has defined a bunch of tools variables, the frame is now read in order to
 	   start processing the opcodes.
 	   
@@ -1073,7 +1076,7 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 		From this point forward we use the notation CSC453 LT_# for analysing the (x < y) branch (where # is the sequence)
 		and CSC453 GTE_# for the elif:True branch.
 	*/
-    for (;;) { //csc453: always run until sth kills it
+    for (;;) { 
 #ifdef WITH_TSC
         if (inst1 == 0) {
             /* Almost surely, the opcode executed a break
@@ -1249,8 +1252,22 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 
 		// CSC453 LT_10 CSC453 GTE_ For both branches we now want to load nothing onto the value stack.
         case LOAD_CONST:
+            /* CSC 453:
+             * This instruction load PyObject to the value stack for current 
+             * frame.
+             * 
+             * consts is the list of constant used in the python source for this
+             * frame under examination.
+             * 
+             * oparg is how far we need to index into consts to find the value
+             * to assign to have PyObject pointer x to point to. 
+             */
             x = GETITEM(consts, oparg);
             Py_INCREF(x);
+            /* CSC 453:
+             * Link PyObject to the value stack, a.k.a, push a new PyObjct to 
+             * the value stack. 
+             */
             PUSH(x);
             goto fast_next_opcode;
 
@@ -2063,6 +2080,24 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 
         case STORE_NAME:
             /* CSC453:
+             * This instruction modifies the frame local symbol-value list/dict.
+             *  
+             * /
+            
+            /* CSC453:
+             * Retrieve the symbol from frame symbol list
+             * use w point to that symbol.
+             * names is the symbol array for symbols that exists in the code. 
+             */
+            w = GETITEM(names, oparg);
+            /* CSC453:
+             * The value that is going to be assigned
+             */
+            v = POP();
+            /* CSC453: ???
+             * f_locals is the frame local symbol table ( not necessary the same
+             * as the names symbol table)
+=======
              * w now points to the PyObject used as symbol in the source.
              * For instance the symbol x which represents a variable
              */
@@ -2573,6 +2608,10 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 		
 		// CSC453 LT_9 - Here we're jumping forward over the other branches, so we can exit and return!
         case JUMP_FORWARD:
+            /* CSC453:
+             * Manipulate the next_instr pointer to jump with offset
+             * The offset is read in as opcode argument.
+             */
             JUMPBY(oparg);
             goto fast_next_opcode;
 		
