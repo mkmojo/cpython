@@ -890,6 +890,7 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 #ifdef DYNAMIC_EXECUTION_PROFILE
 #define PREDICT(op)             if (0) goto PRED_##op
 #else
+//does the pick next instruction
 #define PREDICT(op)             if (*next_instr == op) goto PRED_##op
 #endif
 
@@ -907,6 +908,8 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 */
 #define STACK_LEVEL()     ((int)(stack_pointer - f->f_valuestack))
 #define EMPTY()           (STACK_LEVEL() == 0)
+//just look at the value stack but do not change the location of the stack_pointer
+//but POP()will actually change the stack_pointer position i.e. pop the PyObject out of the value stack
 #define TOP()             (stack_pointer[-1])
 #define SECOND()          (stack_pointer[-2])
 #define THIRD()           (stack_pointer[-3])
@@ -2271,6 +2274,11 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
                     PyErr_Clear();
                 }
             }
+            //CSC453: lec3
+            //local scope
+            //global scope
+            //built in scope: like str and print ;; check by dir(__builtin__)
+            //these things always exist for every function
             if (x == NULL) {
                 x = PyDict_GetItem(f->f_globals, w);
                 if (x == NULL) {
@@ -2524,7 +2532,7 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
             //CSC453: Make sure we decrement the reference counter to these locals, so they can get cleaned up by garbage collection
             Py_DECREF(v);
             Py_DECREF(w);
-            SET_TOP(x);
+            SET_TOP(x); //paired with the v = TOP() line to save CPU cycle.
             if (x == NULL) break;
 
             /** CSC453 LT_3 CSC453 GTE_3
@@ -2537,6 +2545,7 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
                 the entire top portion of the loop and any other switch comparison, pretty much splicing
                 these two opcodes together into one implementation.
             */
+            //after the compare, do the prediction at the end
             PREDICT(POP_JUMP_IF_FALSE);
             PREDICT(POP_JUMP_IF_TRUE);
             continue;
