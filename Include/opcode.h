@@ -5,7 +5,6 @@
 extern "C" {
 #endif
 
-    
 /* Instruction opcodes for compiled code */
 
 #define STOP_CODE	0
