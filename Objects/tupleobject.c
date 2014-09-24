@@ -44,7 +44,8 @@ show_track(void)
 }
 #endif
 
-
+//CSC253
+//redirected from ceval.c BUILD_TUPLE
 PyObject *
 PyTuple_New(register Py_ssize_t size)
 {
@@ -54,6 +55,10 @@ PyTuple_New(register Py_ssize_t size)
         PyErr_BadInternalCall();
         return NULL;
     }
+    /* CSC253
+     * Optimization for small tuple (in this build size 20)
+     * 
+     */
 #if PyTuple_MAXSAVESIZE > 0
     if (size == 0 && free_list[0]) {
         op = free_list[0];

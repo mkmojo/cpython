@@ -2188,10 +2188,24 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
             continue;
 
         case BUILD_TUPLE:
+            /* CSC253
+             * Allocate memory for a tuple object, the size of the object is 
+             * determined by the oparg, in this case is 2.
+             * 
+             * Then use the macro PyTuple_SET_ITEM to modify the fields in  
+             * PyTupleObject.(Basically have pointers point to things sitting
+             * on the valuestack and pop those things off the value stack one by
+             * one)
+             * 
+             * At last, store the PyTupleObject back to the value stack.
+             */
             x = PyTuple_New(oparg);
             if (x != NULL) {
                 for (; --oparg >= 0;) {
                     w = POP();
+                    //CSC253
+                    //PyTuple_SET_ITEM has to know what PyTupleObject looks like.
+                    //This knowledge is explictly followed by the developer.
                     PyTuple_SET_ITEM(x, oparg, w);
                 }
                 PUSH(x);
