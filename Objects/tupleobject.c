@@ -56,8 +56,9 @@ PyTuple_New(register Py_ssize_t size)
         return NULL;
     }
     /* CSC253
-     * Optimization for small tuple (in this build size 20)
-     * 
+     * Optimization for small tuple (in this build any tuple with size up to 20)
+     * free_list is like tuples already allocated but has not been assigned a 
+     * symbol by the python source code yet.
      */
 #if PyTuple_MAXSAVESIZE > 0
     if (size == 0 && free_list[0]) {
@@ -96,12 +97,23 @@ PyTuple_New(register Py_ssize_t size)
         if (op == NULL)
             return NULL;
     }
+    
+    /* CSC253
+     * Logic above handles the op pointer, make sure op is allocated;
+     * make sure that GC knows about the memory op points to as well;
+     * this for loop below goes into the newly allocated tuple object and initialize
+     * its fields for elements to NULL ( which will later be modified to point to 
+     * elements to be popped from the value stack)
+     */
     for (i=0; i < size; i++)
         op->ob_item[i] = NULL;
 #if PyTuple_MAXSAVESIZE > 0
     if (size == 0) {
         free_list[0] = op;
         ++numfree[0];
+        //CSC253
+        //extra ref-count so that can be reused later by another symbol in the 
+        //source
         Py_INCREF(op);          /* extra INCREF so that this is never freed */
     }
 #endif
@@ -220,7 +232,7 @@ tupledealloc(register PyTupleObject *op)
     register Py_ssize_t i;
     register Py_ssize_t len =  Py_SIZE(op);
     PyObject_GC_UnTrack(op);
-    Py_TRASHCAN_SAFE_BEGIN(op)
+    Py_TRASHCAN_SAFE_BEGIN(op);
     if (len > 0) {
         i = len;
         while (--i >= 0)
