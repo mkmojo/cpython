@@ -919,6 +919,14 @@ PyNumber_Check(PyObject *o)
 
  */
 
+/* CSC253
+ * the op_slot passed in could be anymember name defined in the binaryfunc 
+ * struct in Include/object.h 
+ * 
+ * For our assignment's case, this op_slot is the integer corresponds to the
+ * nb_multiply method implemented for PyIntObject.  
+ */
+
 static PyObject *
 binary_op1(PyObject *v, PyObject *w, const int op_slot)
 {
@@ -926,6 +934,11 @@ binary_op1(PyObject *v, PyObject *w, const int op_slot)
     binaryfunc slotv = NULL;
     binaryfunc slotw = NULL;
 
+    /* CSC253
+     * Grab out the nb_multiply method for both v and w. 
+     * Because Python introduces some new integer feature, the nb_multiply might
+     * be implemented different for old and new integer types. 
+     */
     if (v->ob_type->tp_as_number != NULL && NEW_STYLE_NUMBER(v))
         slotv = NB_BINOP(v->ob_type->tp_as_number, op_slot);
     if (w->ob_type != v->ob_type &&
@@ -934,25 +947,34 @@ binary_op1(PyObject *v, PyObject *w, const int op_slot)
         if (slotw == slotv)
             slotw = NULL;
     }
+    //v is new
     if (slotv) {
+        // ???.
+        // is the new number style the subtype of the old one or the opposite?
+        // w is old, because slotw is not set to NULL by the above code
         if (slotw && PyType_IsSubtype(w->ob_type, v->ob_type)) {
+            //??? the old method can take new style number and calculate result
             x = slotw(v, w);
             if (x != Py_NotImplemented)
                 return x;
             Py_DECREF(x); /* can't do it */
             slotw = NULL;
         }
+        // w is new, so can use slotv with no additional work.
         x = slotv(v, w);
         if (x != Py_NotImplemented)
             return x;
         Py_DECREF(x); /* can't do it */
     }
+    //v is old, w is new
     if (slotw) {
+        // use w's method to carry out actual computation
         x = slotw(v, w);
         if (x != Py_NotImplemented)
             return x;
         Py_DECREF(x); /* can't do it */
     }
+    // both v and w are old
     if (!NEW_STYLE_NUMBER(v) || !NEW_STYLE_NUMBER(w)) {
         int err = PyNumber_CoerceEx(&v, &w);
         if (err < 0) {
@@ -964,6 +986,10 @@ binary_op1(PyObject *v, PyObject *w, const int op_slot)
                 binaryfunc slot;
                 slot = NB_BINOP(mv, op_slot);
                 if (slot) {
+                    /* CSC253
+                     * call the old style function here to carry out the binary
+                     * operation, in our case multiplication
+                     */
                     x = slot(v, w);
                     Py_DECREF(v);
                     Py_DECREF(w);
@@ -1213,8 +1239,15 @@ sequence_repeat(ssizeargfunc repeatfunc, PyObject *seq, PyObject *n)
 PyObject *
 PyNumber_Multiply(PyObject *v, PyObject *w)
 {
+    // CSC253
+    // the case where both operands are numbers
     PyObject *result = binary_op1(v, w, NB_SLOT(nb_multiply));
     if (result == Py_NotImplemented) {
+        // CSC253
+        // Deal with the case where one of the operand is a sequence
+        // Also this is the dynamic part of Python, because here we are calling 
+        // the tp_as_squence->sq_repeat from the passed in operand. We do not
+        // know which part of the source to look at until runtime.
         PySequenceMethods *mv = v->ob_type->tp_as_sequence;
         PySequenceMethods *mw = w->ob_type->tp_as_sequence;
         Py_DECREF(result);
