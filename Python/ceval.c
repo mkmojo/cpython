@@ -1952,6 +1952,10 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
                 if (PyDict_CheckExact(x))
                     err = PyDict_SetItem(x, w, v);
                 else
+                    /*CSC253
+                     *This line is for more general case, for instance user 
+                     * defined Object. 
+                     */
                     err = PyObject_SetItem(x, w, v);
                 Py_DECREF(v);
                 if (err == 0) continue;
@@ -2204,9 +2208,10 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
             if (x != NULL) {
                 for (; --oparg >= 0;) {
                     w = POP();
-                    //CSC253
-                    //PyTuple_SET_ITEM has to know what PyTupleObject looks like.
-                    //This knowledge is explictly followed by the developer.
+                    /* side:
+                     *PyTuple_SET_ITEM has to know what PyTupleObject looks like.
+                     *This knowledge is explictly followed by the developer.
+                     */
                     PyTuple_SET_ITEM(x, oparg, w);
                 }
                 PUSH(x);

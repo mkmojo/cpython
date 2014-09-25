@@ -159,6 +159,22 @@ PyObject_GetItem(PyObject *o, PyObject *key)
     return type_error("'%.200s' object has no attribute '__getitem__'", o);
 }
 
+/* CSC253
+ * Jump from STORE_NAME
+ * Argument:
+ *  -o is the pointer to the object you are going to modify
+ *  -key is the pointer to the key of the object.
+ *  -value is the pointer to value of the object you want to insert.
+ * 
+ *  This function first does some sanity check.
+ *  Then depends on the type of the argument o. 
+ *      if o is dictionary, which is the simple case:
+ *          directly calls the macro to set value
+ *      else when o is sequence type ( like list, string etc.)
+ *          calls the PySequence_SetItem implemented by that type
+ *  
+ */
+
 int
 PyObject_SetItem(PyObject *o, PyObject *key, PyObject *value)
 {
@@ -168,16 +184,29 @@ PyObject_SetItem(PyObject *o, PyObject *key, PyObject *value)
         null_error();
         return -1;
     }
+    /* CSC253
+     * grab the type of Object about to be modified
+     * mapping method happen to be a bunch of methods glued together
+     * mp_ass_subscript is implemented in the PyDictObject.c
+     * dict_ass_sub is the actual fucntion being called. 
+     */
     m = o->ob_type->tp_as_mapping;
     if (m && m->mp_ass_subscript)
+        //side: ass == assignment
         return m->mp_ass_subscript(o, key, value);
-
+    /* CSC253
+     * grab type out.
+     * This is the more generic case for instance list, string will go into here.
+     * 
+     */
     if (o->ob_type->tp_as_sequence) {
         if (PyIndex_Check(key)) {
             Py_ssize_t key_value;
             key_value = PyNumber_AsSsize_t(key, PyExc_IndexError);
             if (key_value == -1 && PyErr_Occurred())
                 return -1;
+            //This is implemented in abstract.c which depends on the type of pointer
+            //o here. Shows the dynamic aspect of Python.
             return PySequence_SetItem(o, key_value, value);
         }
         else if (o->ob_type->tp_as_sequence->sq_ass_item) {
@@ -2059,7 +2088,15 @@ PySequence_GetSlice(PyObject *s, Py_ssize_t i1, Py_ssize_t i2)
 
     return type_error("'%.200s' object is unsliceable", s);
 }
-
+/* CSC253
+ * At the moment we run this function, we already know that we are going to 
+ * operate on a sequence type.
+ * 
+ * This function first does some sanity check to make sure things exist.
+ * 
+ * Then use the sq_ass_item method of the sequence object carry out the actual
+ * computation.
+ */
 int
 PySequence_SetItem(PyObject *s, Py_ssize_t i, PyObject *o)
 {
@@ -2080,6 +2117,8 @@ PySequence_SetItem(PyObject *s, Py_ssize_t i, PyObject *o)
                 i += l;
             }
         }
+        //sequence object will implement this method
+        //this line shows the dynamic part of Python
         return m->sq_ass_item(s, i, o);
     }
 
