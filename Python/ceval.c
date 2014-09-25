@@ -1,7 +1,8 @@
 /** CSC253 Assignment #2 Qiyuan Qiu and Jeffery White
-Follow the trace for this assignment by following the ASGN_# tags, when
+Follow the exexcution trace of the opcodes for this assignment by following the ASGN_# tags, when
 we move to other files (such as abstract.c and so on) we'll indicate that
-in the comment, the tag system will still hold there as well.
+in the comment (by using -->[filename].c as an indicator on where to go, the tag numbering will
+continue in this new file.
 */
 /* Execute compiled code */
 
@@ -1136,7 +1137,12 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
                 UNBOUNDLOCAL_ERROR_MSG,
                 PyTuple_GetItem(co->co_varnames, oparg));
             break;
-/** CSC253 ASGN_1 ASGN_3
+/** CSC253 ASGN_1 - This is our first opcode to excute, loading a constant. Details below, at a high level we're
+loading a PyIntObject from our consts tuple (retrieving the Object pointed to by index 0 of this tuple) onto the value stack.
+*/
+// CSC253 ASGN_4 We're behaving the exact same way for the second LOAD_CONST execution, but grabbing the PyIntObject stored in index 1 (12345)
+// CSC253 ASGN_8 We're not back at our familiar loading a constant, which we now pull onto the value stack using the procedure outlined before
+/**
 For this particular code segment we actually hit this area several times in execution. We've touched on this type
 of operation in the last assignment, but now that we actually have a feel for objects we can dig a little deeper now.
 
@@ -1157,7 +1163,7 @@ PyTuple_GET_ITEM(op, i) (((PyTupleObject *)(op))->ob_item[i])
 
 ob_item is the structure in tupleobject.c that holds onto any data being stored in this tuple, so it's an array of PyObject pointers.
 In this case the tuple contains pointers to all of our constants (12,12345,2). Notice that even though we have 2 twice in our code we actually
-only store it in the constant tuple once and just reference that location twice.
+only store it in the constants tuple once and just reference that location twice as a space saving optimization.
 
 So the overall flow here is to pass in the consts tuple and an index, and return the PyObject (in this case an PyIntObject) 
 stored in that index, set to x and push it onto the value stack for later use!
@@ -1300,9 +1306,13 @@ stored in that index, set to x and push it onto the value stack for later use!
             if (x != NULL) continue;
             break;
 
+/** CSC253 ASGN_9 Now we're at the point where we need to multiply x and 2 in order to create the first 'element' that will sit in the tuple z in
+the example code. One thing to note is what we evaluate all of the elements of a tuple first before we even build it!*/
         case BINARY_MULTIPLY:
             w = POP();
             v = TOP();
+/** CSC253 ASGN_10 We've popped the two elements off the stack we need in the calculation, and now we need to pass these to a multiplication function,
+we now need to move over to a new file, so -->abstract.c to continue the trace!*/
             x = PyNumber_Multiply(v, w);
             Py_DECREF(v);
             Py_DECREF(w);
@@ -1974,28 +1984,15 @@ stored in that index, set to x and push it onto the value stack for later use!
             Py_DECREF(w);
             break;
 
-/** CSC253 ASGN_2
-We now need to store a value from the stack into a name in our local namespace so we can get at the actual value by a name reference later on.
-
-NOTE TO DELETE MODIFY/EXPLORE: is f_locals a dictionary?
-
-f_locals is a PyObject*
-
-PyDict_CheckExact(x) - (Py_TYPE(op) == &PyDict_Type)
-
-From frameobject.h - Globals is definately a PyDictObject, but seems locals can be variable
-
-PyObject *f_globals;	global symbol table (PyDictObject)
-PyObject *f_locals;		local symbol table (any mapping)
-
-724 - 737 frameobject.c seems to set the locals to a dictionary either way, but seems like that's why there's an option here,
-because it's possible to say 'override' the frameobject so that the locals can be any mapping requiring the second branch to be there,
-not sure the use of it just yet...lol
-*/
+// CSC253 ASGN_2 Now we need to store a relationship between a variable name (x in this case) and the PyIntObject we have sitting on top of the stack.
+// CSC253 ASGN_5 Now storing the relationship between y and 12345 into our names dictionary.
         case STORE_NAME:
             w = GETITEM(names, oparg);
             v = POP();
             if ((x = f->f_locals) != NULL) {
+/** CSC253 ASGN_3 Our f->locals is actually a dictionary, since in the implementation of the frame object the Globals is always a PyDictObject,
+and here our f_locals is just a pointer back to the global PyDictObject! This is a straight relationship between a PyStringObject to a PyIntObject in
+the case of this particular code where the PyDict_Object names holds the relationship.*/
                 if (PyDict_CheckExact(x))
                     err = PyDict_SetItem(x, w, v);
                 else
@@ -2086,14 +2083,12 @@ not sure the use of it just yet...lol
         case DELETE_GLOBAL:
             w = GETITEM(names, oparg);
             if ((err = PyDict_DelItem(f->f_globals, w)) != 0)
-                format_exc_check_arg(
+                format_exc_check_arg(LO
                     PyExc_NameError, GLOBAL_NAME_ERROR_MSG, w);
             break;
 
-/** CSC253 Again here we need to know whether our locals is a dictionary object or not, seems built for a
-just in case scenario but most likely just the simple PyDict_GetItem by the index.
-*/
         case LOAD_NAME:
+// CSC253 ASGN_6 We need to reach into the names tuple like we did before and retrieve the PyStringObject stored there in location 0
             w = GETITEM(names, oparg);
             if ((v = f->f_locals) == NULL) {
                 PyErr_Format(PyExc_SystemError,
@@ -2102,6 +2097,7 @@ just in case scenario but most likely just the simple PyDict_GetItem by the inde
                 why = WHY_EXCEPTION;
                 break;
             }
+// CSC253 ASGN_7 f_locals is a dictionary, so we execute this bit of code to snag our PyIntObject out of the dictionary.
             if (PyDict_CheckExact(v)) {
                 x = PyDict_GetItem(v, w);
                 Py_XINCREF(x);

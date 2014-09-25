@@ -1210,6 +1210,8 @@ sequence_repeat(ssizeargfunc repeatfunc, PyObject *seq, PyObject *n)
     return (*repeatfunc)(seq, count);
 }
 
+/** CSC253 ASGN_11 We've arrived here because we've called the abstract code for multiplying two numbers (x * 2) in our code. We immediately
+call binary_op1 which is also in this file.*/
 PyObject *
 PyNumber_Multiply(PyObject *v, PyObject *w)
 {
