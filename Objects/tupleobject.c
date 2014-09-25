@@ -44,7 +44,13 @@ show_track(void)
 }
 #endif
 
+/** CSC253
+We've arrived here from the ceval.c BUILD_TUPLE implementation because we need to create a brand new tuple, we've
+been passed here the size of our tuple (which is 2)
 
+Notice the continued use of the 'register' keyword to store our size and the actual object to return, making these
+operations move a bit quicker in the c implementaiton.
+*/
 PyObject *
 PyTuple_New(register Py_ssize_t size)
 {
@@ -63,6 +69,10 @@ PyTuple_New(register Py_ssize_t size)
 #endif
         return (PyObject *) op;
     }
+	//CSC253 This is a neat little optimization here, what we have is a pointer to small lists which
+	// we can just grab from if one already exists for the size we need. I don't think we use this in our
+	// case but I could be wrong here, but we haven't even created any such lists in our code that would
+	// be open to 'grab' from the free_list.
     if (size < PyTuple_MAXSAVESIZE && (op = free_list[size]) != NULL) {
         free_list[size] = (PyTupleObject *) op->ob_item[0];
         numfree[size]--;
@@ -79,6 +89,7 @@ PyTuple_New(register Py_ssize_t size)
     else
 #endif
     {
+	//CSC253 I think we end up here and have to allocate 2 PyObject pointers, here we're getting how many bytes we need
         Py_ssize_t nbytes = size * sizeof(PyObject *);
         /* Check for overflow */
         if (nbytes / sizeof(PyObject *) != (size_t)size ||
@@ -87,10 +98,16 @@ PyTuple_New(register Py_ssize_t size)
             return PyErr_NoMemory();
         }
 
+		/** CSC253 Macro call out of objimpl.h #define PyObject_GC_NewVar(type, typeobj, n) \
+                ( (type *) _PyObject_GC_NewVar((typeobj), (n)) ) - this goes to gcmodule.c for memory allocation
+				
+		*/
         op = PyObject_GC_NewVar(PyTupleObject, &PyTuple_Type, size);
         if (op == NULL)
             return NULL;
     }
+	
+	//CSC 253 Make sure that the memory for this new tuple is completely wiped out, good paranoid checking!
     for (i=0; i < size; i++)
         op->ob_item[i] = NULL;
 #if PyTuple_MAXSAVESIZE > 0
@@ -103,6 +120,8 @@ PyTuple_New(register Py_ssize_t size)
 #ifdef SHOW_TRACK_COUNT
     count_tracked++;
 #endif
+	// CSC253 we're adding this item to the list for garbage collection scanning, which will check for reference counts and 
+	// free up this memory is necessary.
     _PyObject_GC_TRACK(op);
     return (PyObject *) op;
 }
