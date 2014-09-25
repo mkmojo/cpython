@@ -1996,6 +1996,10 @@ the case of this particular code where the PyDict_Object names holds the relatio
                 if (PyDict_CheckExact(x))
                     err = PyDict_SetItem(x, w, v);
                 else
+                    /*CSC253
+                     *This line is for more general case, for instance user 
+                     * defined Object. 
+                     */
                     err = PyObject_SetItem(x, w, v);
                 Py_DECREF(v);
                 if (err == 0) continue;
@@ -2238,6 +2242,18 @@ it's time to build it. We call PyTuple_New passing in the number of elements tha
 from here into the tupleobject.c code to describe what's going on here.
 */
         case BUILD_TUPLE:
+            /* CSC253
+             * Allocate memory for a tuple object, the size of the object is 
+             * determined by the oparg, in this case is 2.
+             * 
+             * Then use the macro PyTuple_SET_ITEM to modify the fields in  
+             * PyTupleObject.(Basically have pointers point to things sitting
+             * on the valuestack and pop those things off the value stack one by
+             * one)
+             * 
+             * At last, store the PyTupleObject back to the value stack.
+             */
+            
             x = PyTuple_New(oparg);
             if (x != NULL) {
                 /** CSC253 Now we iteratively pop items off the stack and call the PyTuple_SET_ITEM macro found in tupleobject.h:
@@ -2251,6 +2267,10 @@ from here into the tupleobject.c code to describe what's going on here.
 				*/
                 for (; --oparg >= 0;) {
                     w = POP();
+                    /* side:
+                     *PyTuple_SET_ITEM has to know what PyTupleObject looks like.
+                     *This knowledge is explictly followed by the developer.
+                     */
                     PyTuple_SET_ITEM(x, oparg, w);
                 }
                 PUSH(x);

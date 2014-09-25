@@ -159,6 +159,22 @@ PyObject_GetItem(PyObject *o, PyObject *key)
     return type_error("'%.200s' object has no attribute '__getitem__'", o);
 }
 
+/* CSC253
+ * Jump from STORE_NAME
+ * Argument:
+ *  -o is the pointer to the object you are going to modify
+ *  -key is the pointer to the key of the object.
+ *  -value is the pointer to value of the object you want to insert.
+ * 
+ *  This function first does some sanity check.
+ *  Then depends on the type of the argument o. 
+ *      if o is dictionary, which is the simple case:
+ *          directly calls the macro to set value
+ *      else when o is sequence type ( like list, string etc.)
+ *          calls the PySequence_SetItem implemented by that type
+ *  
+ */
+
 int
 PyObject_SetItem(PyObject *o, PyObject *key, PyObject *value)
 {
@@ -168,16 +184,29 @@ PyObject_SetItem(PyObject *o, PyObject *key, PyObject *value)
         null_error();
         return -1;
     }
+    /* CSC253
+     * grab the type of Object about to be modified
+     * mapping method happen to be a bunch of methods glued together
+     * mp_ass_subscript is implemented in the PyDictObject.c
+     * dict_ass_sub is the actual fucntion being called. 
+     */
     m = o->ob_type->tp_as_mapping;
     if (m && m->mp_ass_subscript)
+        //side: ass == assignment
         return m->mp_ass_subscript(o, key, value);
-
+    /* CSC253
+     * grab type out.
+     * This is the more generic case for instance list, string will go into here.
+     * 
+     */
     if (o->ob_type->tp_as_sequence) {
         if (PyIndex_Check(key)) {
             Py_ssize_t key_value;
             key_value = PyNumber_AsSsize_t(key, PyExc_IndexError);
             if (key_value == -1 && PyErr_Occurred())
                 return -1;
+            //This is implemented in abstract.c which depends on the type of pointer
+            //o here. Shows the dynamic aspect of Python.
             return PySequence_SetItem(o, key_value, value);
         }
         else if (o->ob_type->tp_as_sequence->sq_ass_item) {
@@ -919,6 +948,14 @@ PyNumber_Check(PyObject *o)
 
  */
 
+/* CSC253
+ * the op_slot passed in could be anymember name defined in the binaryfunc 
+ * struct in Include/object.h 
+ * 
+ * For our assignment's case, this op_slot is the integer corresponds to the
+ * nb_multiply method implemented for PyIntObject.  
+ */
+
 static PyObject *
 binary_op1(PyObject *v, PyObject *w, const int op_slot)
 {
@@ -926,6 +963,11 @@ binary_op1(PyObject *v, PyObject *w, const int op_slot)
     binaryfunc slotv = NULL;
     binaryfunc slotw = NULL;
 
+    /* CSC253
+     * Grab out the nb_multiply method for both v and w. 
+     * Because Python introduces some new integer feature, the nb_multiply might
+     * be implemented different for old and new integer types. 
+     */
     if (v->ob_type->tp_as_number != NULL && NEW_STYLE_NUMBER(v))
         slotv = NB_BINOP(v->ob_type->tp_as_number, op_slot);
     if (w->ob_type != v->ob_type &&
@@ -934,25 +976,34 @@ binary_op1(PyObject *v, PyObject *w, const int op_slot)
         if (slotw == slotv)
             slotw = NULL;
     }
+    //v is new
     if (slotv) {
+        // ???.
+        // is the new number style the subtype of the old one or the opposite?
+        // w is old, because slotw is not set to NULL by the above code
         if (slotw && PyType_IsSubtype(w->ob_type, v->ob_type)) {
+            //??? the old method can take new style number and calculate result
             x = slotw(v, w);
             if (x != Py_NotImplemented)
                 return x;
             Py_DECREF(x); /* can't do it */
             slotw = NULL;
         }
+        // w is new, so can use slotv with no additional work.
         x = slotv(v, w);
         if (x != Py_NotImplemented)
             return x;
         Py_DECREF(x); /* can't do it */
     }
+    //v is old, w is new
     if (slotw) {
+        // use w's method to carry out actual computation
         x = slotw(v, w);
         if (x != Py_NotImplemented)
             return x;
         Py_DECREF(x); /* can't do it */
     }
+    // both v and w are old
     if (!NEW_STYLE_NUMBER(v) || !NEW_STYLE_NUMBER(w)) {
         int err = PyNumber_CoerceEx(&v, &w);
         if (err < 0) {
@@ -964,6 +1015,10 @@ binary_op1(PyObject *v, PyObject *w, const int op_slot)
                 binaryfunc slot;
                 slot = NB_BINOP(mv, op_slot);
                 if (slot) {
+                    /* CSC253
+                     * call the old style function here to carry out the binary
+                     * operation, in our case multiplication
+                     */
                     x = slot(v, w);
                     Py_DECREF(v);
                     Py_DECREF(w);
@@ -1215,8 +1270,15 @@ call binary_op1 which is also in this file.*/
 PyObject *
 PyNumber_Multiply(PyObject *v, PyObject *w)
 {
+    // CSC253
+    // the case where both operands are numbers
     PyObject *result = binary_op1(v, w, NB_SLOT(nb_multiply));
     if (result == Py_NotImplemented) {
+        // CSC253
+        // Deal with the case where one of the operand is a sequence
+        // Also this is the dynamic part of Python, because here we are calling 
+        // the tp_as_squence->sq_repeat from the passed in operand. We do not
+        // know which part of the source to look at until runtime.
         PySequenceMethods *mv = v->ob_type->tp_as_sequence;
         PySequenceMethods *mw = w->ob_type->tp_as_sequence;
         Py_DECREF(result);
@@ -2028,7 +2090,15 @@ PySequence_GetSlice(PyObject *s, Py_ssize_t i1, Py_ssize_t i2)
 
     return type_error("'%.200s' object is unsliceable", s);
 }
-
+/* CSC253
+ * At the moment we run this function, we already know that we are going to 
+ * operate on a sequence type.
+ * 
+ * This function first does some sanity check to make sure things exist.
+ * 
+ * Then use the sq_ass_item method of the sequence object carry out the actual
+ * computation.
+ */
 int
 PySequence_SetItem(PyObject *s, Py_ssize_t i, PyObject *o)
 {
@@ -2049,6 +2119,8 @@ PySequence_SetItem(PyObject *s, Py_ssize_t i, PyObject *o)
                 i += l;
             }
         }
+        //sequence object will implement this method
+        //this line shows the dynamic part of Python
         return m->sq_ass_item(s, i, o);
     }
 
