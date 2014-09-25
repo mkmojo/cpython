@@ -1,4 +1,8 @@
-/** CSC253 Jeffery White Testing out this neat branch thingy! **/
+/** CSC253 Assignment #2 Qiyuan Qiu and Jeffery White
+Follow the trace for this assignment by following the ASGN_# tags, when
+we move to other files (such as abstract.c and so on) we'll indicate that
+in the comment, the tag system will still hold there as well.
+*/
 /* Execute compiled code */
 
 /* XXX TO DO:
@@ -1132,7 +1136,32 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
                 UNBOUNDLOCAL_ERROR_MSG,
                 PyTuple_GetItem(co->co_varnames, oparg));
             break;
+/** CSC253 ASGN_1 ASGN_3
+For this particular code segment we actually hit this area several times in execution. We've touched on this type
+of operation in the last assignment, but now that we actually have a feel for objects we can dig a little deeper now.
 
+We call the GETITEM macro passing in the constants tuple from the code object and the oparg, we'll unroll the macro fully
+below rather than jumping around to explain this.
+
+GETITEM(v, i) PyTuple_GET_ITEM((PyTupleObject *)(v), (i))
+
+Notice here we're forcing a cast to a tuple object, this is because when we pulled the consts from the code object
+we actually just had a PyObject*, so we need to treat it as a PyTupleObject in order to access all the data aside
+from object header data. Because of the use of c's structural inheritance we can keep passing around PyObject pointers
+and just cast them when we need them and as long as they were created as the correct object this works and the data will
+be there when we need it.
+
+This macro calls another macro and is actually located in the tupleobject.h file:
+
+PyTuple_GET_ITEM(op, i) (((PyTupleObject *)(op))->ob_item[i])
+
+ob_item is the structure in tupleobject.c that holds onto any data being stored in this tuple, so it's an array of PyObject pointers.
+In this case the tuple contains pointers to all of our constants (12,12345,2). Notice that even though we have 2 twice in our code we actually
+only store it in the constant tuple once and just reference that location twice.
+
+So the overall flow here is to pass in the consts tuple and an index, and return the PyObject (in this case an PyIntObject) 
+stored in that index, set to x and push it onto the value stack for later use!
+*/
         case LOAD_CONST:
             x = GETITEM(consts, oparg);
             Py_INCREF(x);
