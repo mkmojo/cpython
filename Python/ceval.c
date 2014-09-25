@@ -2090,6 +2090,9 @@ not sure the use of it just yet...lol
                     PyExc_NameError, GLOBAL_NAME_ERROR_MSG, w);
             break;
 
+/** CSC253 Again here we need to know whether our locals is a dictionary object or not, seems built for a
+just in case scenario but most likely just the simple PyDict_GetItem by the index.
+*/
         case LOAD_NAME:
             w = GETITEM(names, oparg);
             if ((v = f->f_locals) == NULL) {
@@ -2234,9 +2237,22 @@ not sure the use of it just yet...lol
             Py_DECREF(w);
             continue;
 
+/** CSC253 Now that we've constructed our tuple (notice that we evaluate each element of the tuple prior to actually constructing it)
+it's time to build it. We call PyTuple_New passing in the number of elements that will be in the tuple (in this case 2). We're going to jump
+from here into the tupleobject.c code to describe what's going on here.
+*/
         case BUILD_TUPLE:
             x = PyTuple_New(oparg);
             if (x != NULL) {
+                /** CSC253 Now we iteratively pop items off the stack and call the PyTuple_SET_ITEM macro found in tupleobject.h:
+				PyTuple_SET_ITEM(op, i, v) (((PyTupleObject *)(op))->ob_item[i] = v)
+				
+				We pass in our newly created tuple object (x), the current index (oparg) and the item we just popped off the stack (w). 
+				
+				Notice how we're
+				running this loop backwards, so decrementing the size of our tuple until we hit 0, and storing the items from the
+				maximum element to the first so we get things in the same order as they were defined in our original code object!
+				*/
                 for (; --oparg >= 0;) {
                     w = POP();
                     PyTuple_SET_ITEM(x, oparg, w);
