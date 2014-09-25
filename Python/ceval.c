@@ -1974,6 +1974,24 @@ stored in that index, set to x and push it onto the value stack for later use!
             Py_DECREF(w);
             break;
 
+/** CSC253 ASGN_2
+We now need to store a value from the stack into a name in our local namespace so we can get at the actual value by a name reference later on.
+
+NOTE TO DELETE MODIFY/EXPLORE: is f_locals a dictionary?
+
+f_locals is a PyObject*
+
+PyDict_CheckExact(x) - (Py_TYPE(op) == &PyDict_Type)
+
+From frameobject.h - Globals is definately a PyDictObject, but seems locals can be variable
+
+PyObject *f_globals;	global symbol table (PyDictObject)
+PyObject *f_locals;		local symbol table (any mapping)
+
+724 - 737 frameobject.c seems to set the locals to a dictionary either way, but seems like that's why there's an option here,
+because it's possible to say 'override' the frameobject so that the locals can be any mapping requiring the second branch to be there,
+not sure the use of it just yet...lol
+*/
         case STORE_NAME:
             w = GETITEM(names, oparg);
             v = POP();
