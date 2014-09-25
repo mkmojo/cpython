@@ -1,4 +1,8 @@
-
+/** CSC253 Assignment #2 Qiyuan Qiu and Jeffery White
+Follow the trace for this assignment by following the ASGN_# tags, when
+we move to other files (such as abstract.c and so on) we'll indicate that
+in the comment, the tag system will still hold there as well.
+*/
 /* Execute compiled code */
 
 /* XXX TO DO:
@@ -1132,7 +1136,32 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
                 UNBOUNDLOCAL_ERROR_MSG,
                 PyTuple_GetItem(co->co_varnames, oparg));
             break;
+/** CSC253 ASGN_1 ASGN_3
+For this particular code segment we actually hit this area several times in execution. We've touched on this type
+of operation in the last assignment, but now that we actually have a feel for objects we can dig a little deeper now.
 
+We call the GETITEM macro passing in the constants tuple from the code object and the oparg, we'll unroll the macro fully
+below rather than jumping around to explain this.
+
+GETITEM(v, i) PyTuple_GET_ITEM((PyTupleObject *)(v), (i))
+
+Notice here we're forcing a cast to a tuple object, this is because when we pulled the consts from the code object
+we actually just had a PyObject*, so we need to treat it as a PyTupleObject in order to access all the data aside
+from object header data. Because of the use of c's structural inheritance we can keep passing around PyObject pointers
+and just cast them when we need them and as long as they were created as the correct object this works and the data will
+be there when we need it.
+
+This macro calls another macro and is actually located in the tupleobject.h file:
+
+PyTuple_GET_ITEM(op, i) (((PyTupleObject *)(op))->ob_item[i])
+
+ob_item is the structure in tupleobject.c that holds onto any data being stored in this tuple, so it's an array of PyObject pointers.
+In this case the tuple contains pointers to all of our constants (12,12345,2). Notice that even though we have 2 twice in our code we actually
+only store it in the constant tuple once and just reference that location twice.
+
+So the overall flow here is to pass in the consts tuple and an index, and return the PyObject (in this case an PyIntObject) 
+stored in that index, set to x and push it onto the value stack for later use!
+*/
         case LOAD_CONST:
             x = GETITEM(consts, oparg);
             Py_INCREF(x);
@@ -1945,6 +1974,24 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
             Py_DECREF(w);
             break;
 
+/** CSC253 ASGN_2
+We now need to store a value from the stack into a name in our local namespace so we can get at the actual value by a name reference later on.
+
+NOTE TO DELETE MODIFY/EXPLORE: is f_locals a dictionary?
+
+f_locals is a PyObject*
+
+PyDict_CheckExact(x) - (Py_TYPE(op) == &PyDict_Type)
+
+From frameobject.h - Globals is definately a PyDictObject, but seems locals can be variable
+
+PyObject *f_globals;	global symbol table (PyDictObject)
+PyObject *f_locals;		local symbol table (any mapping)
+
+724 - 737 frameobject.c seems to set the locals to a dictionary either way, but seems like that's why there's an option here,
+because it's possible to say 'override' the frameobject so that the locals can be any mapping requiring the second branch to be there,
+not sure the use of it just yet...lol
+*/
         case STORE_NAME:
             w = GETITEM(names, oparg);
             v = POP();
@@ -2047,6 +2094,9 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
                     PyExc_NameError, GLOBAL_NAME_ERROR_MSG, w);
             break;
 
+/** CSC253 Again here we need to know whether our locals is a dictionary object or not, seems built for a
+just in case scenario but most likely just the simple PyDict_GetItem by the index.
+*/
         case LOAD_NAME:
             w = GETITEM(names, oparg);
             if ((v = f->f_locals) == NULL) {
@@ -2191,6 +2241,10 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
             Py_DECREF(w);
             continue;
 
+/** CSC253 Now that we've constructed our tuple (notice that we evaluate each element of the tuple prior to actually constructing it)
+it's time to build it. We call PyTuple_New passing in the number of elements that will be in the tuple (in this case 2). We're going to jump
+from here into the tupleobject.c code to describe what's going on here.
+*/
         case BUILD_TUPLE:
             /* CSC253
              * Allocate memory for a tuple object, the size of the object is 
@@ -2206,6 +2260,15 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
             
             x = PyTuple_New(oparg);
             if (x != NULL) {
+                /** CSC253 Now we iteratively pop items off the stack and call the PyTuple_SET_ITEM macro found in tupleobject.h:
+				PyTuple_SET_ITEM(op, i, v) (((PyTupleObject *)(op))->ob_item[i] = v)
+				
+				We pass in our newly created tuple object (x), the current index (oparg) and the item we just popped off the stack (w). 
+				
+				Notice how we're
+				running this loop backwards, so decrementing the size of our tuple until we hit 0, and storing the items from the
+				maximum element to the first so we get things in the same order as they were defined in our original code object!
+				*/
                 for (; --oparg >= 0;) {
                     w = POP();
                     /* side:
