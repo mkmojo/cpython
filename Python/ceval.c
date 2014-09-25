@@ -1314,6 +1314,7 @@ the example code. One thing to note is what we evaluate all of the elements of a
 /** CSC253 ASGN_10 We've popped the two elements off the stack we need in the calculation, and now we need to pass these to a multiplication function,
 we now need to move over to a new file, so -->abstract.c to continue the trace!*/
             x = PyNumber_Multiply(v, w);
+// CSC253 ASGN_20 Now that we've dug through a bunch of calls we can push our result onto the stack and continue in ceval to evaluate the next opcode!
             Py_DECREF(v);
             Py_DECREF(w);
             SET_TOP(x);
@@ -2093,6 +2094,7 @@ the case of this particular code where the PyDict_Object names holds the relatio
 
         case LOAD_NAME:
 // CSC253 ASGN_6 We need to reach into the names tuple like we did before and retrieve the PyStringObject stored there in location 0
+// CSC253 ASGN_21 Back here to a familiar place, now we need to get the value associated with the string object in location 1 using our now familiar macros.
             w = GETITEM(names, oparg);
             if ((v = f->f_locals) == NULL) {
                 PyErr_Format(PyExc_SystemError,

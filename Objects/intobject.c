@@ -83,11 +83,19 @@ Py_ssize_t quick_int_allocs;
 Py_ssize_t quick_neg_int_allocs;
 #endif
 
+/** CSC253 ASGN_18 We're now here getting ready to return our calcualted result, but there's a bit more going on
+than just simply returning a number. Python actually keeps a list of integers stored for use that we can really quickly
+just return pointers to (looks to be defined as anything between -5 and 257 by the #def's above.
+*/
 PyObject *
 PyInt_FromLong(long ival)
 {
     register PyIntObject *v;
 #if NSMALLNEGINTS + NSMALLPOSINTS > 0
+    /** CSC253 ASGN_19 ival in this case is actually 24, so we easily fall into this particular case, what's happening here is instead of
+    creating a brand new PyIntObject, we're returning a pointer to one that's already sitting in the small_ints array.
+    We have our product, so time to go way back out to -->ceval.c (starting at label 20). Keep in mind we return this PyObject to the
+	calling function (int_mul) which is just returning the result of this function.*/
     if (-NSMALLNEGINTS <= ival && ival < NSMALLPOSINTS) {
         v = small_ints[ival + NSMALLNEGINTS];
         Py_INCREF(v);
@@ -522,6 +530,9 @@ one that can lose catastrophic amounts of information, it's the native long
 product that must have overflowed.
 */
 
+/** CSC253 ASGN_16 We're now about to actually multiply our two numbers after jumping around a bit between files. Notice
+that even now we're still passing around our integers as just simple PyObjects.
+*/
 static PyObject *
 int_mul(PyObject *v, PyObject *w)
 {
@@ -539,6 +550,9 @@ int_mul(PyObject *v, PyObject *w)
 
     /* Fast path for normal case:  small multiplicands, and no info
        is lost in either method. */
+/** CSC253 ASGN_17 This is a neat optimization, we calculated the produce up above after converting to longs, and since both of our
+are integers the fast case occurs since there isn't any possible loss of precision here. This allows the function to remain general
+in that it can handle any number multiplication, but kick our quickly as soon as we need to.*/
     if (doubled_longprod == doubleprod)
         return PyInt_FromLong(longprod);
 

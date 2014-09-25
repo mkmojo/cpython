@@ -963,10 +963,13 @@ binary_op1(PyObject *v, PyObject *w, const int op_slot)
     binaryfunc slotv = NULL;
     binaryfunc slotw = NULL;
 
-    /* CSC253
+    /** CSC253 ASGN_12
      * Grab out the nb_multiply method for both v and w. 
      * Because Python introduces some new integer feature, the nb_multiply might
-     * be implemented different for old and new integer types. 
+     * be implemented different for old and new integer types.
+     * we don't make you jump directly to intobject.c (just yet!) for this, you can find all the possible functions defined
+     * for integers around line 1372 in intobject.c, just know that the below reaches into the object and returns a pointer
+     * to the actual function we're going to call a few more lines down in the code.
      */
     if (v->ob_type->tp_as_number != NULL && NEW_STYLE_NUMBER(v))
         slotv = NB_BINOP(v->ob_type->tp_as_number, op_slot);
@@ -976,13 +979,13 @@ binary_op1(PyObject *v, PyObject *w, const int op_slot)
         if (slotw == slotv)
             slotw = NULL;
     }
-    //v is new
+    //CSC253 ASGN_13 we can assume v is new in our code since we're not using an old version of python for our test code, so we can safely take this branch.
     if (slotv) {
-        // ???.
-        // is the new number style the subtype of the old one or the opposite?
-        // w is old, because slotw is not set to NULL by the above code
+        /** CSC253 ASGN_14 slotw is also set, since it is a number type and a new style of integer, and both are integers
+        so PyType_IsSubtype does return true for us here.
+        */
         if (slotw && PyType_IsSubtype(w->ob_type, v->ob_type)) {
-            //??? the old method can take new style number and calculate result
+            //CSC253 ASGN_15 now we actually execute the function we grabbed up above, and we'll go into that in the next file -->intobject.c
             x = slotw(v, w);
             if (x != Py_NotImplemented)
                 return x;
