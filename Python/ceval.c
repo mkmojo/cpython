@@ -1141,7 +1141,8 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 loading a PyIntObject from our consts tuple (retrieving the Object pointed to by index 0 of this tuple) onto the value stack.
 */
 // CSC253 ASGN_4 We're behaving the exact same way for the second LOAD_CONST execution, but grabbing the PyIntObject stored in index 1 (12345)
-// CSC253 ASGN_8 We're not back at our familiar loading a constant, which we now pull onto the value stack using the procedure outlined before
+// CSC253 ASGN_8 We're not back at our familiar loading a constant, which we now pull onto the value stack using the procedure outlined before.
+// CSC253 ASGN_22 Back to loading a constant PyIntObject onto the stack (actually the very same object we loaded the last time through.
 /**
 For this particular code segment we actually hit this area several times in execution. We've touched on this type
 of operation in the last assignment, but now that we actually have a feel for objects we can dig a little deeper now.
@@ -1322,10 +1323,13 @@ we now need to move over to a new file, so -->abstract.c to continue the trace!*
             break;
 
         case BINARY_DIVIDE:
+// CSC253 ASGN_23 This flag is 0 in pythonrun.c, looks like it's an option you can set on the command line, and we didn't do that for this code run.
             if (!_Py_QnewFlag) {
                 w = POP();
                 v = TOP();
+// CSC253 ASGN_24 We grab our PyIntObjects off the stack and head on over to the abstract file to evaluation this function -->abstract.c
                 x = PyNumber_Divide(v, w);
+// CSC253 ASGN_32 We have our result, we now pop that onto the stack (destroying what's on top and continue evaluation.
                 Py_DECREF(v);
                 Py_DECREF(w);
                 SET_TOP(x);
@@ -1389,9 +1393,13 @@ we now need to move over to a new file, so -->abstract.c to continue the trace!*
                 goto skip_decref_vx;
             }
             else {
-              slow_add:
+//CSC253 ASGN_40 We take this branch here, since our elements are neither Strings or Integers. -->abstract.c
+            slow_add:
                 x = PyNumber_Add(v, w);
             }
+/** CSC253 ASGN_43 Now we simply push this newly created tuple of length 4 onto the value stack, call STORE_NAME in the exact same way as we have previously
+load up a constant and return out of the evaluation loop, all code we've gone over in the 1st assignment.
+*/
             Py_DECREF(v);
           skip_decref_vx:
             Py_DECREF(w);
@@ -1987,6 +1995,7 @@ we now need to move over to a new file, so -->abstract.c to continue the trace!*
 
 // CSC253 ASGN_2 Now we need to store a relationship between a variable name (x in this case) and the PyIntObject we have sitting on top of the stack.
 // CSC253 ASGN_5 Now storing the relationship between y and 12345 into our names dictionary.
+// CSC253 ASGN_38 now we grab our tuple and store it by dictionary relationship with the name z
         case STORE_NAME:
             w = GETITEM(names, oparg);
             v = POP();
@@ -2095,6 +2104,7 @@ the case of this particular code where the PyDict_Object names holds the relatio
         case LOAD_NAME:
 // CSC253 ASGN_6 We need to reach into the names tuple like we did before and retrieve the PyStringObject stored there in location 0
 // CSC253 ASGN_21 Back here to a familiar place, now we need to get the value associated with the string object in location 1 using our now familiar macros.
+// CSC253 ASGN_39 We actually call this twice now, since we need to put two 'copies' of our tuple onto the value stack (so we can add them).
             w = GETITEM(names, oparg);
             if ((v = f->f_locals) == NULL) {
                 PyErr_Format(PyExc_SystemError,
@@ -2239,9 +2249,9 @@ the case of this particular code where the PyDict_Object names holds the relatio
             Py_DECREF(w);
             continue;
 
-/** CSC253 Now that we've constructed our tuple (notice that we evaluate each element of the tuple prior to actually constructing it)
+/** CSC253 ASGN_33 Now that we've constructed our tuple (notice that we evaluate each element of the tuple prior to actually constructing it)
 it's time to build it. We call PyTuple_New passing in the number of elements that will be in the tuple (in this case 2). We're going to jump
-from here into the tupleobject.c code to describe what's going on here.
+from here into the tupleobject.c code to describe what's going on here. -->tupleobject.c
 */
         case BUILD_TUPLE:
             /* CSC253
@@ -2258,7 +2268,7 @@ from here into the tupleobject.c code to describe what's going on here.
             
             x = PyTuple_New(oparg);
             if (x != NULL) {
-                /** CSC253 Now we iteratively pop items off the stack and call the PyTuple_SET_ITEM macro found in tupleobject.h:
+                /** CSC253 ASGN_37 Now we iteratively pop items off the stack and call the PyTuple_SET_ITEM macro found in tupleobject.h:
 				PyTuple_SET_ITEM(op, i, v) (((PyTupleObject *)(op))->ob_item[i] = v)
 				
 				We pass in our newly created tuple object (x), the current index (oparg) and the item we just popped off the stack (w). 

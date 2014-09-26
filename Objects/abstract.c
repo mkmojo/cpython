@@ -986,6 +986,7 @@ binary_op1(PyObject *v, PyObject *w, const int op_slot)
         */
         if (slotw && PyType_IsSubtype(w->ob_type, v->ob_type)) {
             //CSC253 ASGN_15 now we actually execute the function we grabbed up above, and we'll go into that in the next file -->intobject.c
+			//CSC253 ASGN_27 just like the last time through for multiplication we grab the function we need from our PyIntObjects -->intobject.c
             x = slotw(v, w);
             if (x != Py_NotImplemented)
                 return x;
@@ -1049,6 +1050,9 @@ binop_type_error(PyObject *v, PyObject *w, const char *op_name)
     return NULL;
 }
 
+/** CSC253 ASGN_26 We've reached this point in our quest to divide 12345 by 2, and notice we now just call the binary_op1 passing in
+just our PyObjects and the op_slot (nb_divide).
+*/
 static PyObject *
 binary_op(PyObject *v, PyObject *w, const int op_slot, const char *op_name)
 {
@@ -1222,6 +1226,11 @@ ternary_op(PyObject *v,
     return NULL;
 }
 
+/** CSC253 ASGN_25 We actually end up here this time evaluating this macro instead of an actual definition within this file!
+notice that we're just calling the function binary_op with the appropriate values. This is convenience, each one of these
+listed function (Or,Xor,And and so on) use this same function, so a macro was created to 'write' all of these function calls that
+are structurally the same.
+*/
 #define BINARY_FUNC(func, op, op_name) \
     PyObject * \
     func(PyObject *v, PyObject *w) { \
@@ -1239,9 +1248,11 @@ BINARY_FUNC(PyNumber_Divmod, nb_divmod, "divmod()")
 
 PyObject *
 PyNumber_Add(PyObject *v, PyObject *w)
-{
+{3
+	//CSC253 ASGN_41 we by default call the binary_op1 method, which will return the Py_NotImplemented (because tp_as_number is not set in the tuple object.)
     PyObject *result = binary_op1(v, w, NB_SLOT(nb_add));
     if (result == Py_NotImplemented) {
+		//CSC253 ASGN_42 So we grab the tp_as_sequence method, then call the concatanate operation. -->tupleobject.c
         PySequenceMethods *m = v->ob_type->tp_as_sequence;
         Py_DECREF(result);
         if (m && m->sq_concat) {

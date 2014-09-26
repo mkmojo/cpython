@@ -95,7 +95,7 @@ PyInt_FromLong(long ival)
     /** CSC253 ASGN_19 ival in this case is actually 24, so we easily fall into this particular case, what's happening here is instead of
     creating a brand new PyIntObject, we're returning a pointer to one that's already sitting in the small_ints array.
     We have our product, so time to go way back out to -->ceval.c (starting at label 20). Keep in mind we return this PyObject to the
-	calling function (int_mul) which is just returning the result of this function.*/
+    calling function (int_mul) which is just returning the result of this function.*/
     if (-NSMALLNEGINTS <= ival && ival < NSMALLPOSINTS) {
         v = small_ints[ival + NSMALLNEGINTS];
         Py_INCREF(v);
@@ -108,11 +108,13 @@ PyInt_FromLong(long ival)
         return (PyObject *) v;
     }
 #endif
+// CSC253 ASGN_30 If the free_list (a static) isn't set yet, we need to set it. This is like the Singleton pattern.
     if (free_list == NULL) {
         if ((free_list = fill_free_list()) == NULL)
             return NULL;
     }
     /* Inline PyObject_New */
+// CSC253 ASGN_31 here we actuallyl need to create a new PyIntObject and return that to the caller. -->ceval.c
     v = free_list;
     free_list = (PyIntObject *)Py_TYPE(v);
     PyObject_INIT(v, &PyInt_Type);
@@ -654,6 +656,9 @@ int_div(PyIntObject *x, PyIntObject *y)
 static PyObject *
 int_classic_div(PyIntObject *x, PyIntObject *y)
 {
+/** CSC253 ASGN_28 We're now here ready to divide our two PyIntObjects, first we convert them to longs (not issue here since they're integers)
+then we call the i_divmod function with our two extracted values as well as passing by reference d and m.
+*/
     long xi, yi;
     long d, m;
     CONVERT_TO_LONG(x, xi);
@@ -662,6 +667,7 @@ int_classic_div(PyIntObject *x, PyIntObject *y)
         PyErr_Warn(PyExc_DeprecationWarning, "classic int division") < 0)
         return NULL;
     switch (i_divmod(xi, yi, &d, &m)) {
+// CSC253 ASGN_29 We get back DIVMOD_OK from this call and get back d and m (d being the result of divison and m the result of xmody)
     case DIVMOD_OK:
         return PyInt_FromLong(d);
     case DIVMOD_OVERFLOW:

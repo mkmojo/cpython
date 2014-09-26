@@ -44,7 +44,7 @@ show_track(void)
 }
 #endif
 
-/** CSC253
+/** CSC253 ASGN_34
 redirected from ceval.c BUILD_TUPLE
 We've arrived here from the ceval.c BUILD_TUPLE implementation because we need to create a brand new tuple, we've been passed here the size of our tuple (which is 2)
 
@@ -60,7 +60,7 @@ PyTuple_New(register Py_ssize_t size)
         PyErr_BadInternalCall();
         return NULL;
     }
-    /* CSC253
+    /* CSC253 ASGN_35
      * Optimization for small tuple (in this build any tuple with size up to 20)
      * free_list is like tuples already allocated but has not been assigned a 
      * symbol by the python source code yet.
@@ -74,10 +74,6 @@ PyTuple_New(register Py_ssize_t size)
 #endif
         return (PyObject *) op;
     }
-	//CSC253 This is a neat little optimization here, what we have is a pointer to small lists which
-	// we can just grab from if one already exists for the size we need. I don't think we use this in our
-	// case but I could be wrong here, but we haven't even created any such lists in our code that would
-	// be open to 'grab' from the free_list.
     if (size < PyTuple_MAXSAVESIZE && (op = free_list[size]) != NULL) {
         free_list[size] = (PyTupleObject *) op->ob_item[0];
         numfree[size]--;
@@ -94,7 +90,6 @@ PyTuple_New(register Py_ssize_t size)
     else
 #endif
     {
-	//CSC253 I think we end up here and have to allocate 2 PyObject pointers, here we're getting how many bytes we need
         Py_ssize_t nbytes = size * sizeof(PyObject *);
         /* Check for overflow */
         if (nbytes / sizeof(PyObject *) != (size_t)size ||
@@ -102,22 +97,17 @@ PyTuple_New(register Py_ssize_t size)
         {
             return PyErr_NoMemory();
         }
-
-		/** CSC253 Macro call out of objimpl.h #define PyObject_GC_NewVar(type, typeobj, n) \
-                ( (type *) _PyObject_GC_NewVar((typeobj), (n)) ) - this goes to gcmodule.c for memory allocation
-				
-		*/
         op = PyObject_GC_NewVar(PyTupleObject, &PyTuple_Type, size);
         if (op == NULL)
             return NULL;
     }
     
-    /* CSC253
+    /* CSC253 ASGN_36
      * Logic above handles the op pointer, make sure op is allocated;
      * make sure that GC knows about the memory op points to as well;
      * this for loop below goes into the newly allocated tuple object and initialize
      * its fields for elements to NULL ( which will later be modified to point to 
-     * elements to be popped from the value stack)
+     * elements to be popped from the value stack) --> ceval.c
      */
     for (i=0; i < size; i++)
         op->ob_item[i] = NULL;
@@ -134,8 +124,6 @@ PyTuple_New(register Py_ssize_t size)
 #ifdef SHOW_TRACK_COUNT
     count_tracked++;
 #endif
-	// CSC253 we're adding this item to the list for garbage collection scanning, which will check for reference counts and 
-	// free up this memory is necessary.
     _PyObject_GC_TRACK(op);
     return (PyObject *) op;
 }
@@ -479,6 +467,9 @@ tupleconcat(register PyTupleObject *a, register PyObject *bb)
         return NULL;
     }
 #define b ((PyTupleObject *)bb)
+/** CSC253 ASGN_43 This is actually pretty straight forward, we create a new tuple object with the size of both, and add items to this
+new tuple from our two old tuples, returning the result. --> ceval.c
+*/
     size = Py_SIZE(a) + Py_SIZE(b);
     if (size < 0)
         return PyErr_NoMemory();
