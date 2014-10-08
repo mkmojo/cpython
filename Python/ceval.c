@@ -1764,6 +1764,14 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
 
         case PRINT_ITEM:
             v = POP();
+/** CSC253 ASGN_14 In this case (since we didn't come from PRINT_ITEM_TO our stream is NULL, meaning
+we set the PyObject w to be the stdout. PySys_GetObject is defined in sysmodule.c which has links to
+windows.h etc. and allows us access to the standard output method for whatever operating system
+we happen to be running on.
+
+There's quite a bit of error checking here but what we need to know is we kick out the value on top
+of the stack to standard output.
+*/
             if (stream == NULL || stream == Py_None) {
                 w = PySys_GetObject("stdout");
                 if (w == NULL) {
@@ -1829,6 +1837,9 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
                 /* w.write() may replace sys.stdout, so we
                  * have to keep our reference to it */
                 Py_INCREF(w);
+/** CSC253 ASGN_15 Here we send a newline character to the stdout, this gives
+us our expected output of [value]\n after each iteration
+*/
                 err = PyFile_WriteString("\n", w);
                 if (err == 0)
                     PyFile_SoftSpace(w, 0);
@@ -1950,6 +1961,9 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
             v = POP();
             if ((x = f->f_locals) != NULL) {
                 if (PyDict_CheckExact(x))
+/** CSC253 ASGN_12 Here we grab our name (elt) and set a reference giving
+us a link from 'elt' to the value (our first run sets it to be 5
+*/
                     err = PyDict_SetItem(x, w, v);
                 else
                     err = PyObject_SetItem(x, w, v);
@@ -2052,6 +2066,9 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
                 why = WHY_EXCEPTION;
                 break;
             }
+/** CSC253 ASGN_13 This time through (our first time through the loop) we pull
+onto the value stack our PyIntObject of 5 for later use.
+*/
 /** CSC253 ASGN_5 Here we now need to grab our instantiated object from memory.
 The object is stored at index c in this dictionary, the neat thing to think about
 here is this is in fact a dictionary of a label to an instantiated object.
@@ -2527,6 +2544,12 @@ want to do something with it right away.
         case FOR_ITER:
             /* before: [iter]; after: [iter, iter()] *or* [] */
             v = TOP();
+/** CSC253 ASGN_11 Here we reach into our Counter object and grab its defined
+next() function and call it passing in the Iterator itself. This is thorugh the
+same indirection we've seen in the last assignment, the TypeObject gives us a
+reference to the next() function of the Iterator. On our first run
+through we get the number 5, and store that onto the value stack.
+*/
             x = (*v->ob_type->tp_iternext)(v);
             if (x != NULL) {
                 PUSH(x);
