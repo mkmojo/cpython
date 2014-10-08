@@ -1910,6 +1910,11 @@ us our expected output of [value]\n after each iteration
 
         case POP_BLOCK:
             {
+/** CSC253 ASGN_18 Here is where our cleanup happens from the SETUP_LOOP, what we're
+doing now is removing everything back to where the original stack level was
+when we initially created this block. From here on our we finish off exacly like
+the first two assignments, cleanup and return the Nothing PyObject.
+*/
                 PyTryBlock *b = PyFrame_BlockPop(f);
                 while (STACK_LEVEL() > b->b_level) {
                     v = POP();
@@ -2499,6 +2504,15 @@ flexible in this way.
 
         PREDICTED_WITH_ARG(JUMP_ABSOLUTE);
         case JUMP_ABSOLUTE:
+/** CSC253 ASGN_16 This is pretty straight forward, we're just setting the
+nextinstr to the value we want, in our case everytime we hit this it's to go
+back up to FOR_ITER.
+
+Instead of looping with the trace, know that we hit this point going from the
+FOR_ITER opcode through to JUMP_ABSOLUTE printing out 5,6,7. It is after we
+print out the number 7 that anything changes and we continue the trace after this
+point.
+*/
             JUMPTO(oparg);
 #if FAST_LOOPS
             /* Enabling this path speeds-up all while and for-loops by bypassing
@@ -2557,6 +2571,11 @@ through we get the number 5, and store that onto the value stack.
                 PREDICT(UNPACK_SEQUENCE);
                 continue;
             }
+/** CSC253 ASGN_17 The result of our call to 'get next' in this case returned
+a PyExc_StopIteration error and x == null, so we catch the 'iterator ended
+normally branch here and pop the top of the stack, and do the JUMPBY(11) taking
+us down to byte 55 (since nextinstr is 44).
+*/
             if (PyErr_Occurred()) {
                 if (!PyErr_ExceptionMatches(
                                 PyExc_StopIteration))
