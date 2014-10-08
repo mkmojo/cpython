@@ -2538,7 +2538,8 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
             }
             why = WHY_CONTINUE;
             goto fast_block_end;
-
+/** CSC253 ASGN_1 - Here's the entry point of our assignment skipping the setup sections.
+*/
         case SETUP_LOOP:
         case SETUP_EXCEPT:
         case SETUP_FINALLY:
@@ -2546,7 +2547,10 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
                are not try/except/finally handlers, you may need
                to update the PyGen_NeedsFinalizing() function.
                */
-
+			/** CSC253 ASGN_2 Here we're setting up a new block, passing in the frame, opcode (SETUP_LOOP),
+			INSTR_OFFSET() + oparg gives us 55, and the current stack level.
+			--> frameobject.c
+			*/
             PyFrame_BlockSetup(f, opcode, INSTR_OFFSET() + oparg,
                                STACK_LEVEL());
             continue;
