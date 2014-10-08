@@ -2052,6 +2052,12 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
                 why = WHY_EXCEPTION;
                 break;
             }
+/** CSC253 ASGN_5 Here we now need to grab our instantiated object from memory.
+The object is stored at index c in this dictionary, the neat thing to think about
+here is this is in fact a dictionary of a label to an instantiated object.
+Because everything in python is an object this makes these dictionaries really
+flexible in this way.
+*/
             if (PyDict_CheckExact(v)) {
                 x = PyDict_GetItem(v, w);
                 Py_XINCREF(x);
@@ -2493,9 +2499,23 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
         case GET_ITER:
             /* before: [obj]; after [getiter(obj)] */
             v = TOP();
+/** CSC253 ASGN_6 Now that we have our Counter object sitting on top of
+the value stack, we need to grab our iterator from it and place
+that on top of the stack. Notice we actually leave the object
+still sitting on the stack rather than obliterating it, this keeps the object
+around so that we can reference it is necessary later on.
+
+-->Objects/abstract.c
+*/
             x = PyObject_GetIter(v);
             Py_DECREF(v);
             if (x != NULL) {
+/** CSC254 ASGN_10 We push our Iterator (Counter) onto the stack, in this
+case we actually have two references to the Counter object sitting on the top
+two locations of the stack, and notice we predict FOR_ITER, which is a good
+optimization, most likely if you pull the Iterator you're probably going to
+want to do something with it right away.
+*/
                 SET_TOP(x);
                 PREDICT(FOR_ITER);
                 continue;

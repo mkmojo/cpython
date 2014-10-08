@@ -3066,9 +3066,24 @@ _PyObject_RealIsSubclass(PyObject *derived, PyObject *cls)
 PyObject *
 PyObject_GetIter(PyObject *o)
 {
+/** CSC253 ASGN_7 So we've passed in a pointer to our Counter object here
+and need to 'extract' the iterator (which in ourcase is just itself).
+
+PyType_HasFeature is a macro defined in object.h:
+#define PyType_HasFeature(t,f)  (((t)->tp_flags & (f)) != 0)
+
+So as seen in lecture, we're anding these two bit patterns together
+to make sure we end up with something non zero. tp_flags comes right
+out of the object definition, and since we have an __iter()__ defined
+this will be true.
+*/
     PyTypeObject *t = o->ob_type;
     getiterfunc f = NULL;
     if (PyType_HasFeature(t, Py_TPFLAGS_HAVE_ITER))
+/** CSC253 ASGN_8 Since we're true here we're snagging the tp_iter function
+directly out of the ob_type, which in our case just gives us a reference to the
+Counter object itself!
+*/
         f = t->tp_iter;
     if (f == NULL) {
         if (PySequence_Check(o))
@@ -3076,6 +3091,12 @@ PyObject_GetIter(PyObject *o)
         return type_error("'%.200s' object is not iterable", o);
     }
     else {
+/** CSC253 ASGN_9 Here we're calling the actual iter function and passing
+in the object, so this inline really means Counter.__iter__(Counter) which
+correctly sets up our iterator. This passes the error check below and now
+we kick this Iterator back out to ceval.cPython/ceval.c
+-->Python/ceval.c
+*/
         PyObject *res = (*f)(o);
         if (res != NULL && !PyIter_Check(res)) {
             PyErr_Format(PyExc_TypeError,
