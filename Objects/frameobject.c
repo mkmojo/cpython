@@ -750,22 +750,27 @@ PyFrame_New(PyThreadState *tstate, PyCodeObject *code, PyObject *globals,
 void
 PyFrame_BlockSetup(PyFrameObject *f, int type, int handler, int level)
 {
-/** CSC253 ASGN_3 - We're now here setting up a new PyTryBlock
+/** CSC253 ASGN_3 - We're now here setting up a new PyTryBlock that we'll
+reference later on when we're cleaning up after running the loop.
 */
     PyTryBlock *b;
     if (f->f_iblock >= CO_MAXBLOCKS)
         Py_FatalError("XXX block stack overflow");
-	/** CSC253 ASGN_4 f_blockstack is defined up in frameobject.h, this basically gives us a 'pool' of blocks to pull
-	from and assign as necessary. There's a fixed number of them, so we first checked up above whether there is one available
-	for us to use.
+/** CSC253 ASGN_4 f_blockstack is defined up in frameobject.h, this
+basically gives us a 'pool' of blocks to pull from and assign as necessary.
+There's a fixed number of them, so we first checked up above whether there is
+one available for us to use.
 
-	So what we do here is grab the address of the next open PyTryBlock in our frame,
-	set it to the type 'SETUP_LOOP'. Level defines what level we pop to when cleaning up this block and the handler
-	tells us where to jump to once we're done. We'll see these used later on, just know that essentially what we've done
-	is 'initialize' the block.
+So what we do here is grab the address of the next open PyTryBlock in our
+frame, set it to the type 'SETUP_LOOP'. Level defines what level we pop to
+when cleaning up this block and the handler tells us where to jump to once
+we're done with that cleanup.
 
-	-->ceval.c
-	*/
+We'll see these used later on, just know that essentially what we've done
+is 'initialize' the block.
+
+-->ceval.c
+*/
     b = &f->f_blockstack[f->f_iblock++];
     b->b_type = type;
     b->b_level = level;

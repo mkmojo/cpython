@@ -2538,7 +2538,12 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
             }
             why = WHY_CONTINUE;
             goto fast_block_end;
-/** CSC253 ASGN_1 - Here's the entry point of our assignment skipping the setup sections.
+/** CSC253 ASGN_1 Here's the entry point of our assignment skipping the setup
+sections.
+
+At this point in the program we've built the class Counter (with the function
+code blocks stored), instantiated it with arguments (5,7) and then stored the
+instantiated object with an index 'c' in the local variables.
 */
         case SETUP_LOOP:
         case SETUP_EXCEPT:
@@ -2547,10 +2552,13 @@ PyEval_EvalFrameEx(PyFrameObject *f, int throwflag)
                are not try/except/finally handlers, you may need
                to update the PyGen_NeedsFinalizing() function.
                */
-			/** CSC253 ASGN_2 Here we're setting up a new block, passing in the frame, opcode (SETUP_LOOP),
-			INSTR_OFFSET() + oparg gives us 55, and the current stack level.
-			--> frameobject.c
-			*/
+/** CSC253 ASGN_2 Here we're setting up a new block, passing in the frame,
+opcode (SETUP_LOOP), INSTR_OFFSET() is 37 currently, and + oparg (19)
+gives us 56, and the current stack level. The 56 is important here, that
+byte is just after the POP_BLOCK instruction, so this tells us where to
+go once we clean up this block. More explanation in the actual frameobject.
+--> Objects/frameobject.c
+*/
             PyFrame_BlockSetup(f, opcode, INSTR_OFFSET() + oparg,
                                STACK_LEVEL());
             continue;
