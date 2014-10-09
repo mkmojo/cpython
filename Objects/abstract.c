@@ -3075,7 +3075,7 @@ PyType_HasFeature is a macro defined in object.h:
 So as seen in lecture, we're anding these two bit patterns together
 to make sure we end up with something non zero. tp_flags comes right
 out of the object definition, and since we have an __iter()__ defined
-this will be true.
+this will be true. We get back type PyInstanceObject as the type.
 */
     PyTypeObject *t = o->ob_type;
     getiterfunc f = NULL;
@@ -3083,6 +3083,8 @@ this will be true.
 /** CSC253 ASGN_8 Since we're true here we're snagging the tp_iter function
 directly out of the ob_type, which in our case just gives us a reference to the
 Counter object itself!
+
+-->Objects/classobject.c - Numbering is 8.X in this file.
 */
         f = t->tp_iter;
     if (f == NULL) {
@@ -3099,7 +3101,10 @@ actually live, the instance only has a pointer to this particular class 'Counter
 This passes the error check below and now
 we kick this Iterator back out to ceval.c, which is the object itself.
 
--->Python/ceval.c
+-->ceval.c
+
+
+
 */
         PyObject *res = (*f)(o);
         if (res != NULL && !PyIter_Check(res)) {

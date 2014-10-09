@@ -2557,10 +2557,9 @@ the Iterator you're probably going to want to do something with it right away.
             /* before: [iter]; after: [iter, iter()] *or* [] */
             v = TOP();
 /** CSC253 ASGN_11 Here we reach into our Counter object and grab its defined
-next() function and call it passing in the Iterator itself. This is through the
-same indirection we've seen in the last assignment, the TypeObject gives us a
-reference to the next() function of the Iterator. On our first run
-through we get the number 5, and store that onto the value stack.
+next() function in the classobject, in the almost exact same way as we grabbed
+the __iter__ function in GET_ITER. We call that function with our instance (c) and push
+the result onto the stack.
 */
             x = (*v->ob_type->tp_iternext)(v);
             if (x != NULL) {

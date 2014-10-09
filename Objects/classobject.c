@@ -205,6 +205,10 @@ class_lookup(PyClassObject *cp, PyObject *name, PyClassObject **pclass)
 {
     Py_ssize_t i, n;
     PyObject *value = PyDict_GetItem(cp->cl_dict, name);
+/** CSC253 ASGN_8.4 Here we do a dictionary lookup for the __iter__ method,
+and set our passed in PyClassObject to it, and return the actual function __iter__
+as specified by our Counter class.
+*/
     if (value != NULL) {
         *pclass = cp;
         return value;
@@ -732,12 +736,18 @@ instance_getattr1(register PyInstanceObject *inst, PyObject *name)
             return (PyObject *)inst->in_class;
         }
     }
+/** CSC253 ASGN_8.3 We've done some checks to see if the string is a dict or class, it
+is not so we end up executing this function.
+*/
     v = instance_getattr2(inst, name);
     if (v == NULL && !PyErr_Occurred()) {
         PyErr_Format(PyExc_AttributeError,
                      "%.50s instance has no attribute '%.400s'",
                      PyString_AS_STRING(inst->in_class->cl_name), sname);
     }
+/** CSC253 ASGN_8.5 Now we have our function, so we kick this back out to abstract.c.
+-->abstract.c (move to ASGN_9)
+*/
     return v;
 }
 
@@ -771,6 +781,7 @@ static PyObject *
 instance_getattr(register PyInstanceObject *inst, PyObject *name)
 {
     register PyObject *func, *res;
+/** CSC253 ASGN_8.2 so we now send the instance object and the string __iter__ through this function. */
     res = instance_getattr1(inst, name);
     if (res == NULL && (func = inst->in_class->cl_getattr) != NULL) {
         PyObject *args;
@@ -2069,7 +2080,9 @@ instance_getiter(PyInstanceObject *self)
         if (getitemstr == NULL)
             return NULL;
     }
-
+/** CSC253 ASGN_8.1 Calling this function with the Instantiated Counter object
+c, and the string __iter__
+*/
     if ((func = instance_getattr(self, iterstr)) != NULL) {
         PyObject *res = PyEval_CallObject(func, (PyObject *)NULL);
         Py_DECREF(func);
