@@ -3092,9 +3092,13 @@ Counter object itself!
     }
     else {
 /** CSC253 ASGN_9 Here we're calling the actual iter function and passing
-in the object, so this inline really means Counter.__iter__(Counter) which
-correctly sets up our iterator. This passes the error check below and now
-we kick this Iterator back out to ceval.cPython/ceval.c
+in the object. We end up calling instance_getiter in classobject.c. Notice
+we go up to the actual class object, since that's where the function definitions
+actually live, the instance only has a pointer to this particular class 'Counter'.
+
+This passes the error check below and now
+we kick this Iterator back out to ceval.c, which is the object itself.
+
 -->Python/ceval.c
 */
         PyObject *res = (*f)(o);
