@@ -1914,7 +1914,7 @@ us our expected output of [value]\n after each iteration
 doing now is removing everything back to where the original stack level was
 when we initially created this block. In our case we don't have anything extra to pop
 off the stack since we're taking the elements off as we print them, so
-from here on our we finish off exacly like
+from here on our we finish off exactly like
 the first two assignments, error checking and return the Nothing PyObject.
 */
                 PyTryBlock *b = PyFrame_BlockPop(f);
@@ -2541,7 +2541,7 @@ that on top of the stack.
             x = PyObject_GetIter(v);
             Py_DECREF(v);
             if (x != NULL) {
-/** CSC254 ASGN_10 We push our Iterator (Counter) onto the stack, and notice
+/** CSC254 ASGN_10 We push our Iterator (c) onto the stack, and notice
 we predict FOR_ITER, which is a good optimization, most likely if you pull
 the Iterator you're probably going to want to do something with it right away.
 */

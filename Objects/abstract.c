@@ -3102,9 +3102,6 @@ This passes the error check below and now
 we kick this Iterator back out to ceval.c, which is the object itself.
 
 -->ceval.c
-
-
-
 */
         PyObject *res = (*f)(o);
         if (res != NULL && !PyIter_Check(res)) {
